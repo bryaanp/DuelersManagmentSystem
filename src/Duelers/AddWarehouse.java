@@ -162,12 +162,16 @@ public class AddWarehouse extends javax.swing.JFrame {
         Connection conn;
        MyConnection submitwarehouse = new MyConnection();
        conn = submitwarehouse.getConnection();
-       String sql= "insert into warehouse (warehouseNumber, warehouseAddress)" + "values(?,?)";
+       //String sql= "insert into warehouse (warehouseNumber, warehouseAddress)" + "values(?,?)";
+       String sql = "insert into warehouse (warehouseNumber, warehouseAddress) values ( '" + txtNumber.getText() + "' , '" + txtAddress.getText() + "')"; 
+
     try {
+        
         PreparedStatement pst= conn.prepareStatement(sql);  
-        pst.setString(1, txtNumber.getText());
-        pst.setString(2, txtAddress.getText());
-        //rs = pst.executeQuery();      
+       // pst.setString(1, txtNumber.getText());
+       // pst.setString(2, txtAddress.getText());
+        pst.executeUpdate(sql); 
+        
     }//GEN-LAST:event_btnSubmit1ActionPerformed
     catch (SQLException ex)
     {

@@ -5,6 +5,7 @@
  * and open the template in the editor.
  */
 package Duelers;
+
 import java.sql.Driver;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -22,7 +23,8 @@ public class MyConnection
     {
         try
         {
-            Class.forName("com.mysql.jdbc.Driver"); 
+            //Class.forName("com.mysql.jdbc.Driver"); 
+            Class.forName("com.mysql.cj.jdbc.Driver");
             System.out.println("Searching for Connection class....");            
         }
         catch(ClassNotFoundException cnf)

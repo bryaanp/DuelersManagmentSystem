@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="DuelersManagmentSystem">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/dist/DuelersManagmentSystem.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

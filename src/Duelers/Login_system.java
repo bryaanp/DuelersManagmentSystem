@@ -161,7 +161,7 @@ public class Login_system extends javax.swing.JFrame {
    
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
                 
-       Connection conn;
+       //Connection conn;
        MyConnection loginbtn = new MyConnection();
        conn = loginbtn.getConnection();
        String sql= "Select User, Password from login where User = ? and password= ?";
