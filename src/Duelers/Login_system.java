@@ -42,13 +42,11 @@ public class Login_system extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         lbTitle = new javax.swing.JLabel();
-        lbUser = new javax.swing.JLabel();
         txtPassword = new javax.swing.JPasswordField();
         btnLogin = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         btnReset = new javax.swing.JButton();
         lbPassword1 = new javax.swing.JLabel();
-        txtUsername = new javax.swing.JTextField();
 
         jLabel1.setText("jLabel1");
 
@@ -56,9 +54,6 @@ public class Login_system extends javax.swing.JFrame {
 
         lbTitle.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         lbTitle.setText("Duelers Electronic Store");
-
-        lbUser.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        lbUser.setText("User Name");
 
         txtPassword.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtPassword.addActionListener(new java.awt.event.ActionListener() {
@@ -86,12 +81,6 @@ public class Login_system extends javax.swing.JFrame {
         lbPassword1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lbPassword1.setText("Password");
 
-        txtUsername.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtUsernameActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -106,21 +95,15 @@ public class Login_system extends javax.swing.JFrame {
                 .addComponent(btnReset, javax.swing.GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)
                 .addGap(87, 87, 87))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(lbUser, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtUsername))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addComponent(lbTitle)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(lbPassword1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtPassword)))
-                .addGap(34, 34, 34))
+                .addGap(55, 55, 55)
+                .addComponent(lbTitle)
+                .addContainerGap(58, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lbPassword1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtPassword)
+                .addGap(54, 54, 54))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -129,15 +112,11 @@ public class Login_system extends javax.swing.JFrame {
                 .addComponent(lbTitle)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 1, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lbUser)
-                    .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addGap(57, 57, 57)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbPassword1))
-                .addGap(47, 47, 47)
+                    .addComponent(lbPassword1)
+                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnLogin)
                     .addComponent(btnReset))
@@ -164,11 +143,10 @@ public class Login_system extends javax.swing.JFrame {
        //Connection conn;
        MyConnection loginbtn = new MyConnection();
        conn = loginbtn.getConnection();
-       String sql= "Select User, Password from login where User = ? and password= ?";
+       String sql= "Select Password from login where password = ?";
     try {
         pst= conn.prepareStatement(sql);  
-        pst.setString(1, txtUsername.getText());
-        pst.setString(2, txtPassword.getText());
+        pst.setString(1, txtPassword.getText());
         rs = pst.executeQuery();
         if(rs.next())
         {
@@ -185,24 +163,19 @@ public class Login_system extends javax.swing.JFrame {
     catch (Exception ex)
     {
         JOptionPane.showMessageDialog(null, ex);
-    }        
+    }
                    
         
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
         txtPassword.setText(null);
-        txtUsername.setText(null);
-        
+
     }//GEN-LAST:event_btnResetActionPerformed
 
     private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtPasswordActionPerformed
-
-    private void txtUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsernameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtUsernameActionPerformed
 
     /**
      * @param args the command line arguments
@@ -247,9 +220,7 @@ public class Login_system extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lbPassword1;
     private javax.swing.JLabel lbTitle;
-    private javax.swing.JLabel lbUser;
     private javax.swing.JPasswordField txtPassword;
-    private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
 
     private void systemExit()
