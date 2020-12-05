@@ -136,26 +136,26 @@ public class ViewWarehouse extends javax.swing.JFrame {
 
     private void combWarehoustListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combWarehoustListActionPerformed
         // TODO add your handling code here:
-        MyConnection listAction = new MyConnection();
-        conn = listAction.getConnection();
-        String sql = "Select warehouseNumber from warehouse ORDER BY warehouseNumber";
-//        ArrayList<String> warehouseList = new ArrayList<String>();
-//        combWarehoustList.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1","2" }));
-        try {
-            pst= conn.prepareStatement(sql);
-            rs = pst.executeQuery();
-            while(rs.next())
-            {
-               int warehouseID = Integer.parseInt(rs.getString("warehouseNumber"));
-
-                combWarehoustList.addItem(String.valueOf(warehouseID));
-
-            }
-        }
-        catch (Exception ex)
-        {
-            JOptionPane.showMessageDialog(null, ex);
-        }
+//        MyConnection listAction = new MyConnection();
+//        conn = listAction.getConnection();
+//        String sql = "Select warehouseNumber from warehouse ORDER BY warehouseNumber";
+////        ArrayList<String> warehouseList = new ArrayList<String>();
+////        combWarehoustList.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1","2" }));
+//        try {
+//            pst= conn.prepareStatement(sql);
+//            rs = pst.executeQuery();
+//            while(rs.next())
+//            {
+//               int warehouseID = Integer.parseInt(rs.getString("warehouseNumber"));
+//
+//                combWarehoustList.addItem(String.valueOf(warehouseID));
+//
+//            }
+//        }
+//        catch (Exception ex)
+//        {
+//            JOptionPane.showMessageDialog(null, ex);
+//        }
     }//GEN-LAST:event_combWarehoustListActionPerformed
 
 //    public  void viewTable(Connection conn) throws SQLException {
@@ -196,7 +196,6 @@ public class ViewWarehouse extends javax.swing.JFrame {
             {
                 int warehouseID = Integer.parseInt(rs.getString("warehouseNumber"));
                 combWarehoustList.addItem(String.valueOf(warehouseID));
-
             }
         }
         catch (Exception ex)
