@@ -7,8 +7,24 @@ package Duelers;
 
 /**
  *
- * @author majes
+ * @author Bryan
  */
+import java.sql.Driver;
+import java.awt.HeadlessException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.*;
+import javax.swing.*;
+import javax.swing.JOptionPane;
+import java.awt.Toolkit;
+import java.awt.event.WindowEvent;
+import static java.lang.ProcessBuilder.Redirect.from;
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
+
 public class ViewCustomer extends javax.swing.JPanel {
 
     /**
@@ -122,7 +138,7 @@ public class ViewCustomer extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnDoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDoneActionPerformed
-        Warehouse Info = new Warehouse();
+        Customer Info = new Customer();
         Info.setVisible(true);
     }//GEN-LAST:event_btnDoneActionPerformed
 

@@ -7,8 +7,23 @@ package Duelers;
 
 /**
  *
- * @author majes
+ * @author Bryan
  */
+import java.sql.Driver;
+import java.awt.HeadlessException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.*;
+import javax.swing.*;
+import javax.swing.JOptionPane;
+import java.awt.Toolkit;
+import java.awt.event.WindowEvent;
+import static java.lang.ProcessBuilder.Redirect.from;
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 public class DeactivateCustomer extends javax.swing.JPanel {
 
     /**
@@ -29,9 +44,9 @@ public class DeactivateCustomer extends javax.swing.JPanel {
 
         btnSubmit = new javax.swing.JButton();
         btnReturn = new javax.swing.JButton();
-        lbAddCustomer = new javax.swing.JLabel();
-        combRemoveCustomer = new javax.swing.JComboBox<>();
-        lbCustomerID = new javax.swing.JLabel();
+        lbDeactivateCustomer = new javax.swing.JLabel();
+        lbSelectCustomer = new javax.swing.JLabel();
+        combSelectCustomer = new javax.swing.JComboBox<>();
 
         btnSubmit.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnSubmit.setText("Submit");
@@ -49,52 +64,45 @@ public class DeactivateCustomer extends javax.swing.JPanel {
             }
         });
 
-        lbAddCustomer.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        lbAddCustomer.setText("Deactivate Customer");
+        lbDeactivateCustomer.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lbDeactivateCustomer.setText("Deactivate Customer");
 
-        combRemoveCustomer.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        combRemoveCustomer.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                combRemoveCustomerActionPerformed(evt);
-            }
-        });
+        lbSelectCustomer.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lbSelectCustomer.setText("Select Customer");
 
-        lbCustomerID.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
-        lbCustomerID.setText("Select Customer ID");
+        combSelectCustomer.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(80, Short.MAX_VALUE)
-                .addComponent(lbAddCustomer)
-                .addGap(68, 68, 68))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lbDeactivateCustomer)
+                .addGap(96, 96, 96))
             .addGroup(layout.createSequentialGroup()
-                .addGap(13, 13, 13)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lbCustomerID)
-                    .addComponent(btnSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnReturn, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(37, 37, 37))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(combRemoveCustomer, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())))
+                .addGap(35, 35, 35)
+                .addComponent(btnSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
+                .addComponent(btnReturn, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(37, 37, 37))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addComponent(lbSelectCustomer)
+                .addGap(18, 18, 18)
+                .addComponent(combSelectCustomer, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(41, 41, 41))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lbAddCustomer)
-                .addGap(45, 45, 45)
+                .addComponent(lbDeactivateCustomer)
+                .addGap(54, 54, 54)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbCustomerID)
-                    .addComponent(combRemoveCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 132, Short.MAX_VALUE)
+                    .addComponent(lbSelectCustomer)
+                    .addComponent(combSelectCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 120, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSubmit)
                     .addComponent(btnReturn))
@@ -104,10 +112,10 @@ public class DeactivateCustomer extends javax.swing.JPanel {
 
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
         Connection conn;
-        MyConnection submitwarehouse = new MyConnection();
-        conn = submitwarehouse.getConnection();
+        MyConnection submitDeactivateCust = new MyConnection();
+        conn = submitDeactivateCust.getConnection();
         //String sql= "insert into warehouse (warehouseNumber, warehouseAddress)" + "values(?,?)";
-        String sql = "insert into warehouse (warehouseNumber, warehouseAddress) values ( '" + txtNumber.getText() + "' , '" + txtAddress.getText() + "')";
+        //String sql = 
 
         try {
 
@@ -119,20 +127,16 @@ public class DeactivateCustomer extends javax.swing.JPanel {
     }//GEN-LAST:event_btnSubmitActionPerformed
 
     private void btnReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturnActionPerformed
-        Warehouse Info = new Warehouse();
+        Customer Info = new Customer();
         Info.setVisible(true);
     }//GEN-LAST:event_btnReturnActionPerformed
-
-    private void combRemoveCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combRemoveCustomerActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_combRemoveCustomerActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnReturn;
     private javax.swing.JButton btnSubmit;
-    private javax.swing.JComboBox<String> combRemoveCustomer;
-    private javax.swing.JLabel lbAddCustomer;
-    private javax.swing.JLabel lbCustomerID;
+    private javax.swing.JComboBox<String> combSelectCustomer;
+    private javax.swing.JLabel lbDeactivateCustomer;
+    private javax.swing.JLabel lbSelectCustomer;
     // End of variables declaration//GEN-END:variables
 }
