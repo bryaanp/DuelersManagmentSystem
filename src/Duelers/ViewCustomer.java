@@ -48,7 +48,7 @@ public class ViewCustomer extends javax.swing.JPanel {
         btnDone = new javax.swing.JButton();
         btnReturn1 = new javax.swing.JButton();
         lbCustomerList = new javax.swing.JLabel();
-        combWarehoustList1 = new javax.swing.JComboBox<>();
+        combCustomerList = new javax.swing.JComboBox<>();
         lbListofInfo = new javax.swing.JLabel();
         txtQuantity = new javax.swing.JTextField();
 
@@ -81,12 +81,7 @@ public class ViewCustomer extends javax.swing.JPanel {
         lbCustomerList.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lbCustomerList.setText("Customer List");
 
-        combWarehoustList1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        combWarehoustList1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                combWarehoustList1ActionPerformed(evt);
-            }
-        });
+        combCustomerList.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
 
         lbListofInfo.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lbListofInfo.setText("List of Info");
@@ -112,7 +107,7 @@ public class ViewCustomer extends javax.swing.JPanel {
                     .addComponent(lbCustomerList, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(combWarehoustList1, 0, 234, Short.MAX_VALUE)
+                    .addComponent(combCustomerList, 0, 234, Short.MAX_VALUE)
                     .addComponent(txtQuantity))
                 .addContainerGap())
         );
@@ -124,7 +119,7 @@ public class ViewCustomer extends javax.swing.JPanel {
                 .addGap(44, 44, 44)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lbCustomerList)
-                    .addComponent(combWarehoustList1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(combCustomerList, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbListofInfo)
@@ -150,10 +145,6 @@ public class ViewCustomer extends javax.swing.JPanel {
     private void combWarehoustListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combWarehoustListActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_combWarehoustListActionPerformed
-
-    private void combWarehoustList1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combWarehoustList1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_combWarehoustList1ActionPerformed
 
 public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -189,8 +180,8 @@ public static void main(String args[]) {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDone;
     private javax.swing.JButton btnReturn1;
+    private javax.swing.JComboBox<String> combCustomerList;
     private javax.swing.JComboBox<String> combWarehoustList;
-    private javax.swing.JComboBox<String> combWarehoustList1;
     private javax.swing.JLabel lbCustomerList;
     private javax.swing.JLabel lbListofInfo;
     private javax.swing.JLabel lbViewCustomer;

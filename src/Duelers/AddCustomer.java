@@ -10,21 +10,10 @@ package Duelers;
  * @author Bryan
  */
 
-import java.sql.Driver;
-import java.awt.HeadlessException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.*;
 import javax.swing.*;
-import javax.swing.JOptionPane;
-import java.awt.Toolkit;
-import java.awt.event.WindowEvent;
-import static java.lang.ProcessBuilder.Redirect.from;
-import java.lang.System.Logger;
-import java.lang.System.Logger.Level;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 public class AddCustomer extends javax.swing.JPanel {
 
@@ -92,6 +81,11 @@ public class AddCustomer extends javax.swing.JPanel {
 
         btnReturn.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnReturn.setText("Return");
+        btnReturn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReturnActionPerformed(evt);
+            }
+        });
 
         lbFirstName.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         lbFirstName.setText("First Name");
@@ -110,36 +104,6 @@ public class AddCustomer extends javax.swing.JPanel {
 
         lbLastName.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         lbLastName.setText("Last Name");
-
-        txtLastName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtLastNameActionPerformed(evt);
-            }
-        });
-
-        txtID.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtIDActionPerformed(evt);
-            }
-        });
-
-        txtPhone.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPhoneActionPerformed(evt);
-            }
-        });
-
-        txtEmail.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtEmailActionPerformed(evt);
-            }
-        });
-
-        txtAddress.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtAddressActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -229,28 +193,28 @@ public class AddCustomer extends javax.swing.JPanel {
                 + "values ( '" + txtFirstName.getText() + "' , '" + txtLastName.getText() + "' , '" +
                 txtID.getText() + "' , '" + txtPhone.getText() + "' , '" + txtEmail.getText() 
                 + "' , '" + txtAddress.getText() +"')"; 
+        
+        try {
+
+            PreparedStatement pst= conn.prepareStatement(sql);
+            pst.executeUpdate(sql);
+
+        }                                          
+        catch (SQLException ex)
+        {
+            JOptionPane.showMessageDialog(null, ex);
+        }
     }//GEN-LAST:event_btnSubmitActionPerformed
 
-    private void txtLastNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLastNameActionPerformed
+    private void btnReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtLastNameActionPerformed
+        Customer Info = new Customer();
+        Info.setVisible(true);
+    }//GEN-LAST:event_btnReturnActionPerformed
 
-    private void txtIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtIDActionPerformed
-
-    private void txtPhoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPhoneActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtPhoneActionPerformed
-
-    private void txtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtEmailActionPerformed
-
-    private void txtAddressActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAddressActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtAddressActionPerformed
-
+    /**
+     * @param args the command line arguments
+     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
