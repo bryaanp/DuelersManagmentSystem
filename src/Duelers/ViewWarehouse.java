@@ -5,8 +5,15 @@
  */
 package Duelers;
 
-public class ViewWarehouse extends javax.swing.JFrame {
+import javax.swing.*;
+import java.util.ArrayList;
+import java.sql.*;
 
+public class ViewWarehouse extends javax.swing.JFrame {
+    private static JComboBox<String> combWarehoustList;
+    Connection conn = null;
+    ResultSet rs = null;
+    PreparedStatement pst = null;
     /**
      * Creates new form ViewWarehouse
      */
@@ -28,7 +35,7 @@ public class ViewWarehouse extends javax.swing.JFrame {
         lbNumber = new javax.swing.JLabel();
         btnDone = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
-        combWarehoustList = new javax.swing.JComboBox<>();
+        combWarehoustList = new javax.swing.JComboBox<String>();
         btnReturn = new javax.swing.JButton();
         lbListofitem = new javax.swing.JLabel();
         txtQuantity = new javax.swing.JTextField();
@@ -129,17 +136,83 @@ public class ViewWarehouse extends javax.swing.JFrame {
 
     private void combWarehoustListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combWarehoustListActionPerformed
         // TODO add your handling code here:
+        MyConnection listAction = new MyConnection();
+        conn = listAction.getConnection();
+        String sql = "Select warehouseNumber from warehouse ORDER BY warehouseNumber";
+//        ArrayList<String> warehouseList = new ArrayList<String>();
+//        combWarehoustList.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1","2" }));
+        try {
+            pst= conn.prepareStatement(sql);
+            rs = pst.executeQuery();
+            while(rs.next())
+            {
+               int warehouseID = Integer.parseInt(rs.getString("warehouseNumber"));
+
+                combWarehoustList.addItem(String.valueOf(warehouseID));
+
+            }
+        }
+        catch (Exception ex)
+        {
+            JOptionPane.showMessageDialog(null, ex);
+        }
     }//GEN-LAST:event_combWarehoustListActionPerformed
+
+//    public  void viewTable(Connection conn) throws SQLException {
+//        String query = "select warehouseNumber, warehouseAddress from warehouse";
+//        try (Statement stmt = conn.createStatement()) {
+//            ResultSet rs = stmt.executeQuery(query);
+//            while (rs.next()) {
+//                String warehouseAddress = rs.getString("warehouseAddress");
+//                int warehouseNumber = rs.getInt("warehouseNumber");
+//                combWarehoustList.addItem(warehouseAddress);
+//
+//                System.out.println(warehouseAddress + ", " + warehouseNumber);
+//            }
+//        } catch (SQLException e) {
+//            JOptionPane.showMessageDialog(null, e);
+//        }
+//    }
 
     private void btnReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturnActionPerformed
         Warehouse Info = new Warehouse();
         Info.setVisible(true);
     }//GEN-LAST:event_btnReturnActionPerformed
 
+
+    private static void displayWarehouse() {//GEN-FIRST:event_combWarehoustListActionPerformed
+        // TODO add your handling code here:
+        Connection conn;
+        ResultSet rs;
+        PreparedStatement pst;
+        MyConnection listAction = new MyConnection();
+        conn = listAction.getConnection();
+        String sql = "Select warehouseNumber from warehouse ORDER BY warehouseNumber";
+
+        try {
+            pst= conn.prepareStatement(sql);
+            rs = pst.executeQuery();
+            while(rs.next())
+            {
+                int warehouseID = Integer.parseInt(rs.getString("warehouseNumber"));
+                combWarehoustList.addItem(String.valueOf(warehouseID));
+
+            }
+        }
+        catch (Exception ex)
+        {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+    }
+
+
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+        Connection conn;
+        MyConnection listAction = new MyConnection();
+        conn = listAction.getConnection();
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -163,10 +236,17 @@ public class ViewWarehouse extends javax.swing.JFrame {
         }
         //</editor-fold>
 
+
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new ViewWarehouse().setVisible(true);
+                displayWarehouse();
+//                try {
+//                    new ViewWarehouse().viewTable(conn);
+//                } catch (SQLException throwables) {
+//                    throwables.printStackTrace();
+//                }
             }
         });
     }
@@ -174,7 +254,6 @@ public class ViewWarehouse extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDone;
     private javax.swing.JButton btnReturn;
-    private javax.swing.JComboBox<String> combWarehoustList;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lbListofitem;
