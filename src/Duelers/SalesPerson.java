@@ -44,12 +44,22 @@ public class SalesPerson extends javax.swing.JFrame {
 
         btnAdd.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnAdd.setText("Add");
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddActionPerformed(evt);
+            }
+        });
 
         btnRemove.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnRemove.setText("Remove");
 
         btnView.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnView.setText("View");
+        btnView.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewActionPerformed(evt);
+            }
+        });
 
         btnCommisionRate.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnCommisionRate.setText("Commision Rate");
@@ -140,9 +150,20 @@ public class SalesPerson extends javax.swing.JFrame {
     }//GEN-LAST:event_btnExitActionPerformed
 
     private void btnMainMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMainMenuActionPerformed
-       Main_menu Info = new Main_menu();
-       Info.setVisible(true);
+       dispose();
+       new Main_menu().setVisible(true);
     }//GEN-LAST:event_btnMainMenuActionPerformed
+
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        dispose();
+        new AddSalesPerson().setVisible(true);
+    }//GEN-LAST:event_btnAddActionPerformed
+
+    private void btnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActionPerformed
+        dispose();
+        new ViewSalesPerson().setVisible(true);
+
+    }//GEN-LAST:event_btnViewActionPerformed
 
     /**
      * @param args the command line arguments

@@ -5,6 +5,11 @@
  */
 package Duelers;
 
+import javax.swing.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
 /**
  *
  * @author taghr
@@ -17,6 +22,7 @@ public class AddSalesPerson extends javax.swing.JFrame {
     public AddSalesPerson() {
         initComponents();
     }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -34,13 +40,16 @@ public class AddSalesPerson extends javax.swing.JFrame {
         lbEmail = new javax.swing.JLabel();
         lbAddress = new javax.swing.JLabel();
         lbPhone2 = new javax.swing.JLabel();
+        lbRate = new javax.swing.JLabel();
         txtId = new javax.swing.JTextField();
         txtName2 = new javax.swing.JTextField();
         txtPhone = new javax.swing.JTextField();
         txtAddress = new javax.swing.JTextField();
+        txtRate = new javax.swing.JTextField();
         txtEmail2 = new javax.swing.JTextField();
-        lbSubmit = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
+        addEmpSubmit = new javax.swing.JButton();
+        cancelAddEmp = new javax.swing.JButton();
 
         txtEmail1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
 
@@ -64,6 +73,9 @@ public class AddSalesPerson extends javax.swing.JFrame {
         lbPhone2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lbPhone2.setText("Phone#");
 
+        lbRate.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lbRate.setText("Commission Rate");
+
         txtId.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
 
         txtName2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -72,10 +84,27 @@ public class AddSalesPerson extends javax.swing.JFrame {
 
         txtAddress.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
 
+        txtRate.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+
         txtEmail2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
 
-        lbSubmit.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        lbSubmit.setText("Submit");
+        addEmpSubmit.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        addEmpSubmit.setText("Submit");
+        addEmpSubmit.setToolTipText("");
+        addEmpSubmit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addEmpSubmitActionPerformed(evt);
+            }
+        });
+
+        cancelAddEmp.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        cancelAddEmp.setText("Cancel");
+        cancelAddEmp.setToolTipText("");
+        cancelAddEmp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelAddEmpActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -85,37 +114,47 @@ public class AddSalesPerson extends javax.swing.JFrame {
                 .addGap(43, 43, 43)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(lbPhone2, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtId, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtPhone, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
                         .addComponent(lbName, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(txtName2, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(lbID, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(lbPhone2, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lbID, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lbAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(lbEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(46, 46, 46)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtEmail2, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(46, 46, 46))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(lbRate)
+                                .addGap(2, 2, 2)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(24, 24, 24)
+                                .addComponent(txtRate, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtAddress, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtEmail2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE)))
-                .addGap(65, 65, 65))
+                .addGap(41, 41, 41))
+            .addComponent(jSeparator1)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lbaddsalesperson)
-                .addGap(121, 121, 121))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(186, 186, 186)
-                .addComponent(lbSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(jSeparator1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(lbaddsalesperson)
+                        .addGap(121, 121, 121))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(cancelAddEmp, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(81, 81, 81)
+                        .addComponent(addEmpSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(93, 93, 93))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -124,11 +163,11 @@ public class AddSalesPerson extends javax.swing.JFrame {
                 .addComponent(lbaddsalesperson)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(30, 30, 30)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbName)
                     .addComponent(txtName2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lbID)
@@ -145,13 +184,47 @@ public class AddSalesPerson extends javax.swing.JFrame {
                             .addComponent(lbAddress)
                             .addComponent(txtAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
-                .addComponent(lbSubmit)
-                .addGap(28, 28, 28))
+                .addGap(29, 29, 29)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtRate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbRate))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(addEmpSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cancelAddEmp, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(58, 58, 58))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void addEmpSubmitActionPerformed(java.awt.event.ActionEvent evt) {                                             
+        Connection conn;
+        MyConnection submitEmp = new MyConnection();
+        conn = submitEmp.getConnection();
+        String sql = "insert into salesperson (name, emp_id, phone, email, emp_address, commission_percent) " +
+                     "values ( '" + txtName2.getText() + "' , '" + txtId.getText() + "' , '" + txtPhone.getText() +
+                     "' , '" + txtEmail1.getText() + "' , '" + txtAddress.getText() + "' , '" + txtRate.getText() + "')";
+
+        try {
+
+            PreparedStatement pst= conn.prepareStatement(sql);
+            pst.executeUpdate(sql);
+
+        }                                          
+        catch (SQLException ex)
+        {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+    }
+
+
+    private void cancelAddEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelAddEmpActionPerformed
+        dispose();
+        SalesPerson Info = new SalesPerson();
+        Info.setVisible(true);
+
+    }//GEN-LAST:event_cancelAddEmpActionPerformed
 
     /**
      * @param args the command line arguments
@@ -189,13 +262,15 @@ public class AddSalesPerson extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addEmpSubmit;
+    private javax.swing.JButton cancelAddEmp;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lbAddress;
     private javax.swing.JLabel lbEmail;
     private javax.swing.JLabel lbID;
     private javax.swing.JLabel lbName;
     private javax.swing.JLabel lbPhone2;
-    private javax.swing.JLabel lbSubmit;
+    private javax.swing.JLabel lbRate;
     private javax.swing.JLabel lbaddsalesperson;
     private javax.swing.JTextField txtAddress;
     private javax.swing.JTextField txtEmail1;
@@ -203,5 +278,6 @@ public class AddSalesPerson extends javax.swing.JFrame {
     private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtName2;
     private javax.swing.JTextField txtPhone;
+    private javax.swing.JTextField txtRate;
     // End of variables declaration//GEN-END:variables
 }

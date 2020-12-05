@@ -60,7 +60,7 @@ public class ViewSalesPerson extends javax.swing.JFrame {
         txtTotalAmount.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
 
         lbConfirm.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        lbConfirm.setText("Confoirm");
+        lbConfirm.setText("Confirm");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
