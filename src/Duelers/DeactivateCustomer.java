@@ -9,12 +9,12 @@ package Duelers;
  *
  * @author majes
  */
-public class RemoveCustomer extends javax.swing.JPanel {
+public class DeactivateCustomer extends javax.swing.JPanel {
 
     /**
      * Creates new form RemoveCustomer
      */
-    public RemoveCustomer() {
+    public DeactivateCustomer() {
         initComponents();
     }
 
