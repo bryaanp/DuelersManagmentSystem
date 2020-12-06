@@ -225,8 +225,8 @@ public class AddCustomer extends javax.swing.JFrame {
 
     private void btnReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturnActionPerformed
         // TODO add your handling code here:
-        Customer Info = new Customer();
-        Info.setVisible(true);
+        dispose();
+        new Customer().setVisible(true);
     }//GEN-LAST:event_btnReturnActionPerformed
 
     /**
