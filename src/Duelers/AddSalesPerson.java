@@ -98,7 +98,7 @@ public class AddSalesPerson extends javax.swing.JFrame {
         });
 
         cancelAddEmp.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        cancelAddEmp.setText("Cancel");
+        cancelAddEmp.setText("Return");
         cancelAddEmp.setToolTipText("");
         cancelAddEmp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -210,6 +210,8 @@ public class AddSalesPerson extends javax.swing.JFrame {
 
             PreparedStatement pst= conn.prepareStatement(sql);
             pst.executeUpdate(sql);
+            JOptionPane.showMessageDialog(null, "Employee " + txtName2.getText() + " has been added.");
+
 
         }                                          
         catch (SQLException ex)

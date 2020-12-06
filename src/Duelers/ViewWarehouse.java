@@ -35,8 +35,7 @@ public class ViewWarehouse extends javax.swing.JFrame {
         lbNumber = new javax.swing.JLabel();
         btnDone = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
-        combWarehoustList = new javax.swing.JComboBox<String>();
-        btnReturn = new javax.swing.JButton();
+        combWarehoustList = new javax.swing.JComboBox<>();
         lbListofitem = new javax.swing.JLabel();
         txtQuantity = new javax.swing.JTextField();
 
@@ -55,14 +54,6 @@ public class ViewWarehouse extends javax.swing.JFrame {
         combWarehoustList.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 combWarehoustListActionPerformed(evt);
-            }
-        });
-
-        btnReturn.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        btnReturn.setText("Return");
-        btnReturn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnReturnActionPerformed(evt);
             }
         });
 
@@ -87,12 +78,11 @@ public class ViewWarehouse extends javax.swing.JFrame {
                             .addComponent(combWarehoustList, 0, 187, Short.MAX_VALUE))
                         .addGap(17, 17, 17))
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnDone, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 102, Short.MAX_VALUE)
-                        .addComponent(btnReturn, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(33, 33, 33))))
+                        .addGap(165, 165, 165))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(106, Short.MAX_VALUE)
                 .addComponent(lbrViewWarehouse, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(57, 57, 57))
         );
@@ -111,11 +101,9 @@ public class ViewWarehouse extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbListofitem)
                     .addComponent(txtQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnDone)
-                    .addComponent(btnReturn))
-                .addGap(37, 37, 37))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
+                .addComponent(btnDone)
+                .addGap(28, 28, 28))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -158,29 +146,8 @@ public class ViewWarehouse extends javax.swing.JFrame {
 //        }
     }//GEN-LAST:event_combWarehoustListActionPerformed
 
-//    public  void viewTable(Connection conn) throws SQLException {
-//        String query = "select warehouseNumber, warehouseAddress from warehouse";
-//        try (Statement stmt = conn.createStatement()) {
-//            ResultSet rs = stmt.executeQuery(query);
-//            while (rs.next()) {
-//                String warehouseAddress = rs.getString("warehouseAddress");
-//                int warehouseNumber = rs.getInt("warehouseNumber");
-//                combWarehoustList.addItem(warehouseAddress);
-//
-//                System.out.println(warehouseAddress + ", " + warehouseNumber);
-//            }
-//        } catch (SQLException e) {
-//            JOptionPane.showMessageDialog(null, e);
-//        }
-//    }
 
-    private void btnReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturnActionPerformed
-        Warehouse Info = new Warehouse();
-        Info.setVisible(true);
-    }//GEN-LAST:event_btnReturnActionPerformed
-
-
-    private static void displayWarehouse() {//GEN-FIRST:event_combWarehoustListActionPerformed
+    private static void displayWarehouse() {                                                  
         Connection conn;
         ResultSet rs;
         PreparedStatement pst;
@@ -251,7 +218,6 @@ public class ViewWarehouse extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDone;
-    private javax.swing.JButton btnReturn;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lbListofitem;

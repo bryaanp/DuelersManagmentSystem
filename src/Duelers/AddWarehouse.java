@@ -154,8 +154,8 @@ public class AddWarehouse extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturnActionPerformed
-        Warehouse Info = new Warehouse();
-        Info.setVisible(true);
+        dispose();
+        new Warehouse().setVisible(true);
     }//GEN-LAST:event_btnReturnActionPerformed
 
     private void btnSubmit1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmit1ActionPerformed
@@ -166,11 +166,9 @@ public class AddWarehouse extends javax.swing.JFrame {
        String sql = "insert into warehouse (warehouseNumber, warehouseAddress) values ( '" + txtNumber.getText() + "' , '" + txtAddress.getText() + "')"; 
 
     try {
-        
-        PreparedStatement pst= conn.prepareStatement(sql);  
-       // pst.setString(1, txtNumber.getText());
-       // pst.setString(2, txtAddress.getText());
-        pst.executeUpdate(sql); 
+        PreparedStatement pst= conn.prepareStatement(sql);
+        pst.executeUpdate(sql);
+        JOptionPane.showMessageDialog(null, "Warehouse " + txtNumber.getText() + " has been added.");
         
     }//GEN-LAST:event_btnSubmit1ActionPerformed
     catch (SQLException ex)

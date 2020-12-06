@@ -51,7 +51,7 @@ public class RemoveSalesperson extends javax.swing.JFrame {
         lbsalespersonList.setText("Salesperson List");
 
         btnSubmitRemoveEmp.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnSubmitRemoveEmp.setText("Submit");
+        btnSubmitRemoveEmp.setText("Delete");
         btnSubmitRemoveEmp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSubmitRemoveEmpActionPerformed(evt);
@@ -59,7 +59,7 @@ public class RemoveSalesperson extends javax.swing.JFrame {
         });
 
         btnCancelRemoveEmp.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnCancelRemoveEmp.setText("Cancel");
+        btnCancelRemoveEmp.setText("Return");
         btnCancelRemoveEmp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCancelRemoveEmpActionPerformed(evt);
@@ -125,6 +125,7 @@ public class RemoveSalesperson extends javax.swing.JFrame {
         try {
             pst= conn.prepareStatement(sql);
             pst.executeUpdate(sql);
+            JOptionPane.showMessageDialog(null, "Employee " + selectedEmp + " has been removed.");
 
         }
         catch (Exception ex)
@@ -132,7 +133,7 @@ public class RemoveSalesperson extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, ex);
         }
     }
-    //GEN-LAST:event_btnSubmitRemoveEmpActionPerformed
+//GEN-LAST:event_btnSubmitRemoveEmpActionPerformed
 
     private static void displaySalesPersons() {
         Connection conn;

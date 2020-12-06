@@ -75,7 +75,7 @@ public class ModifyCommision extends javax.swing.JFrame {
         });
 
         btnCancelModifyRate.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnCancelModifyRate.setText("Cancel");
+        btnCancelModifyRate.setText("Return");
         btnCancelModifyRate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCancelModifyRateActionPerformed(evt);
@@ -200,6 +200,8 @@ public class ModifyCommision extends javax.swing.JFrame {
 
             PreparedStatement pst= conn.prepareStatement(sql);
             pst.executeUpdate(sql);
+            JOptionPane.showMessageDialog(null, "Employee " + selectedEmp + " commission rate " +
+                    "has been modified to " + txtNewCommission.getText());
 
         }                                          
         catch (SQLException ex)
@@ -220,13 +222,14 @@ public class ModifyCommision extends javax.swing.JFrame {
         PreparedStatement pst;
         MyConnection salesList = new MyConnection();
         conn = salesList.getConnection();
-        String sql = "Select emp_ID from salesperson ORDER BY emp_ID";
+        String sql = "Select emp_ID, name from salesperson ORDER BY emp_ID";
         try {
             pst= conn.prepareStatement(sql);
             rs = pst.executeQuery();
             while(rs.next())
             {
                 String salesPersonID = Integer.toString(rs.getInt("emp_ID"));
+//                String salesPersonName = rs.getString("name");
                 combSalespersonList.addItem(salesPersonID);
             }
         }
