@@ -66,6 +66,11 @@ public class ViewCustomer extends javax.swing.JFrame {
         lbCustomerList.setText("Customer List");
 
         combCustomerList.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        combCustomerList.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                combCustomerListActionPerformed(evt);
+            }
+        });
 
         lbListofInfo.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lbListofInfo.setText("List of Info");
@@ -148,6 +153,10 @@ public class ViewCustomer extends javax.swing.JFrame {
         Customer Info = new Customer();
         Info.setVisible(true);
     }//GEN-LAST:event_btnReturn1ActionPerformed
+
+    private void combCustomerListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combCustomerListActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_combCustomerListActionPerformed
 
     /**
      * @param args the command line arguments

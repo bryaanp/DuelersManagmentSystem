@@ -48,7 +48,11 @@ public class DeactivateCustomer extends javax.swing.JFrame {
         lbSelectID.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         lbSelectID.setText("Select Customer ID");
 
-        combSelectID.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        combSelectID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                combSelectIDActionPerformed(evt);
+            }
+        });
 
         btnSubmit.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         btnSubmit.setText("Submit");
@@ -135,6 +139,10 @@ public class DeactivateCustomer extends javax.swing.JFrame {
     private void btnReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturnActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnReturnActionPerformed
+
+    private void combSelectIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combSelectIDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_combSelectIDActionPerformed
 
     /**
      * @param args the command line arguments
