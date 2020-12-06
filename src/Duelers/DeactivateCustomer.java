@@ -10,7 +10,6 @@ package Duelers;
  * @author bryan
  */
 
-import com.mysql.cj.x.protobuf.MysqlxPrepare;
 
 import javax.swing.*;
 import java.sql.Connection;
@@ -158,6 +157,7 @@ public class DeactivateCustomer extends javax.swing.JFrame {
 
     }
 
+
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
         // TODO add your handling code here:
         Connection conn;
@@ -173,6 +173,8 @@ public class DeactivateCustomer extends javax.swing.JFrame {
         catch(Exception ex){
             JOptionPane.showMessageDialog(null, ex);
         }
+        dispose();
+        new Customer().setVisible(true);
     }//GEN-LAST:event_btnSubmitActionPerformed
 
     private void btnReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturnActionPerformed
