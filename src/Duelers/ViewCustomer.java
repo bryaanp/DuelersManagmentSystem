@@ -179,6 +179,7 @@ public class ViewCustomer extends javax.swing.JFrame {
 
     private void combCustomerListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combCustomerListActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_combCustomerListActionPerformed
 
 
