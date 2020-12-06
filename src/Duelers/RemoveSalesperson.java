@@ -31,7 +31,8 @@ public class RemoveSalesperson extends javax.swing.JFrame {
         CombSalespersonList = new javax.swing.JComboBox<>();
         lbsalespersonList = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-        btnRemoveEmp = new javax.swing.JButton();
+        btnSubmitRemoveEmp = new javax.swing.JButton();
+        btnCancelRemoveEmp = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -43,8 +44,21 @@ public class RemoveSalesperson extends javax.swing.JFrame {
         lbsalespersonList.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lbsalespersonList.setText("Salesperson List");
 
-        btnRemoveEmp.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnRemoveEmp.setText("Submit");
+        btnSubmitRemoveEmp.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnSubmitRemoveEmp.setText("Submit");
+        btnSubmitRemoveEmp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSubmitRemoveEmpActionPerformed(evt);
+            }
+        });
+
+        btnCancelRemoveEmp.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnCancelRemoveEmp.setText("Cancel");
+        btnCancelRemoveEmp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelRemoveEmpActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -60,11 +74,14 @@ public class RemoveSalesperson extends javax.swing.JFrame {
                         .addGap(28, 28, 28)
                         .addComponent(lbsalespersonList, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(CombSalespersonList, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(148, 148, 148)
-                        .addComponent(btnRemoveEmp, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(CombSalespersonList, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(41, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(72, 72, 72)
+                .addComponent(btnCancelRemoveEmp, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnSubmitRemoveEmp, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(83, 83, 83))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -77,13 +94,23 @@ public class RemoveSalesperson extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(CombSalespersonList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lbsalespersonList))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 113, Short.MAX_VALUE)
-                .addComponent(btnRemoveEmp, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 107, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSubmitRemoveEmp, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCancelRemoveEmp, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(34, 34, 34))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnCancelRemoveEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelRemoveEmpActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCancelRemoveEmpActionPerformed
+
+    private void btnSubmitRemoveEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitRemoveEmpActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSubmitRemoveEmpActionPerformed
 
     /**
      * @param args the command line arguments
@@ -122,7 +149,8 @@ public class RemoveSalesperson extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> CombSalespersonList;
-    private javax.swing.JButton btnRemoveEmp;
+    private javax.swing.JButton btnCancelRemoveEmp;
+    private javax.swing.JButton btnSubmitRemoveEmp;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lbremoveSalesPerson;
     private javax.swing.JLabel lbsalespersonList;
