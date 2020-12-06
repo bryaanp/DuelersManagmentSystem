@@ -202,6 +202,8 @@ public class ModifyCommision extends javax.swing.JFrame {
             pst.executeUpdate(sql);
             JOptionPane.showMessageDialog(null, "Employee " + selectedEmp + " commission rate " +
                     "has been modified to " + txtNewCommission.getText());
+            dispose();
+            new SalesPerson().setVisible(true);
 
         }                                          
         catch (SQLException ex)
