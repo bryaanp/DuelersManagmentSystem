@@ -204,7 +204,7 @@ public class AddSalesPerson extends javax.swing.JFrame {
         conn = submitEmp.getConnection();
         String sql = "insert into salesperson (name, emp_id, phone, email, emp_address, commission_percent) " +
                      "values ( '" + txtName2.getText() + "' , '" + txtId.getText() + "' , '" + txtPhone.getText() +
-                     "' , '" + txtEmail1.getText() + "' , '" + txtAddress.getText() + "' , '" + txtRate.getText() + "')";
+                     "' , '" + txtEmail2.getText() + "' , '" + txtAddress.getText() + "' , '" + txtRate.getText() + "')";
 
         try {
 

@@ -5,6 +5,11 @@
  */
 package Duelers;
 
+import javax.swing.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
 /**
  *
  * @author taghr
@@ -16,6 +21,7 @@ public class ModifyCommision extends javax.swing.JFrame {
      */
     public ModifyCommision() {
         initComponents();
+        displaySalesPersons();
     }
 
     /**
@@ -30,11 +36,14 @@ public class ModifyCommision extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         lbModifyCommision = new javax.swing.JLabel();
         lbsalespersonList = new javax.swing.JLabel();
-        CombSalespersonList = new javax.swing.JComboBox<>();
+        combSalespersonList = new javax.swing.JComboBox<>();
         lbNewCommision = new javax.swing.JLabel();
         txtNewCommision = new javax.swing.JTextField();
-        lbConfirm = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
+        btnSubmitModifyRate = new javax.swing.JButton();
+        btnCancelModifyRate = new javax.swing.JButton();
+        txtOldCommission = new javax.swing.JTextField();
+        lbOldRate = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -44,46 +53,72 @@ public class ModifyCommision extends javax.swing.JFrame {
         lbsalespersonList.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lbsalespersonList.setText("Salesperson List");
 
-        CombSalespersonList.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        combSalespersonList.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        combSalespersonList.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                combSalespersonListActionPerformed(evt);
+            }
+        });
 
         lbNewCommision.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lbNewCommision.setText("New Commision");
 
         txtNewCommision.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
 
-        lbConfirm.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        lbConfirm.setText("Confirm");
+        btnSubmitModifyRate.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnSubmitModifyRate.setText("Submit");
+        btnSubmitModifyRate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSubmitModifyRateActionPerformed(evt);
+            }
+        });
+
+        btnCancelModifyRate.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnCancelModifyRate.setText("Cancel");
+        btnCancelModifyRate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelModifyRateActionPerformed(evt);
+            }
+        });
+
+
+        lbOldRate.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lbOldRate.setText("Old Commission");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(lbsalespersonList, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(54, 54, 54)
-                        .addComponent(CombSalespersonList, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(96, 96, 96)
-                        .addComponent(lbModifyCommision)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnCancelModifyRate, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(77, 77, 77)
+                .addComponent(btnSubmitModifyRate, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(87, 87, 87))
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(lbNewCommision, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(238, 238, 238))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(lbConfirm, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(177, 177, 177))))
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                    .addContainerGap(222, Short.MAX_VALUE)
-                    .addComponent(txtNewCommision, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(44, 44, 44)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(96, 96, 96)
+                        .addComponent(lbModifyCommision))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(lbNewCommision, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(lbOldRate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGap(60, 60, 60)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(lbsalespersonList, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(60, 60, 60)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(combSalespersonList, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtOldCommission, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtNewCommision, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -95,17 +130,20 @@ public class ModifyCommision extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbsalespersonList)
-                    .addComponent(CombSalespersonList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25)
-                .addComponent(lbNewCommision)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
-                .addComponent(lbConfirm)
-                .addGap(51, 51, 51))
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(124, 124, 124)
-                    .addComponent(txtNewCommision, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(148, Short.MAX_VALUE)))
+                    .addComponent(combSalespersonList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtOldCommission, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbOldRate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(11, 11, 11)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbNewCommision)
+                    .addComponent(txtNewCommision, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(26, 26, 26)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSubmitModifyRate, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCancelModifyRate, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(44, 44, 44))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -121,6 +159,43 @@ public class ModifyCommision extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void combSalespersonListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combSalespersonListActionPerformed
+
+    }//GEN-LAST:event_combSalespersonListActionPerformed
+
+    private void btnSubmitModifyRateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitModifyRateActionPerformed
+
+    }//GEN-LAST:event_btnSubmitModifyRateActionPerformed
+
+    private void btnCancelModifyRateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelModifyRateActionPerformed
+        dispose();
+        new SalesPerson().setVisible(true);
+    }//GEN-LAST:event_btnCancelModifyRateActionPerformed
+
+
+    private static void displaySalesPersons() {                                                  
+        // TODO add your handling code here:
+        Connection conn;
+        ResultSet rs;
+        PreparedStatement pst;
+        MyConnection salesList = new MyConnection();
+        conn = salesList.getConnection();
+        String sql = "Select emp_ID from salesperson ORDER BY emp_ID";
+        try {
+            pst= conn.prepareStatement(sql);
+            rs = pst.executeQuery();
+            while(rs.next())
+            {
+                String warehouseID = Integer.toString(rs.getInt("emp_ID"));
+                combSalespersonList.addItem(warehouseID);
+            }
+        }
+        catch (Exception ex)
+        {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+    }
 
     /**
      * @param args the command line arguments
@@ -158,13 +233,16 @@ public class ModifyCommision extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> CombSalespersonList;
+    private javax.swing.JButton btnCancelModifyRate;
+    private javax.swing.JButton btnSubmitModifyRate;
+    private static javax.swing.JComboBox<String> combSalespersonList;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JLabel lbConfirm;
     private javax.swing.JLabel lbModifyCommision;
     private javax.swing.JLabel lbNewCommision;
+    private javax.swing.JLabel lbOldRate;
     private javax.swing.JLabel lbsalespersonList;
     private javax.swing.JTextField txtNewCommision;
+    private javax.swing.JTextField txtOldCommission;
     // End of variables declaration//GEN-END:variables
 }
