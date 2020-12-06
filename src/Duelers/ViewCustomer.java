@@ -13,6 +13,7 @@ import javax.swing.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.ResultSet;
 
 public class ViewCustomer extends javax.swing.JFrame {
 
@@ -21,6 +22,7 @@ public class ViewCustomer extends javax.swing.JFrame {
      */
     public ViewCustomer() {
         initComponents();
+        displayCustomers();
     }
 
     /**
@@ -144,19 +146,41 @@ public class ViewCustomer extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private static void displayCustomers(){
+        Connection conn;
+        ResultSet rs;
+        PreparedStatement pst;
+        MyConnection customerList = new MyConnection();
+        conn = customerList.getConnection();
+        String sql = "Select customerID from customer ORDER BY customerID";
+        try{
+            pst = conn.prepareStatement(sql);
+            rs = pst.executeQuery();
+            while(rs.next()){
+                String customerID = Integer.toString(rs.getInt("customerID"));
+                combCustomerList.addItem(customerID);
+            }
+        }
+        catch (Exception ex){
+            JOptionPane.showMessageDialog(null, ex);
+        }
+
+    }
+
     private void btnDoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDoneActionPerformed
 
     }//GEN-LAST:event_btnDoneActionPerformed
 
     private void btnReturn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturn1ActionPerformed
         // TODO add your handling code here:
-        Customer Info = new Customer();
-        Info.setVisible(true);
+        dispose();
+        new Customer().setVisible(true);
     }//GEN-LAST:event_btnReturn1ActionPerformed
 
     private void combCustomerListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combCustomerListActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_combCustomerListActionPerformed
+
 
     /**
      * @param args the command line arguments
@@ -196,7 +220,7 @@ public class ViewCustomer extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDone;
     private javax.swing.JButton btnReturn1;
-    private javax.swing.JComboBox<String> combCustomerList;
+    private static javax.swing.JComboBox<String> combCustomerList;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lbCustomerList;
     private javax.swing.JLabel lbListofInfo;
