@@ -921,7 +921,6 @@ SELECT|sys.sys_config:null
       <Position>3</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
-      <SequenceIdentity>null</SequenceIdentity>
     </column>
     <column id="289" parent="283" name="phone">
       <Position>4</Position>

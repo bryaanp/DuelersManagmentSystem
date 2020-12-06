@@ -10,9 +10,12 @@ package Duelers;
  * @author bryan
  */
 
+import com.mysql.cj.x.protobuf.MysqlxPrepare;
+
 import javax.swing.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class DeactivateCustomer extends javax.swing.JFrame {
@@ -22,6 +25,7 @@ public class DeactivateCustomer extends javax.swing.JFrame {
      */
     public DeactivateCustomer() {
         initComponents();
+        displayCustomers();
     }
 
     /**
@@ -36,7 +40,7 @@ public class DeactivateCustomer extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         lbDeactivateCustomer = new javax.swing.JLabel();
         lbSelectID = new javax.swing.JLabel();
-        combSelectID = new javax.swing.JComboBox<>();
+        combCustomerList = new javax.swing.JComboBox<>();
         btnSubmit = new javax.swing.JButton();
         btnReturn = new javax.swing.JButton();
 
@@ -48,9 +52,9 @@ public class DeactivateCustomer extends javax.swing.JFrame {
         lbSelectID.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         lbSelectID.setText("Select Customer ID");
 
-        combSelectID.addActionListener(new java.awt.event.ActionListener() {
+        combCustomerList.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                combSelectIDActionPerformed(evt);
+                combCustomerListActionPerformed(evt);
             }
         });
 
@@ -83,7 +87,7 @@ public class DeactivateCustomer extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(lbSelectID)
                         .addGap(18, 18, 18)
-                        .addComponent(combSelectID, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(combCustomerList, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(20, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(50, 50, 50)
@@ -100,7 +104,7 @@ public class DeactivateCustomer extends javax.swing.JFrame {
                 .addGap(59, 59, 59)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbSelectID)
-                    .addComponent(combSelectID, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(combCustomerList, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 116, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnReturn)
@@ -132,17 +136,54 @@ public class DeactivateCustomer extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+
+    private static void displayCustomers(){
+        Connection conn;
+        ResultSet rs;
+        PreparedStatement pst;
+        MyConnection customerList = new MyConnection();
+        conn = customerList.getConnection();
+        String sql = "Select customerID from customer ORDER BY customerID";
+        try{
+            pst = conn.prepareStatement(sql);
+            rs = pst.executeQuery();
+            while(rs.next()){
+                String customerID = Integer.toString(rs.getInt("customerID"));
+                combCustomerList.addItem(customerID);
+            }
+        }
+        catch (Exception ex){
+            JOptionPane.showMessageDialog(null, ex);
+        }
+
+    }
+
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
         // TODO add your handling code here:
+        Connection conn;
+        PreparedStatement pst;
+        MyConnection customerList = new MyConnection();
+        conn = customerList.getConnection();
+        String selectedCust = combCustomerList.getSelectedItem().toString();
+        String sql = "UPDATE customer SET status = " + "Inactive" + "WHERE customerID = " + selectedCust;
+        try{
+            pst = conn.prepareStatement(sql);
+            pst.executeUpdate(sql);
+        }
+        catch(Exception ex){
+            JOptionPane.showMessageDialog(null, ex);
+        }
     }//GEN-LAST:event_btnSubmitActionPerformed
 
     private void btnReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturnActionPerformed
         // TODO add your handling code here:
+        dispose();
+        new Customer().setVisible(true);
     }//GEN-LAST:event_btnReturnActionPerformed
 
-    private void combSelectIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combSelectIDActionPerformed
+    private void combCustomerListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combCustomerListActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_combSelectIDActionPerformed
+    }//GEN-LAST:event_combCustomerListActionPerformed
 
     /**
      * @param args the command line arguments
@@ -182,7 +223,7 @@ public class DeactivateCustomer extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnReturn;
     private javax.swing.JButton btnSubmit;
-    private javax.swing.JComboBox<String> combSelectID;
+    private static javax.swing.JComboBox<String> combCustomerList;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lbDeactivateCustomer;
     private javax.swing.JLabel lbSelectID;
