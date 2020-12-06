@@ -35,13 +35,14 @@ public class AddInvoice extends javax.swing.JFrame {
         combCustomerList = new javax.swing.JComboBox<>();
         lbInvoiceNo = new javax.swing.JLabel();
         lbTotalAmount1 = new javax.swing.JLabel();
-        lbSubmit = new javax.swing.JLabel();
         jCheckBox1 = new javax.swing.JCheckBox();
         jCheckBox2 = new javax.swing.JCheckBox();
         txtDate = new javax.swing.JTextField();
         txtShippingAmount = new javax.swing.JTextField();
         txtInvoceNo2 = new javax.swing.JTextField();
         txtTotalAmount = new javax.swing.JTextField();
+        btnCancel = new javax.swing.JButton();
+        btnSubmit = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -70,9 +71,6 @@ public class AddInvoice extends javax.swing.JFrame {
         lbTotalAmount1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lbTotalAmount1.setText("Total Amount");
 
-        lbSubmit.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        lbSubmit.setText("Submit");
-
         jCheckBox1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jCheckBox1.setText("Less than 30 days");
         jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
@@ -96,6 +94,23 @@ public class AddInvoice extends javax.swing.JFrame {
         txtInvoceNo2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
 
         txtTotalAmount.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+
+        btnCancel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnCancel.setText("Cancel");
+        btnCancel.setBorder(null);
+        btnCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelActionPerformed(evt);
+            }
+        });
+
+        btnSubmit.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnSubmit.setText("Submit");
+        btnSubmit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSubmitActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -132,14 +147,15 @@ public class AddInvoice extends javax.swing.JFrame {
                         .addComponent(txtInvoceNo2, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 57, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(185, 185, 185)
-                        .addComponent(lbaddInvoice))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(223, 223, 223)
-                        .addComponent(lbSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(185, 185, 185)
+                .addComponent(lbaddInvoice)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(98, 98, 98)
+                .addComponent(btnCancel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnSubmit)
+                .addGap(104, 104, 104))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -170,9 +186,11 @@ public class AddInvoice extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jCheckBox1)
                     .addComponent(jCheckBox2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
-                .addComponent(lbSubmit)
-                .addGap(21, 21, 21))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCancel)
+                    .addComponent(btnSubmit))
+                .addGap(16, 16, 16))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -202,6 +220,14 @@ public class AddInvoice extends javax.swing.JFrame {
     private void combCustomerListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combCustomerListActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_combCustomerListActionPerformed
+
+    private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSubmitActionPerformed
+
+    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCancelActionPerformed
 
     /**
      * @param args the command line arguments
@@ -239,6 +265,8 @@ public class AddInvoice extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCancel;
+    private javax.swing.JButton btnSubmit;
     private javax.swing.JComboBox<String> combCustomerList;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JCheckBox jCheckBox2;
@@ -247,7 +275,6 @@ public class AddInvoice extends javax.swing.JFrame {
     private javax.swing.JLabel lbInvoiceDate;
     private javax.swing.JLabel lbInvoiceNo;
     private javax.swing.JLabel lbShippingAmount;
-    private javax.swing.JLabel lbSubmit;
     private javax.swing.JLabel lbTotalAmount1;
     private javax.swing.JLabel lbaddInvoice;
     private javax.swing.JTextField txtDate;

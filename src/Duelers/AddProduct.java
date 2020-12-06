@@ -28,7 +28,6 @@ public class AddProduct extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        lbSubmit = new javax.swing.JLabel();
         lbPoductName = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         lbUPC = new javax.swing.JLabel();
@@ -41,11 +40,10 @@ public class AddProduct extends javax.swing.JFrame {
         txtProductDetails = new javax.swing.JTextField();
         txtCostPrice = new javax.swing.JTextField();
         lbaddProduct = new javax.swing.JLabel();
+        btnCancel = new javax.swing.JButton();
+        btnSubmit = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        lbSubmit.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        lbSubmit.setText("Submit");
 
         lbPoductName.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lbPoductName.setText("Product Name");
@@ -75,19 +73,23 @@ public class AddProduct extends javax.swing.JFrame {
         lbaddProduct.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         lbaddProduct.setText("Add Product");
 
+        btnCancel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnCancel.setText("Cancel");
+        btnCancel.setBorder(null);
+        btnCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelActionPerformed(evt);
+            }
+        });
+
+        btnSubmit.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnSubmit.setText("Submit");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(186, 186, 186)
-                .addComponent(lbSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jSeparator1)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lbaddProduct)
-                .addGap(148, 148, 148))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(43, 43, 43)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -115,6 +117,16 @@ public class AddProduct extends javax.swing.JFrame {
                                     .addComponent(txtProductName, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtSellingPrice, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(36, 36, 36))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lbaddProduct)
+                .addGap(148, 148, 148))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(99, 99, 99)
+                .addComponent(btnCancel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnSubmit)
+                .addGap(77, 77, 77))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -144,8 +156,10 @@ public class AddProduct extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtProductDetails, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(lbSubmit)
-                .addGap(28, 28, 28))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCancel)
+                    .addComponent(btnSubmit))
+                .addGap(21, 21, 21))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -163,6 +177,10 @@ public class AddProduct extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCancelActionPerformed
 
     /**
      * @param args the command line arguments
@@ -200,13 +218,14 @@ public class AddProduct extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCancel;
+    private javax.swing.JButton btnSubmit;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lbCostPrice;
     private javax.swing.JLabel lbPoductName;
     private javax.swing.JLabel lbProductDetails;
     private javax.swing.JLabel lbSellingPrice;
-    private javax.swing.JLabel lbSubmit;
     private javax.swing.JLabel lbUPC;
     private javax.swing.JLabel lbaddProduct;
     private javax.swing.JTextField txtCostPrice;
