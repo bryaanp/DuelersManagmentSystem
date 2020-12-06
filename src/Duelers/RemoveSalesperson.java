@@ -27,59 +27,59 @@ public class RemoveSalesperson extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lbaddsalesperson = new javax.swing.JLabel();
+        lbremoveSalesPerson = new javax.swing.JLabel();
         CombSalespersonList = new javax.swing.JComboBox<>();
         lbsalespersonList = new javax.swing.JLabel();
-        lbRemove = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
+        btnRemoveEmp = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        lbaddsalesperson.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        lbaddsalesperson.setText("Remove Salesperson");
+        lbremoveSalesPerson.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        lbremoveSalesPerson.setText("Remove Salesperson");
 
         CombSalespersonList.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
 
         lbsalespersonList.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lbsalespersonList.setText("Salesperson List");
 
-        lbRemove.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        lbRemove.setText("Remove");
+        btnRemoveEmp.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnRemoveEmp.setText("Submit");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jSeparator1)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(73, 73, 73)
-                        .addComponent(lbaddsalesperson))
+                        .addComponent(lbremoveSalesPerson))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(28, 28, 28)
                         .addComponent(lbsalespersonList, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(CombSalespersonList, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(149, 149, 149)
-                        .addComponent(lbRemove, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(148, 148, 148)
+                        .addComponent(btnRemoveEmp, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(41, Short.MAX_VALUE))
-            .addComponent(jSeparator1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(lbaddsalesperson)
+                .addComponent(lbremoveSalesPerson)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(CombSalespersonList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lbsalespersonList))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 98, Short.MAX_VALUE)
-                .addComponent(lbRemove)
-                .addGap(54, 54, 54))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 113, Short.MAX_VALUE)
+                .addComponent(btnRemoveEmp, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26))
         );
 
         pack();
@@ -122,9 +122,9 @@ public class RemoveSalesperson extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> CombSalespersonList;
+    private javax.swing.JButton btnRemoveEmp;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JLabel lbRemove;
-    private javax.swing.JLabel lbaddsalesperson;
+    private javax.swing.JLabel lbremoveSalesPerson;
     private javax.swing.JLabel lbsalespersonList;
     // End of variables declaration//GEN-END:variables
 }

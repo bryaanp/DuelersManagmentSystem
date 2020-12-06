@@ -5,6 +5,11 @@
  */
 package Duelers;
 
+import javax.swing.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
 /**
  *
  * @author taghr
@@ -16,6 +21,7 @@ public class ViewSalesPerson extends javax.swing.JFrame {
      */
     public ViewSalesPerson() {
         initComponents();
+        displaySalesPerson();
     }
 
     /**
@@ -31,13 +37,13 @@ public class ViewSalesPerson extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         lbViewsalesperson = new javax.swing.JLabel();
         lbsalespersonList = new javax.swing.JLabel();
-        CombSalespersonList = new javax.swing.JComboBox<>();
+        combSalespersonList = new javax.swing.JComboBox<>();
         lbTotalAmountOfSale = new javax.swing.JLabel();
-        txtTotalCommision = new javax.swing.JTextField();
         lbTotalAmountOfSale1 = new javax.swing.JLabel();
-        txtTotalAmount = new javax.swing.JTextField();
-        lbConfirm = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
+        btnDoneViewSales = new javax.swing.JButton();
+        txtSalesAmt = new javax.swing.JTextArea();
+        txtCommissionAmt = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -47,53 +53,58 @@ public class ViewSalesPerson extends javax.swing.JFrame {
         lbsalespersonList.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lbsalespersonList.setText("Salesperson List");
 
-        CombSalespersonList.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        combSalespersonList.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        combSalespersonList.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                combSalespersonListActionPerformed(evt);
+            }
+        });
 
         lbTotalAmountOfSale.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        lbTotalAmountOfSale.setText("Total Commision");
-
-        txtTotalCommision.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lbTotalAmountOfSale.setText("Total Commission");
 
         lbTotalAmountOfSale1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lbTotalAmountOfSale1.setText("Total Amount of Sale");
 
-        txtTotalAmount.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnDoneViewSales.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnDoneViewSales.setText("Done");
+        btnDoneViewSales.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDoneViewSalesActionPerformed(evt);
+            }
+        });
 
-        lbConfirm.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        lbConfirm.setText("Confirm");
+        txtSalesAmt.setColumns(20);
+        txtSalesAmt.setRows(5);
+
+        txtCommissionAmt.setColumns(20);
+        txtCommissionAmt.setRows(5);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lbTotalAmountOfSale1, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(238, 238, 238))
+            .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(96, 96, 96)
+                        .addComponent(lbViewsalesperson))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(184, 184, 184)
+                        .addComponent(btnDoneViewSales, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lbTotalAmountOfSale, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lbsalespersonList, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(CombSalespersonList, 0, 189, Short.MAX_VALUE)
-                            .addComponent(txtTotalCommision)))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(171, 171, 171)
-                        .addComponent(lbConfirm, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(96, 96, 96)
-                        .addComponent(lbViewsalesperson)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
-            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                    .addContainerGap(222, Short.MAX_VALUE)
-                    .addComponent(txtTotalAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(44, 44, 44)))
+                            .addComponent(lbsalespersonList, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lbTotalAmountOfSale1, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 20, Short.MAX_VALUE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(combSalespersonList, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtCommissionAmt, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtSalesAmt, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(28, 28, 28))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -105,21 +116,18 @@ public class ViewSalesPerson extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbsalespersonList)
-                    .addComponent(CombSalespersonList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25)
-                .addComponent(lbTotalAmountOfSale1)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(combSalespersonList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(19, 19, 19)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lbTotalAmountOfSale1)
+                    .addComponent(txtSalesAmt, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(19, 19, 19)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(lbTotalAmountOfSale)
-                    .addComponent(txtTotalCommision, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
-                .addComponent(lbConfirm)
-                .addGap(40, 40, 40))
-            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel2Layout.createSequentialGroup()
-                    .addGap(124, 124, 124)
-                    .addComponent(txtTotalAmount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(148, Short.MAX_VALUE)))
+                    .addComponent(txtCommissionAmt, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                .addComponent(btnDoneViewSales, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -146,6 +154,37 @@ public class ViewSalesPerson extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private static void displaySalesPerson() {                                                  
+        Connection conn;
+        ResultSet rs;
+        PreparedStatement pst;
+        MyConnection listAction = new MyConnection();
+        conn = listAction.getConnection();
+        String sql = "Select emp_ID from salesperson ORDER BY emp_ID";
+        try {
+            pst= conn.prepareStatement(sql);
+            rs = pst.executeQuery();
+            while(rs.next())
+            {
+                int empID = Integer.parseInt(rs.getString("emp_ID"));
+                combSalespersonList.addItem(String.valueOf(empID));
+            }
+        }
+        catch (Exception ex)
+        {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+    }
+
+    private void btnDoneViewSalesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDoneViewSalesActionPerformed
+        dispose();
+        new SalesPerson().setVisible(true);
+    }//GEN-LAST:event_btnDoneViewSalesActionPerformed
+
+    private void combSalespersonListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combSalespersonListActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_combSalespersonListActionPerformed
 
     /**
      * @param args the command line arguments
@@ -183,16 +222,16 @@ public class ViewSalesPerson extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> CombSalespersonList;
+    private javax.swing.JButton btnDoneViewSales;
+    private static javax.swing.JComboBox<String> combSalespersonList;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JLabel lbConfirm;
     private javax.swing.JLabel lbTotalAmountOfSale;
     private javax.swing.JLabel lbTotalAmountOfSale1;
     private javax.swing.JLabel lbViewsalesperson;
     private javax.swing.JLabel lbsalespersonList;
-    private javax.swing.JTextField txtTotalAmount;
-    private javax.swing.JTextField txtTotalCommision;
+    private javax.swing.JTextArea txtCommissionAmt;
+    private javax.swing.JTextArea txtSalesAmt;
     // End of variables declaration//GEN-END:variables
 }

@@ -181,7 +181,6 @@ public class ViewWarehouse extends javax.swing.JFrame {
 
 
     private static void displayWarehouse() {//GEN-FIRST:event_combWarehoustListActionPerformed
-        // TODO add your handling code here:
         Connection conn;
         ResultSet rs;
         PreparedStatement pst;
