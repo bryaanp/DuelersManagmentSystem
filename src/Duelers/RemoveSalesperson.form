@@ -34,7 +34,7 @@
                       <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                       <Component id="lbsalespersonList" min="-2" pref="156" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="CombSalespersonList" min="-2" pref="165" max="-2" attributes="0"/>
+                      <Component id="combSalespersonList" min="-2" pref="165" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace pref="41" max="32767" attributes="0"/>
@@ -57,7 +57,7 @@
               <Component id="jSeparator1" min="-2" pref="10" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="CombSalespersonList" min="-2" max="-2" attributes="0"/>
+                  <Component id="combSalespersonList" min="-2" max="-2" attributes="0"/>
                   <Component id="lbsalespersonList" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="107" max="32767" attributes="0"/>
@@ -79,7 +79,7 @@
         <Property name="text" type="java.lang.String" value="Remove Salesperson"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JComboBox" name="CombSalespersonList">
+    <Component class="javax.swing.JComboBox" name="combSalespersonList">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="18" style="1"/>

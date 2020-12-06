@@ -5,6 +5,11 @@
  */
 package Duelers;
 
+import javax.swing.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
 /**
  *
  * @author taghr
@@ -16,6 +21,7 @@ public class RemoveSalesperson extends javax.swing.JFrame {
      */
     public RemoveSalesperson() {
         initComponents();
+        displaySalesPersons();
     }
 
     /**
@@ -28,7 +34,7 @@ public class RemoveSalesperson extends javax.swing.JFrame {
     private void initComponents() {
 
         lbremoveSalesPerson = new javax.swing.JLabel();
-        CombSalespersonList = new javax.swing.JComboBox<>();
+        combSalespersonList = new javax.swing.JComboBox<>();
         lbsalespersonList = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         btnSubmitRemoveEmp = new javax.swing.JButton();
@@ -39,7 +45,7 @@ public class RemoveSalesperson extends javax.swing.JFrame {
         lbremoveSalesPerson.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         lbremoveSalesPerson.setText("Remove Salesperson");
 
-        CombSalespersonList.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        combSalespersonList.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
 
         lbsalespersonList.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lbsalespersonList.setText("Salesperson List");
@@ -74,7 +80,7 @@ public class RemoveSalesperson extends javax.swing.JFrame {
                         .addGap(28, 28, 28)
                         .addComponent(lbsalespersonList, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(CombSalespersonList, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(combSalespersonList, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(41, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(72, 72, 72)
@@ -92,7 +98,7 @@ public class RemoveSalesperson extends javax.swing.JFrame {
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(CombSalespersonList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(combSalespersonList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lbsalespersonList))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 107, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -105,13 +111,50 @@ public class RemoveSalesperson extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCancelRemoveEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelRemoveEmpActionPerformed
-        // TODO add your handling code here:
+        dispose();
+        new SalesPerson().setVisible(true);
     }//GEN-LAST:event_btnCancelRemoveEmpActionPerformed
 
     private void btnSubmitRemoveEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitRemoveEmpActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnSubmitRemoveEmpActionPerformed
+        Connection conn;
+        PreparedStatement pst;
+        MyConnection salesList = new MyConnection();
+        conn = salesList.getConnection();
+        String selectedEmp = combSalespersonList.getSelectedItem().toString();
+        String sql = "DELETE from salesperson WHERE emp_ID = " + selectedEmp;
+        try {
+            pst= conn.prepareStatement(sql);
+            pst.executeUpdate(sql);
 
+        }
+        catch (Exception ex)
+        {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+    }
+    //GEN-LAST:event_btnSubmitRemoveEmpActionPerformed
+
+    private static void displaySalesPersons() {
+        Connection conn;
+        ResultSet rs;
+        PreparedStatement pst;
+        MyConnection salesList = new MyConnection();
+        conn = salesList.getConnection();
+        String sql = "Select emp_ID from salesperson ORDER BY emp_ID";
+        try {
+            pst= conn.prepareStatement(sql);
+            rs = pst.executeQuery();
+            while(rs.next())
+            {
+                String salesPersonID = Integer.toString(rs.getInt("emp_ID"));
+                combSalespersonList.addItem(salesPersonID);
+            }
+        }
+        catch (Exception ex)
+        {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+    }
     /**
      * @param args the command line arguments
      */
@@ -148,9 +191,9 @@ public class RemoveSalesperson extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> CombSalespersonList;
     private javax.swing.JButton btnCancelRemoveEmp;
     private javax.swing.JButton btnSubmitRemoveEmp;
+    private static javax.swing.JComboBox<String> combSalespersonList;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lbremoveSalesPerson;
     private javax.swing.JLabel lbsalespersonList;

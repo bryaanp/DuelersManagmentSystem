@@ -215,7 +215,6 @@ public class ModifyCommision extends javax.swing.JFrame {
 
 
     private static void displaySalesPersons() {                                                  
-        // TODO add your handling code here:
         Connection conn;
         ResultSet rs;
         PreparedStatement pst;
