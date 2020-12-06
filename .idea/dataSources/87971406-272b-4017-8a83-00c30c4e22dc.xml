@@ -935,25 +935,29 @@ SELECT|sys.sys_config:null
       <Position>6</Position>
       <DataType>varchar(20)|0s</DataType>
     </column>
-    <key id="292" parent="283" name="PRIMARY">
+    <column id="292" parent="283" name="status">
+      <Position>7</Position>
+      <DataType>varchar(20)|0s</DataType>
+    </column>
+    <key id="293" parent="283" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>customerID</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="293" parent="284" name="Password">
+    <column id="294" parent="284" name="Password">
       <Position>1</Position>
       <DataType>varchar(20)|0s</DataType>
     </column>
-    <column id="294" parent="285" name="warehouseNumber">
+    <column id="295" parent="285" name="warehouseNumber">
       <Position>1</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="295" parent="285" name="warehouseAddress">
+    <column id="296" parent="285" name="warehouseAddress">
       <Position>2</Position>
       <DataType>varchar(50)|0s</DataType>
     </column>
-    <key id="296" parent="285" name="PRIMARY">
+    <key id="297" parent="285" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>warehouseNumber</ColNames>
       <Primary>1</Primary>
