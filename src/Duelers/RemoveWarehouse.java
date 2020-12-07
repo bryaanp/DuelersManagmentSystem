@@ -135,6 +135,8 @@ public class RemoveWarehouse extends javax.swing.JFrame {
         try {
             pst= conn.prepareStatement(sql);
             pst.executeUpdate(sql);
+            dispose();
+            new Warehouse().setVisible(true);
             JOptionPane.showMessageDialog(null, "Warehouse " + selectedWarehouse + " has been removed.");
 
         }

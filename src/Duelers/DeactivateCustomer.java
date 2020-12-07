@@ -165,7 +165,7 @@ public class DeactivateCustomer extends javax.swing.JFrame {
         MyConnection customerList = new MyConnection();
         conn = customerList.getConnection();
         String selectedCust = combCustomerList.getSelectedItem().toString();
-        String sql = "UPDATE customer SET status = " + "Inactive" + "WHERE customerID = " + selectedCust;
+        String sql = "UPDATE customer SET status = " + "'Inactive'" + "WHERE customerID = " + selectedCust;
         try{
             pst = conn.prepareStatement(sql);
             pst.executeUpdate(sql);
@@ -178,13 +178,11 @@ public class DeactivateCustomer extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSubmitActionPerformed
 
     private void btnReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturnActionPerformed
-        // TODO add your handling code here:
         dispose();
         new Customer().setVisible(true);
     }//GEN-LAST:event_btnReturnActionPerformed
 
     private void combCustomerListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combCustomerListActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_combCustomerListActionPerformed
 
     /**

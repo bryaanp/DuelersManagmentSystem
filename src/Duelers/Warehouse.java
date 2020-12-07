@@ -146,28 +146,28 @@ public class Warehouse extends javax.swing.JFrame {
     }//GEN-LAST:event_btnExitActionPerformed
 
     private void btnMainMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMainMenuActionPerformed
-       Main_menu Info = new Main_menu();
-       Info.setVisible(true);
+       dispose();
+       new Main_menu().setVisible(true);
     }//GEN-LAST:event_btnMainMenuActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        AddWarehouse Info = new AddWarehouse();
-        Info.setVisible(true);
+        dispose();
+        new AddWarehouse().setVisible(true);
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveActionPerformed
-        RemoveWarehouse Info = new RemoveWarehouse();
-        Info.setVisible(true);
+        dispose();
+        new RemoveWarehouse().setVisible(true);
     }//GEN-LAST:event_btnRemoveActionPerformed
 
     private void btnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActionPerformed
-        ViewWarehouse Info = new ViewWarehouse();
-        Info.setVisible(true);
+        dispose();
+        new ViewWarehouse().setVisible(true);
     }//GEN-LAST:event_btnViewActionPerformed
 
     private void btnUpdateStockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateStockActionPerformed
-        UpdateStock Info = new UpdateStock();
-        Info.setVisible(true);
+        dispose();
+        new UpdateStock().setVisible(true);
     }//GEN-LAST:event_btnUpdateStockActionPerformed
 
     /**

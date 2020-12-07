@@ -151,8 +151,8 @@ public class Login_system extends javax.swing.JFrame {
         if(rs.next())
         {
             JOptionPane.showMessageDialog(null, "username and password matched");
-            Main_menu Info = new Main_menu();
-            Info.setVisible(true);
+            dispose();
+            new Main_menu().setVisible(true);
                    
         }
         else

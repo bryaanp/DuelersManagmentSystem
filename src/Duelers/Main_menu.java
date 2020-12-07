@@ -157,28 +157,28 @@ public class Main_menu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnExitActionPerformed
 
     private void btnWarehouseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnWarehouseActionPerformed
-        Warehouse Info = new Warehouse();
-        Info.setVisible(true);
+        dispose();
+        new Warehouse().setVisible(true);
     }//GEN-LAST:event_btnWarehouseActionPerformed
 
     private void btnSalespersonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalespersonActionPerformed
-        SalesPerson Info = new SalesPerson();
-        Info.setVisible(true);
+        dispose();
+        new SalesPerson().setVisible(true);
     }//GEN-LAST:event_btnSalespersonActionPerformed
 
     private void btnCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCustomerActionPerformed
-        Customer Info = new Customer();
-        Info.setVisible(true);
+        dispose();
+        new Customer().setVisible(true);
     }//GEN-LAST:event_btnCustomerActionPerformed
 
     private void btnProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductActionPerformed
-        Product Info = new Product();
-        Info.setVisible(true);
+        dispose();
+        new Product().setVisible(true);
     }//GEN-LAST:event_btnProductActionPerformed
 
     private void btnInvoiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInvoiceActionPerformed
-        Invoice Info = new Invoice();
-        Info.setVisible(true);
+        dispose();
+        new Invoice().setVisible(true);
     }//GEN-LAST:event_btnInvoiceActionPerformed
 
     /**
