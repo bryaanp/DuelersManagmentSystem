@@ -5,6 +5,10 @@
  */
 package Duelers;
 
+import javax.swing.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 /**
  *
  * @author taghr
@@ -32,8 +36,8 @@ public class ViewInvoice extends javax.swing.JFrame {
         CombInvoice = new javax.swing.JComboBox<>();
         lbInformation = new javax.swing.JLabel();
         txtInformation = new javax.swing.JTextField();
-        lbDone = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
+        btnDoneViewSales = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -50,8 +54,13 @@ public class ViewInvoice extends javax.swing.JFrame {
 
         txtInformation.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
 
-        lbDone.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        lbDone.setText("Done");
+        btnDoneViewSales.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnDoneViewSales.setText("Done");
+        btnDoneViewSales.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDoneViewSalesActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -79,7 +88,7 @@ public class ViewInvoice extends javax.swing.JFrame {
                         .addComponent(lbViewInvoice))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(179, 179, 179)
-                        .addComponent(lbDone, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnDoneViewSales, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -95,15 +104,42 @@ public class ViewInvoice extends javax.swing.JFrame {
                     .addComponent(CombInvoice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
                 .addComponent(lbInformation)
-                .addGap(27, 27, 27)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
                 .addComponent(txtInformation, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
-                .addComponent(lbDone)
+                .addGap(18, 18, 18)
+                .addComponent(btnDoneViewSales, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private static void displayInvoice() {                                                  
+        Connection conn;
+        ResultSet rs;
+        PreparedStatement pst;
+        MyConnection listAction = new MyConnection();
+        conn = listAction.getConnection();
+        String sql = "Select emp_ID from salesperson ORDER BY emp_ID";
+        try {
+            pst= conn.prepareStatement(sql);
+            rs = pst.executeQuery();
+            while(rs.next())
+            {
+                int empID = Integer.parseInt(rs.getString("InvoiceID"));
+                //combInvoiceList.addItem(String.valueOf(empID));
+            }
+        }
+        catch (Exception ex)
+        {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+    }
+
+    private void btnDoneViewSalesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDoneViewSalesActionPerformed
+        dispose();
+        new SalesPerson().setVisible(true);
+    }//GEN-LAST:event_btnDoneViewSalesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -142,8 +178,8 @@ public class ViewInvoice extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> CombInvoice;
+    private javax.swing.JButton btnDoneViewSales;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JLabel lbDone;
     private javax.swing.JLabel lbInformation;
     private javax.swing.JLabel lbInvoiceList;
     private javax.swing.JLabel lbViewInvoice;
