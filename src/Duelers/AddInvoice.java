@@ -50,7 +50,7 @@ public class AddInvoice extends javax.swing.JFrame {
         txtInvoice = new javax.swing.JTextField();
         txtTotalAmount = new javax.swing.JTextField();
         btnSubmit = new javax.swing.JButton();
-        btnReturn1 = new javax.swing.JButton();
+        btnReturnInvoiceMenu = new javax.swing.JButton();
         lbSalespersonList = new javax.swing.JLabel();
         combSalespersonList = new javax.swing.JComboBox<>();
         lbProduct = new javax.swing.JLabel();
@@ -123,11 +123,11 @@ public class AddInvoice extends javax.swing.JFrame {
             }
         });
 
-        btnReturn1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        btnReturn1.setText("Return");
-        btnReturn1.addActionListener(new java.awt.event.ActionListener() {
+        btnReturnInvoiceMenu.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnReturnInvoiceMenu.setText("Return");
+        btnReturnInvoiceMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnReturn1ActionPerformed(evt);
+                btnReturnInvoiceMenuActionPerformed(evt);
             }
         });
 
@@ -197,7 +197,7 @@ public class AddInvoice extends javax.swing.JFrame {
                 .addGap(44, 44, 44))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(76, 76, 76)
-                .addComponent(btnReturn1)
+                .addComponent(btnReturnInvoiceMenu)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnSubmit)
                 .addGap(82, 82, 82))
@@ -249,7 +249,7 @@ public class AddInvoice extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnReturn1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnReturnInvoiceMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(14, 14, 14))
         );
 
@@ -336,16 +336,16 @@ public class AddInvoice extends javax.swing.JFrame {
 
     }
 //GEN-LAST:event_btnSubmitActionPerformed
-
+//not used
     private void btnReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturnActionPerformed
         dispose();
         new Invoice().setVisible(true);
     }//GEN-LAST:event_btnReturnActionPerformed
 
-    private void btnReturn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturn1ActionPerformed
+    private void btnReturnInvoiceMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturnInvoiceMenuActionPerformed
         dispose();
         new Invoice().setVisible(true);
-    }//GEN-LAST:event_btnReturn1ActionPerformed
+    }//GEN-LAST:event_btnReturnInvoiceMenuActionPerformed
 
 
     private static void displayCustomers(){
@@ -428,7 +428,7 @@ public class AddInvoice extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnReturn;
-    private javax.swing.JButton btnReturn1;
+    private javax.swing.JButton btnReturnInvoiceMenu;
     private javax.swing.JButton btnSubmit;
     private javax.swing.JCheckBox checkBoxGreater30;
     private javax.swing.JCheckBox checkBoxLess10;

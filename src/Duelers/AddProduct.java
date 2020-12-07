@@ -205,7 +205,7 @@ public class AddProduct extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, ex);
         }
         dispose();
-        new Customer().setVisible(true);
+        new Product().setVisible(true);
     }//GEN-LAST:event_btnSubmitActionPerformed
 
     private void btnReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturnActionPerformed
