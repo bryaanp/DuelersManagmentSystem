@@ -32,7 +32,7 @@ public class Customer extends javax.swing.JFrame {
         btnExit = new javax.swing.JButton();
         lbCustomer = new javax.swing.JLabel();
         btnAdd = new javax.swing.JButton();
-        btnModify = new javax.swing.JButton();
+        btnDeactivate = new javax.swing.JButton();
         btnView = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         btnMainMenu = new javax.swing.JButton();
@@ -54,12 +54,27 @@ public class Customer extends javax.swing.JFrame {
 
         btnAdd.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnAdd.setText("Add");
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddActionPerformed(evt);
+            }
+        });
 
-        btnModify.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        btnModify.setText("Deactivate");
+        btnDeactivate.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnDeactivate.setText("Deactivate");
+        btnDeactivate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeactivateActionPerformed(evt);
+            }
+        });
 
         btnView.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnView.setText("View");
+        btnView.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewActionPerformed(evt);
+            }
+        });
 
         btnMainMenu.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnMainMenu.setText("Main Menu");
@@ -94,7 +109,7 @@ public class Customer extends javax.swing.JFrame {
                         .addGap(106, 106, 106))))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(128, 128, 128)
-                .addComponent(btnModify)
+                .addComponent(btnDeactivate)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -109,7 +124,7 @@ public class Customer extends javax.swing.JFrame {
                     .addComponent(btnAdd)
                     .addComponent(btnView))
                 .addGap(42, 42, 42)
-                .addComponent(btnModify)
+                .addComponent(btnDeactivate)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnExit)
@@ -136,9 +151,27 @@ public class Customer extends javax.swing.JFrame {
     }//GEN-LAST:event_btnExitActionPerformed
 
     private void btnMainMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMainMenuActionPerformed
-        Main_menu Info = new Main_menu();
-        Info.setVisible(true);
+        dispose();
+        new Main_menu().setVisible(true);
     }//GEN-LAST:event_btnMainMenuActionPerformed
+
+    private void btnDeactivateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeactivateActionPerformed
+        // TODO add your handling code here:
+        dispose();
+        new DeactivateCustomer().setVisible(true);
+    }//GEN-LAST:event_btnDeactivateActionPerformed
+
+    private void btnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActionPerformed
+        // TODO add your handling code here:
+        dispose();
+        new ViewCustomer().setVisible(true);
+    }//GEN-LAST:event_btnViewActionPerformed
+
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        // TODO add your handling code here:
+        dispose();
+        new AddCustomer().setVisible(true);
+    }//GEN-LAST:event_btnAddActionPerformed
 
     /**
      * @param args the command line arguments
@@ -177,9 +210,9 @@ public class Customer extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
+    private javax.swing.JButton btnDeactivate;
     private javax.swing.JButton btnExit;
     private javax.swing.JButton btnMainMenu;
-    private javax.swing.JButton btnModify;
     private javax.swing.JButton btnView;
     private javax.swing.JButton jButton2;
     private javax.swing.JPanel jPanel1;
