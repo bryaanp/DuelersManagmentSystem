@@ -10,15 +10,13 @@ import java.util.ArrayList;
 import java.sql.*;
 
 public class ViewWarehouse extends javax.swing.JFrame {
-    private static JComboBox<String> combWarehoustList;
-    Connection conn = null;
-    ResultSet rs = null;
-    PreparedStatement pst = null;
+    
     /**
      * Creates new form ViewWarehouse
      */
     public ViewWarehouse() {
         initComponents();
+        displayWarehouse();
     }
 
     /**
@@ -35,9 +33,16 @@ public class ViewWarehouse extends javax.swing.JFrame {
         lbNumber = new javax.swing.JLabel();
         btnDone = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
-        combWarehoustList = new javax.swing.JComboBox<>();
-        lbListofitem = new javax.swing.JLabel();
-        txtQuantity = new javax.swing.JTextField();
+        combWarehouseList = new javax.swing.JComboBox<>();
+        lbWarehouseNumber = new javax.swing.JLabel();
+        lbAddress = new javax.swing.JLabel();
+        lbStock = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txtWarehouseNumber = new javax.swing.JTextArea();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        txtAddress = new javax.swing.JTextArea();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        txtStock = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -49,16 +54,48 @@ public class ViewWarehouse extends javax.swing.JFrame {
 
         btnDone.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnDone.setText("Done");
-
-        combWarehoustList.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        combWarehoustList.addActionListener(new java.awt.event.ActionListener() {
+        btnDone.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                combWarehoustListActionPerformed(evt);
+                btnDoneActionPerformed(evt);
             }
         });
 
-        lbListofitem.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        lbListofitem.setText("List of Item");
+        combWarehouseList.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        combWarehouseList.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                combWarehouseListActionPerformed(evt);
+            }
+        });
+
+        lbWarehouseNumber.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
+        lbWarehouseNumber.setText("Warehouse Number");
+
+        lbAddress.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
+        lbAddress.setText("Warehouse Address");
+
+        lbStock.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
+        lbStock.setText("Warehouse Stock");
+
+        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+
+        txtWarehouseNumber.setColumns(20);
+        txtWarehouseNumber.setRows(5);
+        jScrollPane1.setViewportView(txtWarehouseNumber);
+
+        jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPane2.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+
+        txtAddress.setColumns(20);
+        txtAddress.setRows(5);
+        jScrollPane2.setViewportView(txtAddress);
+
+        jScrollPane3.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPane3.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+
+        txtStock.setColumns(20);
+        txtStock.setRows(5);
+        jScrollPane3.setViewportView(txtStock);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -68,23 +105,39 @@ public class ViewWarehouse extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(34, 34, 34)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lbListofitem, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lbNumber, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtQuantity)
-                            .addComponent(combWarehoustList, 0, 187, Short.MAX_VALUE))
-                        .addGap(17, 17, 17))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnDone, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(165, 165, 165))))
+                        .addGap(165, 165, 165))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(lbStock)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(lbAddress)
+                                .addGap(51, 51, 51)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(38, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(lbWarehouseNumber)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(lbNumber, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(combWarehouseList, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(25, 25, 25)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(38, 38, 38))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(106, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lbrViewWarehouse, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(57, 57, 57))
+                .addGap(98, 98, 98))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -92,16 +145,28 @@ public class ViewWarehouse extends javax.swing.JFrame {
                 .addGap(14, 14, 14)
                 .addComponent(lbrViewWarehouse)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(32, 32, 32)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lbNumber)
+                            .addComponent(combWarehouseList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(52, 52, 52)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lbWarehouseNumber)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(56, 56, 56)
+                        .addComponent(lbAddress))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(combWarehoustList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbNumber))
-                .addGap(22, 22, 22)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbListofitem)
-                    .addComponent(txtQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(46, 46, 46)
+                        .addComponent(lbStock))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
                 .addComponent(btnDone)
                 .addGap(28, 28, 28))
         );
@@ -116,38 +181,46 @@ public class ViewWarehouse extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void combWarehoustListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combWarehoustListActionPerformed
+    private void combWarehouseListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combWarehouseListActionPerformed
         // TODO add your handling code here:
-//        MyConnection listAction = new MyConnection();
-//        conn = listAction.getConnection();
-//        String sql = "Select warehouseNumber from warehouse ORDER BY warehouseNumber";
-////        ArrayList<String> warehouseList = new ArrayList<String>();
-////        combWarehoustList.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1","2" }));
-//        try {
-//            pst= conn.prepareStatement(sql);
-//            rs = pst.executeQuery();
-//            while(rs.next())
-//            {
-//               int warehouseID = Integer.parseInt(rs.getString("warehouseNumber"));
-//
-//                combWarehoustList.addItem(String.valueOf(warehouseID));
-//
-//            }
-//        }
-//        catch (Exception ex)
-//        {
-//            JOptionPane.showMessageDialog(null, ex);
-//        }
-    }//GEN-LAST:event_combWarehoustListActionPerformed
+Connection conn;
+        MyConnection ViewWarehouse = new MyConnection();
+        conn = ViewWarehouse.getConnection();
+        try{
+            String sql = "select * from warehouse where warehouseNumber = ?";
+            PreparedStatement pst = conn.prepareStatement(sql);
+            pst.setString(1, (String)combWarehouseList.getSelectedItem());
+            ResultSet rs = pst.executeQuery();
+            
+            while(rs.next()){
+                txtWarehouseNumber.setText(rs.getString("warehouseNumber"));
+                txtAddress.setText(rs.getString("warehouseAddress"));
+                txtStock.setText(rs.getString("warehouseStock"));
+                
+            }
+            pst.close();
+        }
+        catch(Exception ex){
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_combWarehouseListActionPerformed
+
+    private void btnDoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDoneActionPerformed
+        // TODO add your handling code here:
+        dispose();
+        new Warehouse().setVisible(true);
+    }//GEN-LAST:event_btnDoneActionPerformed
 
 
-    private static void displayWarehouse() {                                                  
+    private void displayWarehouse() {                                                  
         Connection conn;
         ResultSet rs;
         PreparedStatement pst;
@@ -160,8 +233,8 @@ public class ViewWarehouse extends javax.swing.JFrame {
             rs = pst.executeQuery();
             while(rs.next())
             {
-                int warehouseID = Integer.parseInt(rs.getString("warehouseNumber"));
-                combWarehoustList.addItem(String.valueOf(warehouseID));
+                int warehouseNumber = Integer.parseInt(rs.getString("warehouseNumber"));
+                combWarehouseList.addItem(String.valueOf(warehouseNumber));
             }
         }
         catch (Exception ex)
@@ -175,9 +248,7 @@ public class ViewWarehouse extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        Connection conn;
-        MyConnection listAction = new MyConnection();
-        conn = listAction.getConnection();
+        
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -206,23 +277,26 @@ public class ViewWarehouse extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new ViewWarehouse().setVisible(true);
-                displayWarehouse();
-//                try {
-//                    new ViewWarehouse().viewTable(conn);
-//                } catch (SQLException throwables) {
-//                    throwables.printStackTrace();
-//                }
+//               
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDone;
+    private javax.swing.JComboBox<String> combWarehouseList;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JLabel lbListofitem;
+    private javax.swing.JLabel lbAddress;
     private javax.swing.JLabel lbNumber;
+    private javax.swing.JLabel lbStock;
+    private javax.swing.JLabel lbWarehouseNumber;
     private javax.swing.JLabel lbrViewWarehouse;
-    private javax.swing.JTextField txtQuantity;
+    private javax.swing.JTextArea txtAddress;
+    private javax.swing.JTextArea txtStock;
+    private javax.swing.JTextArea txtWarehouseNumber;
     // End of variables declaration//GEN-END:variables
 }
