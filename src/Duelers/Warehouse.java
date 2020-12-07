@@ -204,11 +204,14 @@ public class Warehouse extends javax.swing.JFrame {
         Connection conn;
         MyConnection Warehouse1 = new MyConnection();
         conn = Warehouse1.getConnection();
-        String sql = "select SUM(warehouseStock) from warehouse where warehouseNumber = ?";
+        String sql = "select SUM(warehouseStock) AS tot_stock from warehouse ";
 
         try{
             PreparedStatement pst = conn.prepareStatement(sql);
-            pst.executeQuery(sql);
+            ResultSet rs = pst.executeQuery(sql);
+            if(rs.next()){
+                int num = rs.getInt("tot_stock");
+            }
             
             
             
