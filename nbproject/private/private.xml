@@ -3,9 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/taghr/Documents/NetBeansProjects/DuelersManagmentSystem/src/Duelers/Login_system.java</file>
-            <file>file:/C:/Users/taghr/Documents/NetBeansProjects/DuelersManagmentSystem/src/Duelers/AddWarehouse.java</file>
-            <file>file:/C:/Users/taghr/Documents/NetBeansProjects/DuelersManagmentSystem/src/Duelers/MyConnection.java</file>
+            <file>file:/Users/Charyl/git/CECS343-Project/DuelersManagmentSystem/src/Duelers/MyConnection.java</file>
+            <file>file:/Users/Charyl/git/CECS343-Project/DuelersManagmentSystem/src/Duelers/RemoveWarehouse.java</file>
+            <file>file:/Users/Charyl/git/CECS343-Project/DuelersManagmentSystem/src/Duelers/Product.java</file>
+            <file>file:/Users/Charyl/git/CECS343-Project/DuelersManagmentSystem/src/Duelers/AddCustomer.java</file>
+            <file>file:/Users/Charyl/git/CECS343-Project/DuelersManagmentSystem/src/Duelers/AddInvoice.java</file>
         </group>
     </open-files>
 </project-private>
