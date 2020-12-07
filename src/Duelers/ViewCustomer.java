@@ -261,7 +261,6 @@ public class ViewCustomer extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void combCustomerListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combCustomerListActionPerformed
-        // TODO add your handling code here:
         Connection conn;
         MyConnection ViewCustomer = new MyConnection();
         conn = ViewCustomer.getConnection();

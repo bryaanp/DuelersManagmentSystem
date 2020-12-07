@@ -51,12 +51,27 @@ public class Invoice extends javax.swing.JFrame {
 
         btnAdd.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnAdd.setText("Add");
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddActionPerformed(evt);
+            }
+        });
 
         btnModify.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnModify.setText("Modify");
+        btnModify.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModifyActionPerformed(evt);
+            }
+        });
 
         btnView.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnView.setText("View");
+        btnView.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewActionPerformed(evt);
+            }
+        });
 
         btnMainMenu.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnMainMenu.setText("Main Menu");
@@ -137,6 +152,24 @@ public class Invoice extends javax.swing.JFrame {
        Main_menu Info = new Main_menu();
        Info.setVisible(true);
     }//GEN-LAST:event_btnMainMenuActionPerformed
+
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        // TODO add your handling code here:
+        dispose();
+        new AddInvoice().setVisible(true);
+    }//GEN-LAST:event_btnAddActionPerformed
+
+    private void btnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActionPerformed
+        // TODO add your handling code here:
+        dispose();
+        new ViewInvoice().setVisible(true);
+    }//GEN-LAST:event_btnViewActionPerformed
+
+    private void btnModifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifyActionPerformed
+        // TODO add your handling code here:
+        dispose();
+        new ModifyInvoice().setVisible(true);
+    }//GEN-LAST:event_btnModifyActionPerformed
 
     /**
      * @param args the command line arguments
