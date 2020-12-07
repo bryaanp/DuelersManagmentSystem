@@ -50,6 +50,9 @@ public class AddCustomer extends javax.swing.JFrame {
         txtAddress = new javax.swing.JTextField();
         txtStatus = new javax.swing.JTextField();
         lbStatus = new javax.swing.JLabel();
+        lbSalesTax = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txtSalesTax = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -106,11 +109,10 @@ public class AddCustomer extends javax.swing.JFrame {
                         .addComponent(txtFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(63, 63, 63))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(28, 28, 28)
                                 .addComponent(btnReturn)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
+                                .addGap(97, 97, 97)
                                 .addComponent(btnSubmit))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -145,7 +147,7 @@ public class AddCustomer extends javax.swing.JFrame {
                 .addComponent(lbAddCustomer)
                 .addGap(13, 13, 13)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, 25, Short.MAX_VALUE)
+                    .addComponent(txtFirstName, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
                     .addComponent(lbFirstName))
                 .addGap(8, 8, 8)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -171,32 +173,52 @@ public class AddCustomer extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lbStatus))
-                .addGap(20, 20, 20)
+                .addGap(58, 58, 58)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnReturn)
                     .addComponent(btnSubmit))
                 .addContainerGap())
         );
 
+        lbSalesTax.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
+        lbSalesTax.setText("Sales Tax");
+
+        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+
+        txtSalesTax.setColumns(20);
+        txtSalesTax.setRows(5);
+        jScrollPane1.setViewportView(txtSalesTax);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 403, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(34, 34, 34)
+                .addComponent(lbSalesTax)
+                .addGap(26, 26, 26)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(73, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 358, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(308, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbSalesTax)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(68, 68, 68))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
         );
 
         pack();
@@ -207,10 +229,10 @@ public class AddCustomer extends javax.swing.JFrame {
         Connection conn;
         MyConnection addCustomer = new MyConnection();
         conn = addCustomer.getConnection();
-        String sql = "insert into customer (firstName, lastName, customerID, phone, email, address, status) "
+        String sql = "insert into customer (firstName, lastName, customerID, phone, email, address, status, salesTax) "
         + "values ( '" + txtFirstName.getText() + "' , '" + txtLastName.getText() + "' , '" +
         txtID.getText() + "' , '" + txtPhone.getText() + "' , '" + txtEmail.getText()
-        + "' , '" + txtAddress.getText() + "' , '" + txtStatus.getText() +"')";
+        + "' , '" + txtAddress.getText() + "' , '" + txtStatus.getText() + "' , '" + txtSalesTax.getText()+"')";
 
         try {
 
@@ -271,6 +293,7 @@ public class AddCustomer extends javax.swing.JFrame {
     private javax.swing.JButton btnReturn;
     private javax.swing.JButton btnSubmit;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbAddCustomer;
     private javax.swing.JLabel lbAddress;
     private javax.swing.JLabel lbEmail;
@@ -278,6 +301,7 @@ public class AddCustomer extends javax.swing.JFrame {
     private javax.swing.JLabel lbID;
     private javax.swing.JLabel lbLastName;
     private javax.swing.JLabel lbPhone;
+    private javax.swing.JLabel lbSalesTax;
     private javax.swing.JLabel lbStatus;
     private javax.swing.JTextField txtAddress;
     private javax.swing.JTextField txtEmail;
@@ -285,6 +309,7 @@ public class AddCustomer extends javax.swing.JFrame {
     private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtLastName;
     private javax.swing.JTextField txtPhone;
+    private javax.swing.JTextArea txtSalesTax;
     private javax.swing.JTextField txtStatus;
     // End of variables declaration//GEN-END:variables
 }
