@@ -67,6 +67,11 @@ public class Product extends javax.swing.JFrame {
 
         btnView.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnView.setText("View");
+        btnView.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewActionPerformed(evt);
+            }
+        });
 
         btnMainMenu.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnMainMenu.setText("Main Menu");
@@ -163,6 +168,12 @@ public class Product extends javax.swing.JFrame {
         dispose();
         new RemoveProduct().setVisible(true);
     }//GEN-LAST:event_btnRemoveActionPerformed
+
+    private void btnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActionPerformed
+        // TODO add your handling code here:
+        dispose();
+        new ViewProduct().setVisible(true);
+    }//GEN-LAST:event_btnViewActionPerformed
 
     /**
      * @param args the command line arguments
