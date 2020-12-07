@@ -339,12 +339,12 @@ public class AddInvoice extends javax.swing.JFrame {
 
     private void btnReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturnActionPerformed
         dispose();
-        new Customer().setVisible(true);
+        new Invoice().setVisible(true);
     }//GEN-LAST:event_btnReturnActionPerformed
 
     private void btnReturn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturn1ActionPerformed
         dispose();
-        new Customer().setVisible(true);
+        new Invoice().setVisible(true);
     }//GEN-LAST:event_btnReturn1ActionPerformed
 
 
