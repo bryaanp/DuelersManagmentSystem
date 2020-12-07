@@ -204,7 +204,7 @@ public class AddCustomer extends javax.swing.JFrame {
         Connection conn;
         MyConnection addCustomer = new MyConnection();
         conn = addCustomer.getConnection();
-        String sql = "insert into customer (FirstName, LastName, customerID, phone, email, address, status) "
+        String sql = "insert into customer (firstName, lastName, customerID, phone, email, address, status) "
         + "values ( '" + txtFirstName.getText() + "' , '" + txtLastName.getText() + "' , '" +
         txtID.getText() + "' , '" + txtPhone.getText() + "' , '" + txtEmail.getText()
         + "' , '" + txtAddress.getText() + "' , '" + txtStatus.getText() +"')";

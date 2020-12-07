@@ -217,8 +217,8 @@ public class ViewCustomer extends javax.swing.JFrame {
             ResultSet rs = pst.executeQuery();
             
             while(rs.next()){
-                txtFName.setText(rs.getString("FirstName"));
-                txtLName.setText(rs.getString("LastName"));
+                txtFName.setText(rs.getString("firstName"));
+                txtLName.setText(rs.getString("lastName"));
                 txtID.setText(rs.getString("customerID"));
                 txtPhone.setText(rs.getString("phone"));
                 txtEmail.setText(rs.getString("email"));
