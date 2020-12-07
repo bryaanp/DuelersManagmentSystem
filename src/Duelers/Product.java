@@ -59,6 +59,11 @@ public class Product extends javax.swing.JFrame {
 
         btnRemove.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnRemove.setText("Remove");
+        btnRemove.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRemoveActionPerformed(evt);
+            }
+        });
 
         btnView.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnView.setText("View");
@@ -118,6 +123,12 @@ public class Product extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        btnAdd.removeActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRemoveActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -146,6 +157,12 @@ public class Product extends javax.swing.JFrame {
         dispose();
         new AddProduct().setVisible(true);
     }//GEN-LAST:event_btnAddActionPerformed
+
+    private void btnRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveActionPerformed
+        // TODO add your handling code here:
+        dispose();
+        new RemoveProduct().setVisible(true);
+    }//GEN-LAST:event_btnRemoveActionPerformed
 
     /**
      * @param args the command line arguments
