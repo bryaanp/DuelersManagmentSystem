@@ -33,7 +33,8 @@ public class MyConnection
         }
         try
         {
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/duelersstore","root","1973");
+            
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/Warehouse_Database","root","0happybday");
         }
         catch(SQLException e2)
         {

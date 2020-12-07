@@ -7,12 +7,6 @@ package Duelers;
 
 import Duelers.AddWarehouse;
 import Duelers.RemoveWarehouse;
-import javax.swing.*;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.ResultSet;
-
 public class Warehouse extends javax.swing.JFrame {
 
     /**
@@ -201,25 +195,6 @@ public class Warehouse extends javax.swing.JFrame {
 
     private void txtTotalStockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTotalStockActionPerformed
         // TODO add your handling code here:
-        Connection conn;
-        MyConnection Warehouse1 = new MyConnection();
-        conn = Warehouse1.getConnection();
-        String sql = "select SUM(warehouseStock) AS tot_stock from warehouse ";
-
-        try{
-            PreparedStatement pst = conn.prepareStatement(sql);
-            ResultSet rs = pst.executeQuery(sql);
-            if(rs.next()){
-                int num = rs.getInt("tot_stock");
-            }
-            
-            
-            
-        }
-        catch(Exception ex){
-            ex.printStackTrace();
-        }
-        
         
     }//GEN-LAST:event_txtTotalStockActionPerformed
 

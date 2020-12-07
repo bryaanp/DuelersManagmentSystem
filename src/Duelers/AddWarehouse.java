@@ -32,7 +32,7 @@ public class AddWarehouse extends javax.swing.JFrame {
     private void initComponents() {
 
         lbAddWarehouse = new javax.swing.JLabel();
-        btnCancel = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         btnSubmit = new javax.swing.JButton();
         lbWarehouseNum = new javax.swing.JLabel();
         lbWarehouseAddress = new javax.swing.JLabel();
@@ -46,11 +46,11 @@ public class AddWarehouse extends javax.swing.JFrame {
         lbAddWarehouse.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         lbAddWarehouse.setText("Add Warehouse");
 
-        btnCancel.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
-        btnCancel.setText("Cancel");
-        btnCancel.addActionListener(new java.awt.event.ActionListener() {
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
+        jButton1.setText("Cancel");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCancelActionPerformed(evt);
+                jButton1ActionPerformed(evt);
             }
         });
 
@@ -86,7 +86,7 @@ public class AddWarehouse extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(lbWarehouseStock)
-                                    .addComponent(btnCancel))
+                                    .addComponent(jButton1))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(68, 68, 68)
@@ -123,7 +123,7 @@ public class AddWarehouse extends javax.swing.JFrame {
                     .addComponent(txtStock, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(39, 39, 39)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCancel)
+                    .addComponent(jButton1)
                     .addComponent(btnSubmit))
                 .addGap(33, 33, 33))
         );
@@ -133,10 +133,16 @@ public class AddWarehouse extends javax.swing.JFrame {
 
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
         // TODO add your handling code here:
+        dispose();
+        new Warehouse().setVisible(true);
+    }//GEN-LAST:event_btnSubmitActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
         Connection conn;
-        MyConnection addWarehouse = new MyConnection();
+         MyConnection addWarehouse = new MyConnection();
         conn = addWarehouse.getConnection();
-        String sql = "insert into warehouse (warehouseNumber, warehouseAddress, warehouseStock) "
+        String sql = "insert into customer (warehouseNumber, warehouseAddress, warehouseStock) "
         + "values ( '" + txtWarehouseNum.getText() + "' , '" + txtAddress.getText() + "' , '" +
         txtStock.getText() +"')";
 
@@ -151,14 +157,8 @@ public class AddWarehouse extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, ex);
         }
         dispose();
-        new Warehouse().setVisible(true);
-    }//GEN-LAST:event_btnSubmitActionPerformed
-
-    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
-        // TODO add your handling code here:
-        dispose();
-        new Warehouse().setVisible(true);
-    }//GEN-LAST:event_btnCancelActionPerformed
+        new Customer().setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -196,8 +196,8 @@ public class AddWarehouse extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnSubmit;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel lbAddWarehouse;
     private javax.swing.JLabel lbWarehouseAddress;
     private javax.swing.JLabel lbWarehouseNum;
