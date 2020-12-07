@@ -31,19 +31,19 @@ public class RemoveWarehouse extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         lbrRemoveWarehouse = new javax.swing.JLabel();
-        lbNumber = new javax.swing.JLabel();
+        lbWarehouseNum = new javax.swing.JLabel();
         btnDelete = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
-        combWarehouse = new javax.swing.JComboBox<>();
         btnReturn = new javax.swing.JButton();
+        combWarehouse = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         lbrRemoveWarehouse.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         lbrRemoveWarehouse.setText("Remove Warehouse");
 
-        lbNumber.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        lbNumber.setText("Number");
+        lbWarehouseNum.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lbWarehouseNum.setText("Select Warehouse");
 
         btnDelete.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnDelete.setText("Delete");
@@ -53,8 +53,6 @@ public class RemoveWarehouse extends javax.swing.JFrame {
             }
         });
 
-        combWarehouse.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-
         btnReturn.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnReturn.setText("Return");
         btnReturn.addActionListener(new java.awt.event.ActionListener() {
@@ -62,6 +60,8 @@ public class RemoveWarehouse extends javax.swing.JFrame {
                 btnReturnActionPerformed(evt);
             }
         });
+
+        combWarehouse.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -73,18 +73,19 @@ public class RemoveWarehouse extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(83, 83, 83)
                         .addComponent(lbrRemoveWarehouse, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                            .addGap(58, 58, 58)
-                            .addComponent(btnReturn, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                            .addGap(34, 34, 34)
-                            .addComponent(lbNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(combWarehouse, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(64, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lbWarehouseNum)
+                            .addComponent(btnReturn, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(42, 42, 42)
+                                .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(30, 30, 30)
+                                .addComponent(combWarehouse, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(51, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -93,11 +94,11 @@ public class RemoveWarehouse extends javax.swing.JFrame {
                 .addComponent(lbrRemoveWarehouse)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(combWarehouse, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbNumber))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 99, Short.MAX_VALUE)
+                .addGap(39, 39, 39)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbWarehouseNum)
+                    .addComponent(combWarehouse, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 183, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnReturn)
                     .addComponent(btnDelete))
@@ -108,13 +109,15 @@ public class RemoveWarehouse extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -135,8 +138,6 @@ public class RemoveWarehouse extends javax.swing.JFrame {
         try {
             pst= conn.prepareStatement(sql);
             pst.executeUpdate(sql);
-            dispose();
-            new Warehouse().setVisible(true);
             JOptionPane.showMessageDialog(null, "Warehouse " + selectedWarehouse + " has been removed.");
 
         }
@@ -144,9 +145,11 @@ public class RemoveWarehouse extends javax.swing.JFrame {
         {
             JOptionPane.showMessageDialog(null, ex);
         }
+        dispose();
+        new Warehouse().setVisible(true);
     }//GEN-LAST:event_btnDeleteActionPerformed
 
-    private static void displayWarehouse() {                                                  
+    private void displayWarehouse() {                                                  
         Connection conn;
         ResultSet rs;
         PreparedStatement pst;
@@ -159,8 +162,8 @@ public class RemoveWarehouse extends javax.swing.JFrame {
             rs = pst.executeQuery();
             while(rs.next())
             {
-                int warehouseID = Integer.parseInt(rs.getString("warehouseNumber"));
-                combWarehouse.addItem(String.valueOf(warehouseID));
+                int warehouseNumber = Integer.parseInt(rs.getString("warehouseNumber"));
+                combWarehouse.addItem(String.valueOf(warehouseNumber));
             }
         }
         catch (Exception ex)
@@ -207,10 +210,10 @@ public class RemoveWarehouse extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnReturn;
-    private static javax.swing.JComboBox<String> combWarehouse;
+    private javax.swing.JComboBox<String> combWarehouse;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JLabel lbNumber;
+    private javax.swing.JLabel lbWarehouseNum;
     private javax.swing.JLabel lbrRemoveWarehouse;
     // End of variables declaration//GEN-END:variables
 }
