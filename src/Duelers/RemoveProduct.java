@@ -5,6 +5,10 @@
  */
 package Duelers;
 
+import javax.swing.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 /**
  *
  * @author taghr
@@ -16,6 +20,7 @@ public class RemoveProduct extends javax.swing.JFrame {
      */
     public RemoveProduct() {
         initComponents();
+        displayProducts();
     }
 
     /**
@@ -31,8 +36,9 @@ public class RemoveProduct extends javax.swing.JFrame {
         lbaddsalesperson = new javax.swing.JLabel();
         lbsProductList = new javax.swing.JLabel();
         CombProductList = new javax.swing.JComboBox<>();
-        lbRemove = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
+        btnCancelRemoveEmp = new javax.swing.JButton();
+        btnSubmitRemoveEmp = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -44,8 +50,21 @@ public class RemoveProduct extends javax.swing.JFrame {
 
         CombProductList.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
 
-        lbRemove.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        lbRemove.setText("Remove");
+        btnCancelRemoveEmp.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnCancelRemoveEmp.setText("Return");
+        btnCancelRemoveEmp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelRemoveEmpActionPerformed(evt);
+            }
+        });
+
+        btnSubmitRemoveEmp.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnSubmitRemoveEmp.setText("Delete");
+        btnSubmitRemoveEmp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSubmitRemoveEmpActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -59,28 +78,36 @@ public class RemoveProduct extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(CombProductList, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(161, 161, 161)
-                        .addComponent(lbRemove, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(106, 106, 106)
                         .addComponent(lbaddsalesperson, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(41, Short.MAX_VALUE))
-            .addComponent(jSeparator1)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(78, 78, 78)
+                .addComponent(btnCancelRemoveEmp, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnSubmitRemoveEmp, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(90, 90, 90))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jSeparator1)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addComponent(lbaddsalesperson)
-                .addGap(5, 5, 5)
+                .addGap(18, 18, 18)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(36, 36, 36)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbsProductList)
                     .addComponent(CombProductList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
-                .addComponent(lbRemove)
-                .addGap(58, 58, 58))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCancelRemoveEmp, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSubmitRemoveEmp, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(27, 27, 27))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -96,6 +123,54 @@ public class RemoveProduct extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnCancelRemoveEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelRemoveEmpActionPerformed
+        dispose();
+        new Product().setVisible(true);
+    }//GEN-LAST:event_btnCancelRemoveEmpActionPerformed
+
+    private void btnSubmitRemoveEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitRemoveEmpActionPerformed
+        Connection conn;
+        PreparedStatement pst;
+        //ResultSet rs;
+        MyConnection productList = new MyConnection();
+        conn = productList.getConnection();
+        String selectedProd = CombProductList.getSelectedItem().toString();
+        String sql = "DELETE from product WHERE UPC = " + selectedProd;
+        try {
+            pst= conn.prepareStatement(sql);
+            pst.executeUpdate(sql);
+            JOptionPane.showMessageDialog(null, "Product " + selectedProd + " has been removed.");
+
+        }
+        catch (Exception ex)
+        {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+        
+    }//GEN-LAST:event_btnSubmitRemoveEmpActionPerformed
+    
+    private static void displayProducts() {
+        Connection conn;
+        ResultSet rs;
+        PreparedStatement pst;
+        MyConnection productList = new MyConnection();
+        conn = productList.getConnection();
+        String sql = "Select UPC from product ORDER BY UPC";
+        try {
+            pst= conn.prepareStatement(sql);
+            rs = pst.executeQuery();
+            while(rs.next())
+            {
+                String UPC = Integer.toString(rs.getInt("UPC"));
+                //CombProductList.addItem(UPC);
+            }
+        }
+        catch (Exception ex)
+        {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+    }
 
     /**
      * @param args the command line arguments
@@ -134,9 +209,10 @@ public class RemoveProduct extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> CombProductList;
+    private javax.swing.JButton btnCancelRemoveEmp;
+    private javax.swing.JButton btnSubmitRemoveEmp;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JLabel lbRemove;
     private javax.swing.JLabel lbaddsalesperson;
     private javax.swing.JLabel lbsProductList;
     // End of variables declaration//GEN-END:variables
