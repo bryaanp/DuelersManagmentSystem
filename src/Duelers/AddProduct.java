@@ -253,15 +253,37 @@ public class AddProduct extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    private static void displayWarehouse() {
+        Connection conn;
+        ResultSet rs;
+        PreparedStatement pst;
+        MyConnection listAction = new MyConnection();
+        conn = listAction.getConnection();
+        String sql = "SELECT warehouseNumber FROM warehouse ORDER BY warehouseNumber";
+        try {
+            pst = conn.prepareStatement(sql);
+            rs = pst.executeQuery();
+            while (rs.next()) {
+                int warehouseNumber = Integer.parseInt(rs.getString("warehouseNumber"));
+                combWarehouseList.addItem(String.valueOf(warehouseNumber));
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex);
+
+        }
+    }
+    
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
         // TODO add your handling code here:
         Connection conn;
         MyConnection addProduct = new MyConnection();
         conn = addProduct.getConnection();
         String selectedWarehouse = combWarehouseList.getSelectedItem().toString();
-        String sql = "insert into product (ProductName, UPC, SellingPrice, CostPrice, ProductDetails, Quantity) "
+        String sql = "insert into product (ProductName, UPC, SellingPrice, CostPrice, ProductDetails, Quantity, warehouseNum) "
                 + "values ( '" + txtProductName.getText() + "' , '" + txtUPC.getText() + "' , '"
-                + txtSellingPrice.getText() + "' , '" + txtCostPrice.getText() + "' , '" + txtProductDetails.getText() + "' , '" + txtQuantity.getText() + "')";
+                + txtSellingPrice.getText() + "' , '" + txtCostPrice.getText() + "' , '" + txtProductDetails.getText() +
+                "' , '" + txtQuantity.getText() + "' , '" + combWarehouseList.getSelectedItem().toString() + "')";
         String sqlWarehouse = "UPDATE warehouse SET warehouseStock = warehouseStock + " + Integer.parseInt(txtQuantity.getText()) + " WHERE warehouseNumber = " + selectedWarehouse;
         try {
             
@@ -317,25 +339,7 @@ public class AddProduct extends javax.swing.JFrame {
     private void txtCostPriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCostPriceActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCostPriceActionPerformed
-    private static void displayWarehouse() {
-        Connection conn;
-        ResultSet rs;
-        PreparedStatement pst;
-        MyConnection listAction = new MyConnection();
-        conn = listAction.getConnection();
-        String sql = "SELECT warehouseNumber FROM warehouse ORDER BY warehouseNumber";
-        try {
-            pst = conn.prepareStatement(sql);
-            rs = pst.executeQuery();
-            while (rs.next()) {
-                int warehouseNumber = Integer.parseInt(rs.getString("warehouseNumber"));
-                combWarehouseList.addItem(String.valueOf(warehouseNumber));
-            }
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, ex);
-
-        }
-    }
+    
 
     /**
      * @param args the command line arguments

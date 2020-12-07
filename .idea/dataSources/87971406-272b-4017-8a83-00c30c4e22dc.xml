@@ -908,63 +908,92 @@ SELECT|sys.sys_config:null
     </user>
     <table id="283" parent="5" name="customer"/>
     <table id="284" parent="5" name="login_system"/>
-    <table id="285" parent="5" name="warehouse"/>
-    <column id="286" parent="283" name="firstName">
+    <table id="285" parent="5" name="product"/>
+    <table id="286" parent="5" name="warehouse"/>
+    <column id="287" parent="283" name="firstName">
       <Position>1</Position>
       <DataType>varchar(30)|0s</DataType>
     </column>
-    <column id="287" parent="283" name="lastName">
+    <column id="288" parent="283" name="lastName">
       <Position>2</Position>
       <DataType>varchar(30)|0s</DataType>
     </column>
-    <column id="288" parent="283" name="customerID">
+    <column id="289" parent="283" name="customerID">
       <Position>3</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="289" parent="283" name="phone">
+    <column id="290" parent="283" name="phone">
       <Position>4</Position>
       <DataType>varchar(20)|0s</DataType>
     </column>
-    <column id="290" parent="283" name="email">
+    <column id="291" parent="283" name="email">
       <Position>5</Position>
       <DataType>varchar(50)|0s</DataType>
     </column>
-    <column id="291" parent="283" name="address">
+    <column id="292" parent="283" name="address">
       <Position>6</Position>
       <DataType>varchar(50)|0s</DataType>
     </column>
-    <column id="292" parent="283" name="status">
+    <column id="293" parent="283" name="status">
       <Position>7</Position>
       <DataType>varchar(20)|0s</DataType>
     </column>
-    <column id="293" parent="283" name="salesTax">
+    <column id="294" parent="283" name="salesTax">
       <Position>8</Position>
       <DataType>double|0s</DataType>
     </column>
-    <key id="294" parent="283" name="PRIMARY">
+    <key id="295" parent="283" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>customerID</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="295" parent="284" name="Password">
+    <column id="296" parent="284" name="Password">
       <Position>1</Position>
       <DataType>varchar(20)|0s</DataType>
     </column>
-    <column id="296" parent="285" name="warehouseNumber">
+    <column id="297" parent="285" name="ProductName">
+      <Position>1</Position>
+      <DataType>varchar(40)|0s</DataType>
+    </column>
+    <column id="298" parent="285" name="UPC">
+      <Position>2</Position>
+      <DataType>int|0s</DataType>
+    </column>
+    <column id="299" parent="285" name="SellingPrice">
+      <Position>3</Position>
+      <DataType>double|0s</DataType>
+    </column>
+    <column id="300" parent="285" name="CostPrice">
+      <Position>4</Position>
+      <DataType>double|0s</DataType>
+    </column>
+    <column id="301" parent="285" name="ProductDetails">
+      <Position>5</Position>
+      <DataType>varchar(100)|0s</DataType>
+    </column>
+    <column id="302" parent="285" name="Quantity">
+      <Position>6</Position>
+      <DataType>int|0s</DataType>
+    </column>
+    <column id="303" parent="285" name="warehouseNum">
+      <Position>7</Position>
+      <DataType>int|0s</DataType>
+    </column>
+    <column id="304" parent="286" name="warehouseNumber">
       <Position>1</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="297" parent="285" name="warehouseAddress">
+    <column id="305" parent="286" name="warehouseAddress">
       <Position>2</Position>
       <DataType>varchar(50)|0s</DataType>
     </column>
-    <column id="298" parent="285" name="warehouseStock">
+    <column id="306" parent="286" name="warehouseStock">
       <Position>3</Position>
       <DataType>int|0s</DataType>
     </column>
-    <key id="299" parent="285" name="PRIMARY">
+    <key id="307" parent="286" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>warehouseNumber</ColNames>
       <Primary>1</Primary>
