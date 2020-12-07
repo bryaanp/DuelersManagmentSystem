@@ -51,6 +51,11 @@ public class Product extends javax.swing.JFrame {
 
         btnAdd.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnAdd.setText("Add");
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddActionPerformed(evt);
+            }
+        });
 
         btnRemove.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnRemove.setText("Remove");
@@ -126,7 +131,7 @@ public class Product extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
         System.exit(0);
     }//GEN-LAST:event_btnExitActionPerformed
@@ -135,6 +140,12 @@ public class Product extends javax.swing.JFrame {
        Main_menu Info = new Main_menu();
        Info.setVisible(true);
     }//GEN-LAST:event_btnMainMenuActionPerformed
+
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        // TODO add your handling code here:
+        dispose();
+        new AddProduct().setVisible(true);
+    }//GEN-LAST:event_btnAddActionPerformed
 
     /**
      * @param args the command line arguments
