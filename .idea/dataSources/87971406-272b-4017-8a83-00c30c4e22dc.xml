@@ -956,7 +956,11 @@ SELECT|sys.sys_config:null
       <Position>2</Position>
       <DataType>varchar(50)|0s</DataType>
     </column>
-    <key id="297" parent="285" name="PRIMARY">
+    <column id="297" parent="285" name="warehouseStock">
+      <Position>3</Position>
+      <DataType>int|0s</DataType>
+    </column>
+    <key id="298" parent="285" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>warehouseNumber</ColNames>
       <Primary>1</Primary>
