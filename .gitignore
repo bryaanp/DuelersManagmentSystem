@@ -7,3 +7,7 @@ src/Duelers/MyConnection.java
 *.class
 *.xml
 *.meta
+*.class
+src/Duelers/MyConnection.java
+*.xml
+src/Duelers/MyConnection.java
