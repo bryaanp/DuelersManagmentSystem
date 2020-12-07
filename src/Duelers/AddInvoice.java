@@ -31,6 +31,7 @@ public class AddInvoice extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btnReturn = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         lbaddInvoice = new javax.swing.JLabel();
         lbShippingAmount = new javax.swing.JLabel();
@@ -45,8 +46,16 @@ public class AddInvoice extends javax.swing.JFrame {
         txtShippingAmount = new javax.swing.JTextField();
         txtInvoceNo2 = new javax.swing.JTextField();
         txtTotalAmount = new javax.swing.JTextField();
-        btnCancel = new javax.swing.JButton();
         btnSubmit = new javax.swing.JButton();
+        btnReturn1 = new javax.swing.JButton();
+
+        btnReturn.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnReturn.setText("Return");
+        btnReturn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReturnActionPerformed(evt);
+            }
+        });
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -99,20 +108,19 @@ public class AddInvoice extends javax.swing.JFrame {
 
         txtTotalAmount.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
 
-        btnCancel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        btnCancel.setText("Cancel");
-        btnCancel.setBorder(null);
-        btnCancel.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCancelActionPerformed(evt);
-            }
-        });
-
         btnSubmit.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnSubmit.setText("Submit");
         btnSubmit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSubmitActionPerformed(evt);
+            }
+        });
+
+        btnReturn1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnReturn1.setText("Return");
+        btnReturn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReturn1ActionPerformed(evt);
             }
         });
 
@@ -158,8 +166,8 @@ public class AddInvoice extends javax.swing.JFrame {
                 .addComponent(lbaddInvoice)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(98, 98, 98)
-                .addComponent(btnCancel)
+                .addGap(59, 59, 59)
+                .addComponent(btnReturn1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnSubmit)
                 .addGap(104, 104, 104))
@@ -195,8 +203,8 @@ public class AddInvoice extends javax.swing.JFrame {
                     .addComponent(jCheckBox2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCancel)
-                    .addComponent(btnSubmit))
+                    .addComponent(btnSubmit)
+                    .addComponent(btnReturn1))
                 .addGap(16, 16, 16))
         );
 
@@ -230,13 +238,39 @@ public class AddInvoice extends javax.swing.JFrame {
 
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
         // TODO add your handling code here:
+        Connection conn;
+        MyConnection addProduct = new MyConnection();
+        conn = addProduct.getConnection();
+        String sql = "insert into product (InvoiceNum, Date, ShippingAmount, TotalAmount) "
+        + "values ( '" + txtInvoiceNumber.getText() + "' , '" + txtUPC.getText() + "' , '" +
+        txtSellingPrice.getText() + "' , '" + txtCostPrice.getText() + "' , '" + txtProductDetails.getText() +"')";
+
+        try {
+
+            PreparedStatement pst= conn.prepareStatement(sql);
+            pst.executeUpdate(sql);
+
+        }
+        catch (SQLException ex)
+        {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+        dispose();
+        new Customer().setVisible(true);
+    }                     
     }//GEN-LAST:event_btnSubmitActionPerformed
 
-    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
+    private void btnReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturnActionPerformed
         // TODO add your handling code here:
         dispose();
-        new Invoice().setVisible(true);
-    }//GEN-LAST:event_btnCancelActionPerformed
+        new Customer().setVisible(true);
+    }//GEN-LAST:event_btnReturnActionPerformed
+
+    private void btnReturn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturn1ActionPerformed
+        // TODO add your handling code here:
+        dispose();
+        new Customer().setVisible(true);
+    }//GEN-LAST:event_btnReturn1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -274,7 +308,8 @@ public class AddInvoice extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCancel;
+    private javax.swing.JButton btnReturn;
+    private javax.swing.JButton btnReturn1;
     private javax.swing.JButton btnSubmit;
     private javax.swing.JComboBox<String> combCustomerList;
     private javax.swing.JCheckBox jCheckBox1;

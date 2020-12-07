@@ -44,8 +44,8 @@ public class AddProduct extends javax.swing.JFrame {
         txtProductDetails = new javax.swing.JTextField();
         txtCostPrice = new javax.swing.JTextField();
         lbaddProduct = new javax.swing.JLabel();
-        btnCancel = new javax.swing.JButton();
         btnSubmit = new javax.swing.JButton();
+        btnReturn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -77,20 +77,19 @@ public class AddProduct extends javax.swing.JFrame {
         lbaddProduct.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         lbaddProduct.setText("Add Product");
 
-        btnCancel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        btnCancel.setText("Cancel");
-        btnCancel.setBorder(null);
-        btnCancel.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCancelActionPerformed(evt);
-            }
-        });
-
         btnSubmit.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnSubmit.setText("Submit");
         btnSubmit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSubmitActionPerformed(evt);
+            }
+        });
+
+        btnReturn.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnReturn.setText("Return");
+        btnReturn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReturnActionPerformed(evt);
             }
         });
 
@@ -131,8 +130,8 @@ public class AddProduct extends javax.swing.JFrame {
                 .addComponent(lbaddProduct)
                 .addGap(148, 148, 148))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(99, 99, 99)
-                .addComponent(btnCancel)
+                .addGap(69, 69, 69)
+                .addComponent(btnReturn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnSubmit)
                 .addGap(77, 77, 77))
@@ -166,8 +165,8 @@ public class AddProduct extends javax.swing.JFrame {
                 .addComponent(txtProductDetails, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCancel)
-                    .addComponent(btnSubmit))
+                    .addComponent(btnSubmit)
+                    .addComponent(btnReturn))
                 .addGap(21, 21, 21))
         );
 
@@ -187,15 +186,34 @@ public class AddProduct extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
+    private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
+        // TODO add your handling code here:
+        Connection conn;
+        MyConnection addProduct = new MyConnection();
+        conn = addProduct.getConnection();
+        String sql = "insert into product (ProductName, UPCcode, SellingPrice, CostPrice, ProductDetails) "
+        + "values ( '" + txtProductName.getText() + "' , '" + txtUPC.getText() + "' , '" +
+        txtSellingPrice.getText() + "' , '" + txtCostPrice.getText() + "' , '" + txtProductDetails.getText() +"')";
+
+        try {
+
+            PreparedStatement pst= conn.prepareStatement(sql);
+            pst.executeUpdate(sql);
+
+        }
+        catch (SQLException ex)
+        {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+        dispose();
+        new Customer().setVisible(true);
+    }//GEN-LAST:event_btnSubmitActionPerformed
+
+    private void btnReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturnActionPerformed
         // TODO add your handling code here:
         dispose();
         new Product().setVisible(true);
-    }//GEN-LAST:event_btnCancelActionPerformed
-
-    private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnSubmitActionPerformed
+    }//GEN-LAST:event_btnReturnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -223,6 +241,23 @@ public class AddProduct extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(AddProduct.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(AddProduct.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(AddProduct.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(AddProduct.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(AddProduct.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -233,7 +268,7 @@ public class AddProduct extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCancel;
+    private javax.swing.JButton btnReturn;
     private javax.swing.JButton btnSubmit;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
