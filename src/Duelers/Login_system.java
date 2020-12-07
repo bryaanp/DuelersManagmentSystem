@@ -45,7 +45,7 @@ public class Login_system extends javax.swing.JFrame {
         txtPassword = new javax.swing.JPasswordField();
         btnLogin = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
-        btnReset = new javax.swing.JButton();
+        btnChange = new javax.swing.JButton();
         lbPassword1 = new javax.swing.JLabel();
 
         jLabel1.setText("jLabel1");
@@ -70,11 +70,11 @@ public class Login_system extends javax.swing.JFrame {
             }
         });
 
-        btnReset.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        btnReset.setText("Reset");
-        btnReset.addActionListener(new java.awt.event.ActionListener() {
+        btnChange.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnChange.setText("Change");
+        btnChange.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnResetActionPerformed(evt);
+                btnChangeActionPerformed(evt);
             }
         });
 
@@ -92,12 +92,12 @@ public class Login_system extends javax.swing.JFrame {
                 .addGap(54, 54, 54)
                 .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(53, 53, 53)
-                .addComponent(btnReset, javax.swing.GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)
+                .addComponent(btnChange, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(87, 87, 87))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(55, 55, 55)
                 .addComponent(lbTitle)
-                .addContainerGap(58, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lbPassword1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -119,7 +119,7 @@ public class Login_system extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnLogin)
-                    .addComponent(btnReset))
+                    .addComponent(btnChange))
                 .addGap(62, 62, 62))
         );
 
@@ -146,18 +146,18 @@ public class Login_system extends javax.swing.JFrame {
        String sql= "Select Password from login where password = ?";
     try {
         pst= conn.prepareStatement(sql);  
-        pst.setString(1, txtPassword.getText());
+        pst.setString(1, String.valueOf(txtPassword.getPassword()));
         rs = pst.executeQuery();
         if(rs.next())
         {
-            JOptionPane.showMessageDialog(null, "username and password matched");
+            JOptionPane.showMessageDialog(null, "password matched");
             dispose();
             new Main_menu().setVisible(true);
                    
         }
         else
         {
-            JOptionPane.showMessageDialog(null, "username and password not matched");            
+            JOptionPane.showMessageDialog(null, "password not matched");
         }
     }
     catch (Exception ex)
@@ -168,10 +168,10 @@ public class Login_system extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnLoginActionPerformed
 
-    private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
+    private void btnChangeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChangeActionPerformed
         txtPassword.setText(null);
 
-    }//GEN-LAST:event_btnResetActionPerformed
+    }//GEN-LAST:event_btnChangeActionPerformed
 
     private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
         // TODO add your handling code here:
@@ -213,8 +213,8 @@ public class Login_system extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnChange;
     private javax.swing.JButton btnLogin;
-    private javax.swing.JButton btnReset;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
