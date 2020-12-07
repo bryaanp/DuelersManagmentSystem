@@ -260,12 +260,13 @@ public class AddInvoice extends javax.swing.JFrame {
 
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
         // TODO add your handling code here:
+        
         Connection conn;
-        MyConnection addProduct = new MyConnection();
-        conn = addProduct.getConnection();
-        String sql = "insert into product (InvoiceNum, Date, ShippingAmount, TotalAmount) "
-        + "values ( '" + txtInvoiceNumber.getText() + "' , '" + txtUPC.getText() + "' , '" +
-        txtSellingPrice.getText() + "' , '" + txtCostPrice.getText() + "' , '" + txtProductDetails.getText() +"')";
+        MyConnection addInvoice = new MyConnection();
+        conn = addInvoice.getConnection();
+        String sql = "insert into product (Invoice, Date, ShippingAmount, TotalAmount) "
+        + "values ( '" + txtInvoice.getText() + "' , '" + txtDate.getText() + "' , '" +
+        txtShippingAmount.getText() + "' , '" + txtTotalAmount.getText() +"')";
 
         try {
 
@@ -279,19 +280,20 @@ public class AddInvoice extends javax.swing.JFrame {
         }
         dispose();
         new Customer().setVisible(true);
+        
     }
 //GEN-LAST:event_btnSubmitActionPerformed
 
     private void btnReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturnActionPerformed
         // TODO add your handling code here:
         dispose();
-        new Customer().setVisible(true);
+        new Invoice().setVisible(true);
     }//GEN-LAST:event_btnReturnActionPerformed
 
     private void btnReturn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturn1ActionPerformed
         // TODO add your handling code here:
         dispose();
-        new Customer().setVisible(true);
+        new Invoice().setVisible(true);
     }//GEN-LAST:event_btnReturn1ActionPerformed
 
     /**
