@@ -36,10 +36,8 @@ public class AddWarehouse extends javax.swing.JFrame {
         btnSubmit = new javax.swing.JButton();
         lbWarehouseNum = new javax.swing.JLabel();
         lbWarehouseAddress = new javax.swing.JLabel();
-        lbWarehouseStock = new javax.swing.JLabel();
         txtWarehouseNum = new javax.swing.JTextField();
         txtAddress = new javax.swing.JTextField();
-        txtStock = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -68,9 +66,6 @@ public class AddWarehouse extends javax.swing.JFrame {
         lbWarehouseAddress.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         lbWarehouseAddress.setText("Warehouse Address");
 
-        lbWarehouseStock.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
-        lbWarehouseStock.setText("Warehouse Stock");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -84,16 +79,10 @@ public class AddWarehouse extends javax.swing.JFrame {
                         .addGap(31, 31, 31)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(lbWarehouseStock)
-                                    .addComponent(jButton1))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(68, 68, 68)
-                                        .addComponent(btnSubmit))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                        .addGap(44, 44, 44)
-                                        .addComponent(txtStock, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(50, 50, 50)
+                                .addComponent(jButton1)
+                                .addGap(109, 109, 109)
+                                .addComponent(btnSubmit))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lbWarehouseNum)
@@ -117,11 +106,7 @@ public class AddWarehouse extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbWarehouseAddress)
                     .addComponent(txtAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbWarehouseStock)
-                    .addComponent(txtStock, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(39, 39, 39)
+                .addGap(88, 88, 88)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(btnSubmit))
@@ -136,9 +121,8 @@ public class AddWarehouse extends javax.swing.JFrame {
         Connection conn;
          MyConnection addWarehouse = new MyConnection();
         conn = addWarehouse.getConnection();
-        String sql = "insert into warehouse (warehouseNumber, warehouseAddress, warehouseStock) "
-        + "values ( '" + txtWarehouseNum.getText() + "' , '" + txtAddress.getText() + "' , '" +
-        txtStock.getText() +"')";
+        String sql = "insert into warehouse (warehouseNumber, warehouseAddress) "
+        + "values ( '" + txtWarehouseNum.getText() + "' , '" + txtAddress.getText() +"')";
 
         try {
 
@@ -201,9 +185,7 @@ public class AddWarehouse extends javax.swing.JFrame {
     private javax.swing.JLabel lbAddWarehouse;
     private javax.swing.JLabel lbWarehouseAddress;
     private javax.swing.JLabel lbWarehouseNum;
-    private javax.swing.JLabel lbWarehouseStock;
     private javax.swing.JTextField txtAddress;
-    private javax.swing.JTextField txtStock;
     private javax.swing.JTextField txtWarehouseNum;
     // End of variables declaration//GEN-END:variables
 }
