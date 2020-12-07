@@ -49,6 +49,11 @@ public class RemoveProduct extends javax.swing.JFrame {
         lbsProductList.setText("Products List");
 
         CombProductList.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        CombProductList.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CombProductListActionPerformed(evt);
+            }
+        });
 
         btnCancelRemoveEmp.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnCancelRemoveEmp.setText("Return");
@@ -149,6 +154,10 @@ public class RemoveProduct extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_btnSubmitRemoveEmpActionPerformed
+
+    private void CombProductListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CombProductListActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CombProductListActionPerformed
     
     private static void displayProducts() {
         Connection conn;
