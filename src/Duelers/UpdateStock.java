@@ -51,6 +51,11 @@ public class UpdateStock extends javax.swing.JFrame {
 
         btnSubmit.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnSubmit.setText("Submit");
+        btnSubmit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSubmitActionPerformed(evt);
+            }
+        });
 
         combWarehoustList.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         combWarehoustList.addActionListener(new java.awt.event.ActionListener() {
@@ -159,8 +164,8 @@ public class UpdateStock extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturnActionPerformed
-        Warehouse Info = new Warehouse();
-        Info.setVisible(true);
+        dispose();
+        new Warehouse().setVisible(true);
     }//GEN-LAST:event_btnReturnActionPerformed
 
     private void combWarehoustListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combWarehoustListActionPerformed
@@ -171,7 +176,12 @@ public class UpdateStock extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtQuantityActionPerformed
 
-    private static void displayWarehouse() {                                                  
+    private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_btnSubmitActionPerformed
+
+    private void displayWarehouse() {                                                  
         Connection conn;
         ResultSet rs;
         PreparedStatement pst;
@@ -184,8 +194,8 @@ public class UpdateStock extends javax.swing.JFrame {
             rs = pst.executeQuery();
             while(rs.next())
             {
-                int warehouseID = Integer.parseInt(rs.getString("warehouseNumber"));
-                combWarehoustList.addItem(String.valueOf(warehouseID));
+                int warehouseNumber = Integer.parseInt(rs.getString("warehouseNumber"));
+                combWarehoustList.addItem(String.valueOf(warehouseNumber));
             }
         }
         catch (Exception ex)
@@ -232,7 +242,7 @@ public class UpdateStock extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnReturn;
     private javax.swing.JButton btnSubmit;
-    private static javax.swing.JComboBox<String> combWarehoustList;
+    private javax.swing.JComboBox<String> combWarehoustList;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
