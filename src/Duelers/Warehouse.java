@@ -7,6 +7,9 @@ package Duelers;
 
 import Duelers.AddWarehouse;
 import Duelers.RemoveWarehouse;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 public class Warehouse extends javax.swing.JFrame {
 
     /**
@@ -33,8 +36,8 @@ public class Warehouse extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         btnExit = new javax.swing.JButton();
         btnMainMenu = new javax.swing.JButton();
-        lbTotalStock = new javax.swing.JLabel();
         txtTotalStock = new javax.swing.JTextField();
+        btnTotalStock = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -89,12 +92,11 @@ public class Warehouse extends javax.swing.JFrame {
             }
         });
 
-        lbTotalStock.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
-        lbTotalStock.setText("Total Stock:");
-
-        txtTotalStock.addActionListener(new java.awt.event.ActionListener() {
+        btnTotalStock.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
+        btnTotalStock.setText("Get Total Stock:");
+        btnTotalStock.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtTotalStockActionPerformed(evt);
+                btnTotalStockActionPerformed(evt);
             }
         });
 
@@ -108,31 +110,30 @@ public class Warehouse extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(25, 25, 25)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(btnAdd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(btnView, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE))
-                                .addGap(73, 73, 73)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(btnUpdateStock, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(btnRemove, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addGroup(layout.createSequentialGroup()
                                 .addGap(110, 110, 110)
-                                .addComponent(lbWarehouse, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 32, Short.MAX_VALUE))
+                                .addComponent(lbWarehouse, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(25, 25, 25)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(btnAdd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(btnView, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE))
+                                    .addComponent(btnTotalStock))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(73, 73, 73)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(btnUpdateStock, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(btnRemove, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
+                                        .addComponent(txtTotalStock, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lbTotalStock)
-                            .addComponent(btnMainMenu))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(0, 158, Short.MAX_VALUE)
-                                .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(txtTotalStock, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                        .addComponent(btnMainMenu)
+                        .addGap(18, 18, Short.MAX_VALUE)
+                        .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -150,11 +151,11 @@ public class Warehouse extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnView)
                     .addComponent(btnUpdateStock))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbTotalStock)
-                    .addComponent(txtTotalStock, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
+                    .addComponent(txtTotalStock, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnTotalStock))
+                .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnExit)
                     .addComponent(btnMainMenu))
@@ -193,10 +194,24 @@ public class Warehouse extends javax.swing.JFrame {
         new UpdateStock().setVisible(true);
     }//GEN-LAST:event_btnUpdateStockActionPerformed
 
-    private void txtTotalStockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTotalStockActionPerformed
+    private void btnTotalStockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTotalStockActionPerformed
         // TODO add your handling code here:
-        
-    }//GEN-LAST:event_txtTotalStockActionPerformed
+        Connection conn;
+        MyConnection viewWarehouse = new MyConnection();
+        conn = viewWarehouse.getConnection();
+        try{
+            String sql = "select SUM(warehouseStock) AS total_Stock FROM warehouse WHERE warehouseNumber IS NOT NULL ";
+            PreparedStatement pst = conn.prepareStatement(sql);
+            ResultSet rs = pst.executeQuery();
+            
+            if(rs.next()){
+                txtTotalStock.setText(String.valueOf(rs.getInt("total_Stock")));
+            }
+        }
+        catch(Exception ex) {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_btnTotalStockActionPerformed
 
     /**
      * @param args the command line arguments
@@ -238,10 +253,10 @@ public class Warehouse extends javax.swing.JFrame {
     private javax.swing.JButton btnExit;
     private javax.swing.JButton btnMainMenu;
     private javax.swing.JButton btnRemove;
+    private javax.swing.JButton btnTotalStock;
     private javax.swing.JButton btnUpdateStock;
     private javax.swing.JButton btnView;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JLabel lbTotalStock;
     private javax.swing.JLabel lbWarehouse;
     private javax.swing.JTextField txtTotalStock;
     // End of variables declaration//GEN-END:variables

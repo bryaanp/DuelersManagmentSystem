@@ -133,16 +133,10 @@ public class AddWarehouse extends javax.swing.JFrame {
 
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
         // TODO add your handling code here:
-        dispose();
-        new Warehouse().setVisible(true);
-    }//GEN-LAST:event_btnSubmitActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
         Connection conn;
          MyConnection addWarehouse = new MyConnection();
         conn = addWarehouse.getConnection();
-        String sql = "insert into customer (warehouseNumber, warehouseAddress, warehouseStock) "
+        String sql = "insert into warehouse (warehouseNumber, warehouseAddress, warehouseStock) "
         + "values ( '" + txtWarehouseNum.getText() + "' , '" + txtAddress.getText() + "' , '" +
         txtStock.getText() +"')";
 
@@ -157,7 +151,13 @@ public class AddWarehouse extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, ex);
         }
         dispose();
-        new Customer().setVisible(true);
+        new Warehouse().setVisible(true);
+    }//GEN-LAST:event_btnSubmitActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        dispose();
+        new Warehouse().setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
