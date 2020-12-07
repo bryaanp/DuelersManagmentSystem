@@ -27,6 +27,7 @@ public class ViewProduct extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btnDoneViewSales = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         lbaddProduct = new javax.swing.JLabel();
         lbPoductName = new javax.swing.JLabel();
@@ -49,8 +50,16 @@ public class ViewProduct extends javax.swing.JFrame {
         lbTotalProfit1 = new javax.swing.JLabel();
         txtTotalProfit1 = new javax.swing.JTextField();
         txtTotalProfitPercent1 = new javax.swing.JTextField();
-        lbSubmit = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
+        btnDoneViewSales1 = new javax.swing.JButton();
+
+        btnDoneViewSales.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnDoneViewSales.setText("Done");
+        btnDoneViewSales.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDoneViewSalesActionPerformed(evt);
+            }
+        });
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -107,8 +116,13 @@ public class ViewProduct extends javax.swing.JFrame {
 
         txtTotalProfitPercent1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
 
-        lbSubmit.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        lbSubmit.setText("Submit");
+        btnDoneViewSales1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnDoneViewSales1.setText("Done");
+        btnDoneViewSales1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDoneViewSales1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -145,9 +159,10 @@ public class ViewProduct extends javax.swing.JFrame {
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                                 .addComponent(lbTotalProfit1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                        .addComponent(lbTotalProfitPercent, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 0, Short.MAX_VALUE))
-                                    .addComponent(lbQuantitySold, javax.swing.GroupLayout.Alignment.LEADING))
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(lbTotalProfitPercent, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(lbQuantitySold, javax.swing.GroupLayout.Alignment.LEADING))
+                                        .addGap(0, 0, Short.MAX_VALUE)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -164,16 +179,16 @@ public class ViewProduct extends javax.swing.JFrame {
                                         .addComponent(txtTotalCost, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(lbTotalCost, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(38, 38, 38))))
+            .addComponent(jSeparator1)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(316, 316, 316)
-                        .addComponent(lbSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(280, 280, 280)
+                        .addComponent(lbaddProduct))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(261, 261, 261)
-                        .addComponent(lbaddProduct)))
+                        .addGap(310, 310, 310)
+                        .addComponent(btnDoneViewSales1, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(jSeparator1)
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(29, 29, 29)
@@ -188,8 +203,9 @@ public class ViewProduct extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(lbaddProduct)
-                .addGap(4, 4, 4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -222,8 +238,8 @@ public class ViewProduct extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbTotalOnHand)
                     .addComponent(txtTotalOnHand, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
-                .addComponent(lbSubmit)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addComponent(btnDoneViewSales1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
@@ -250,6 +266,16 @@ public class ViewProduct extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnDoneViewSalesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDoneViewSalesActionPerformed
+        dispose();
+        new Product().setVisible(true);
+    }//GEN-LAST:event_btnDoneViewSalesActionPerformed
+
+    private void btnDoneViewSales1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDoneViewSales1ActionPerformed
+        dispose();
+        new Product().setVisible(true);
+    }//GEN-LAST:event_btnDoneViewSales1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -287,13 +313,14 @@ public class ViewProduct extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnDoneViewSales;
+    private javax.swing.JButton btnDoneViewSales1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lbCostPrice1;
     private javax.swing.JLabel lbPoductName;
     private javax.swing.JLabel lbQuantitySold;
     private javax.swing.JLabel lbSellingPrice;
-    private javax.swing.JLabel lbSubmit;
     private javax.swing.JLabel lbTotalCost;
     private javax.swing.JLabel lbTotalOnHand;
     private javax.swing.JLabel lbTotalProfit1;
