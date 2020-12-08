@@ -275,8 +275,8 @@ Connection conn;
         MyConnection viewWarehouse = new MyConnection();
         conn = viewWarehouse.getConnection();
         try{
-            String sql = "select Quantity AS product_Stock FROM product WHERE UPC =" + combProductList.getSelectedItem().toString() +
-                    "AND warehouseNum =" + combWarehouseList.getSelectedItem().toString();  
+            String sql = "select Quantity AS product_Stock FROM product WHERE UPC =" + combProductList.getSelectedItem().toString(); 
+                    //+ "AND warehouseNum =" + combWarehouseList.getSelectedItem().toString();  
                     
             PreparedStatement pst = conn.prepareStatement(sql);
             ResultSet rs = pst.executeQuery();

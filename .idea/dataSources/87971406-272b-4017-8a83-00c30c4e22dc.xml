@@ -988,6 +988,7 @@ SELECT|sys.sys_config:null
       <ColNames>warehouseNum</ColNames>
       <RefTableName>warehouse</RefTableName>
       <RefColNames>warehouseNumber</RefColNames>
+      <OnDelete>cascade</OnDelete>
     </foreign-key>
     <column id="306" parent="286" name="warehouseNumber">
       <Position>1</Position>
