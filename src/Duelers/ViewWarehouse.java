@@ -219,7 +219,7 @@ public class ViewWarehouse extends javax.swing.JFrame {
 
     private void combWarehouseListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combWarehouseListActionPerformed
         // TODO add your handling code here:
-Connection conn;
+        Connection conn;
         MyConnection ViewWarehouse = new MyConnection();
         conn = ViewWarehouse.getConnection();
         try{

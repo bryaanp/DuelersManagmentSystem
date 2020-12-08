@@ -34,12 +34,12 @@ public class UpdateStock extends javax.swing.JFrame {
         lbNumber = new javax.swing.JLabel();
         btnSubmit = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
-        combWarehoustList = new javax.swing.JComboBox<>();
+        combWarehouseList = new javax.swing.JComboBox<>();
         btnReturn = new javax.swing.JButton();
         lbQuantityofstock = new javax.swing.JLabel();
         txtQuantity = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        combProductList = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -57,10 +57,10 @@ public class UpdateStock extends javax.swing.JFrame {
             }
         });
 
-        combWarehoustList.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        combWarehoustList.addActionListener(new java.awt.event.ActionListener() {
+        combWarehouseList.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        combWarehouseList.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                combWarehoustListActionPerformed(evt);
+                combWarehouseListActionPerformed(evt);
             }
         });
 
@@ -85,9 +85,9 @@ public class UpdateStock extends javax.swing.JFrame {
         jLabel1.setText("Product");
         jLabel1.setToolTipText("");
 
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        combProductList.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                combProductListActionPerformed(evt);
             }
         });
 
@@ -118,8 +118,8 @@ public class UpdateStock extends javax.swing.JFrame {
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(combWarehoustList, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(combProductList, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(combWarehouseList, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(28, 28, 28)
                         .addComponent(lbQuantityofstock, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -137,10 +137,10 @@ public class UpdateStock extends javax.swing.JFrame {
                 .addGap(32, 32, 32)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbNumber)
-                    .addComponent(combWarehoustList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(combWarehouseList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(combProductList, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -174,9 +174,24 @@ public class UpdateStock extends javax.swing.JFrame {
         new Warehouse().setVisible(true);
     }//GEN-LAST:event_btnReturnActionPerformed
 
-    private void combWarehoustListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combWarehoustListActionPerformed
+    private void combWarehouseListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combWarehouseListActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_combWarehoustListActionPerformed
+        Connection conn;
+        MyConnection ViewWarehouse = new MyConnection();
+        conn = ViewWarehouse.getConnection();
+        try{
+            String sql = "select * from warehouse where warehouseNumber = ?";
+            PreparedStatement pst = conn.prepareStatement(sql);
+            pst.setString(1, (String)combWarehouseList.getSelectedItem());
+            ResultSet rs = pst.executeQuery();
+            combProductList.removeAllItems();
+            displayProduct();
+
+        }
+        catch(Exception ex){
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_combWarehouseListActionPerformed
 
     private void txtQuantityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtQuantityActionPerformed
         // TODO add your handling code here:
@@ -187,9 +202,9 @@ public class UpdateStock extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnSubmitActionPerformed
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void combProductListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combProductListActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    }//GEN-LAST:event_combProductListActionPerformed
 
     private void displayWarehouse() {                                                  
         Connection conn;
@@ -205,7 +220,7 @@ public class UpdateStock extends javax.swing.JFrame {
             while(rs.next())
             {
                 int warehouseNumber = Integer.parseInt(rs.getString("warehouseNumber"));
-                combWarehoustList.addItem(String.valueOf(warehouseNumber));
+                combWarehouseList.addItem(String.valueOf(warehouseNumber));
             }
         }
         catch (Exception ex)
@@ -214,6 +229,29 @@ public class UpdateStock extends javax.swing.JFrame {
         }
     }
 
+    private void displayProduct(){
+        Connection conn;
+        ResultSet rs;
+        PreparedStatement pst;
+        MyConnection listAction = new MyConnection();
+        conn = listAction.getConnection();
+        String sql = "Select UPC from product WHERE warehouseNum =" + combWarehouseList.getSelectedItem().toString();
+        try {
+            pst= conn.prepareStatement(sql);
+            rs = pst.executeQuery();
+            while(rs.next())
+            {
+                int UPC = Integer.parseInt(rs.getString("UPC"));
+                combProductList.addItem(String.valueOf(UPC));
+            }
+        }
+        catch (Exception ex)
+        {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+    }
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -252,8 +290,8 @@ public class UpdateStock extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnReturn;
     private javax.swing.JButton btnSubmit;
-    private javax.swing.JComboBox<String> combWarehoustList;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> combProductList;
+    private javax.swing.JComboBox<String> combWarehouseList;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
