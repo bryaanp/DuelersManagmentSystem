@@ -40,13 +40,14 @@ public class DeactivateCustomer extends javax.swing.JFrame {
         lbDeactivateCustomer = new javax.swing.JLabel();
         lbSelectID = new javax.swing.JLabel();
         combCustomerList = new javax.swing.JComboBox<>();
-        btnSubmit = new javax.swing.JButton();
+        btnDeactivate = new javax.swing.JButton();
         btnReturn = new javax.swing.JButton();
+        btnActivate = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         lbDeactivateCustomer.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        lbDeactivateCustomer.setText("Deactivate Customer");
+        lbDeactivateCustomer.setText("Deactivate/Activate Customer");
 
         lbSelectID.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         lbSelectID.setText("Select Customer ID");
@@ -57,11 +58,11 @@ public class DeactivateCustomer extends javax.swing.JFrame {
             }
         });
 
-        btnSubmit.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
-        btnSubmit.setText("Submit");
-        btnSubmit.addActionListener(new java.awt.event.ActionListener() {
+        btnDeactivate.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
+        btnDeactivate.setText("Deactivate");
+        btnDeactivate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSubmitActionPerformed(evt);
+                btnDeactivateActionPerformed(evt);
             }
         });
 
@@ -73,26 +74,35 @@ public class DeactivateCustomer extends javax.swing.JFrame {
             }
         });
 
+        btnActivate.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
+        btnActivate.setText("Activate");
+        btnActivate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActivateActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(100, 100, 100)
-                        .addComponent(lbDeactivateCustomer))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(lbSelectID)
-                        .addGap(18, 18, 18)
-                        .addComponent(combCustomerList, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap()
+                .addComponent(lbSelectID)
+                .addGap(18, 18, 18)
+                .addComponent(combCustomerList, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(20, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lbDeactivateCustomer)
+                .addGap(66, 66, 66))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(50, 50, 50)
                 .addComponent(btnReturn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnSubmit)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnActivate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnDeactivate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(64, 64, 64))
         );
         jPanel1Layout.setVerticalGroup(
@@ -104,10 +114,12 @@ public class DeactivateCustomer extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbSelectID)
                     .addComponent(combCustomerList, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 116, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
+                .addComponent(btnActivate)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnReturn)
-                    .addComponent(btnSubmit))
+                    .addComponent(btnDeactivate))
                 .addGap(23, 23, 23))
         );
 
@@ -124,7 +136,7 @@ public class DeactivateCustomer extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGap(0, 304, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -136,7 +148,7 @@ public class DeactivateCustomer extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
 
-    private static void displayCustomers(){
+    private void displayCustomers(){
         Connection conn;
         ResultSet rs;
         PreparedStatement pst;
@@ -158,7 +170,7 @@ public class DeactivateCustomer extends javax.swing.JFrame {
     }
 
 
-    private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
+    private void btnDeactivateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeactivateActionPerformed
         // TODO add your handling code here:
         Connection conn;
         PreparedStatement pst;
@@ -175,7 +187,7 @@ public class DeactivateCustomer extends javax.swing.JFrame {
         }
         dispose();
         new Customer().setVisible(true);
-    }//GEN-LAST:event_btnSubmitActionPerformed
+    }//GEN-LAST:event_btnDeactivateActionPerformed
 
     private void btnReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturnActionPerformed
         dispose();
@@ -184,6 +196,25 @@ public class DeactivateCustomer extends javax.swing.JFrame {
 
     private void combCustomerListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combCustomerListActionPerformed
     }//GEN-LAST:event_combCustomerListActionPerformed
+
+    private void btnActivateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActivateActionPerformed
+        // TODO add your handling code here:
+        Connection conn;
+        PreparedStatement pst;
+        MyConnection customerList = new MyConnection();
+        conn = customerList.getConnection();
+        String selectedCust = combCustomerList.getSelectedItem().toString();
+        String sql = "UPDATE customer SET status = " + "'Active'" + "WHERE customerID = " + selectedCust;
+        try{
+            pst = conn.prepareStatement(sql);
+            pst.executeUpdate(sql);
+        }
+        catch(Exception ex){
+            JOptionPane.showMessageDialog(null, ex);
+        }
+        dispose();
+        new Customer().setVisible(true);
+    }//GEN-LAST:event_btnActivateActionPerformed
 
     /**
      * @param args the command line arguments
@@ -221,9 +252,10 @@ public class DeactivateCustomer extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnActivate;
+    private javax.swing.JButton btnDeactivate;
     private javax.swing.JButton btnReturn;
-    private javax.swing.JButton btnSubmit;
-    private static javax.swing.JComboBox<String> combCustomerList;
+    private javax.swing.JComboBox<String> combCustomerList;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lbDeactivateCustomer;
     private javax.swing.JLabel lbSelectID;

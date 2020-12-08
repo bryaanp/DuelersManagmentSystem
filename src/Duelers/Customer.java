@@ -61,7 +61,7 @@ public class Customer extends javax.swing.JFrame {
         });
 
         btnDeactivate.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        btnDeactivate.setText("Deactivate");
+        btnDeactivate.setText("Activate/Deactivate");
         btnDeactivate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDeactivateActionPerformed(evt);
@@ -108,7 +108,7 @@ public class Customer extends javax.swing.JFrame {
                         .addComponent(lbCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(106, 106, 106))))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(128, 128, 128)
+                .addGap(89, 89, 89)
                 .addComponent(btnDeactivate)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -123,9 +123,9 @@ public class Customer extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAdd)
                     .addComponent(btnView))
-                .addGap(42, 42, 42)
+                .addGap(44, 44, 44)
                 .addComponent(btnDeactivate)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnExit)
                     .addComponent(btnMainMenu))
