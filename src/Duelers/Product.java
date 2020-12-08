@@ -153,7 +153,8 @@ public class Product extends javax.swing.JFrame {
     }//GEN-LAST:event_btnExitActionPerformed
 
     private void btnMainMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMainMenuActionPerformed
-       Main_menu Info = new Main_menu();
+        dispose();
+        Main_menu Info = new Main_menu();
        Info.setVisible(true);
     }//GEN-LAST:event_btnMainMenuActionPerformed
 
