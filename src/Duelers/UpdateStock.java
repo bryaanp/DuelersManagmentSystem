@@ -9,6 +9,7 @@ import javax.swing.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class UpdateStock extends javax.swing.JFrame {
 
@@ -75,21 +76,9 @@ public class UpdateStock extends javax.swing.JFrame {
         lbQuantityofstock.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lbQuantityofstock.setText("Quantity of Stock");
 
-        txtQuantity.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtQuantityActionPerformed(evt);
-            }
-        });
-
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("Product");
         jLabel1.setToolTipText("");
-
-        combProductList.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                combProductListActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -173,7 +162,7 @@ public class UpdateStock extends javax.swing.JFrame {
         dispose();
         new Warehouse().setVisible(true);
     }//GEN-LAST:event_btnReturnActionPerformed
-
+    
     private void combWarehouseListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combWarehouseListActionPerformed
         // TODO add your handling code here:
         Connection conn;
@@ -193,18 +182,31 @@ public class UpdateStock extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_combWarehouseListActionPerformed
 
-    private void txtQuantityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtQuantityActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtQuantityActionPerformed
-
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
         // TODO add your handling code here:
+        Connection conn;
+        MyConnection submitStockUpdate = new MyConnection();
+        conn = submitStockUpdate.getConnection();
+        String selectWare = combWarehouseList.getSelectedItem().toString();
+        String selectProd = combProductList.getSelectedItem().toString();
+        String sql = "UPDATE product SET Quantity = " + txtQuantity.getText() + " WHERE UPC = " + selectProd
+                + " AND warehouseNum = " + selectWare;
+        
+        try {
+
+            PreparedStatement pst= conn.prepareStatement(sql);
+            pst.executeUpdate(sql);
+            
+            dispose();
+            new Warehouse().setVisible(true);
+
+        }                                          
+        catch (SQLException ex)
+        {
+            JOptionPane.showMessageDialog(null, ex);
+        }
         
     }//GEN-LAST:event_btnSubmitActionPerformed
-
-    private void combProductListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combProductListActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_combProductListActionPerformed
 
     private void displayWarehouse() {                                                  
         Connection conn;
