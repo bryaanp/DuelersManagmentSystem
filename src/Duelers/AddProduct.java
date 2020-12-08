@@ -315,21 +315,21 @@ public class AddProduct extends javax.swing.JFrame {
  
     private void btnTotalStockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTotalStockActionPerformed
         // TODO add your handling code here:
-        Connection conn;
-        MyConnection viewWarehouse = new MyConnection();
-        conn = viewWarehouse.getConnection();
-        try{
-            String sql = "select SUM(warehouseStock) AS total_Stock FROM warehouse WHERE warehouseNumber IS NOT NULL ";
-            PreparedStatement pst = conn.prepareStatement(sql);
-            ResultSet rs = pst.executeQuery();
-
-            if(rs.next()){
-                txtTotalStock.setText(String.valueOf(rs.getInt("total_Stock")));
-            }
-        }
-        catch(Exception ex) {
-            ex.printStackTrace();
-        }
+//        Connection conn;
+//        MyConnection viewWarehouse = new MyConnection();
+//        conn = viewWarehouse.getConnection();
+//        try{
+//            String sql = "select SUM(warehouseStock) AS total_Stock FROM warehouse WHERE warehouseNumber IS NOT NULL ";
+//            PreparedStatement pst = conn.prepareStatement(sql);
+//            ResultSet rs = pst.executeQuery();
+//
+//            if(rs.next()){
+//                txtTotalStock.setText(String.valueOf(rs.getInt("total_Stock")));
+//            }
+//        }
+//        catch(Exception ex) {
+//            ex.printStackTrace();
+//        }
     }//GEN-LAST:event_btnTotalStockActionPerformed
 
     private void txtQuantityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtQuantityActionPerformed
