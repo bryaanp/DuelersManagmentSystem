@@ -9,6 +9,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 
 /**
  *
@@ -36,30 +38,10 @@ public class ViewProduct extends javax.swing.JFrame {
         btnDoneViewSales = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         lbaddProduct = new javax.swing.JLabel();
-        lbPoductName = new javax.swing.JLabel();
-        txtProductName = new javax.swing.JTextField();
-        lbUPC = new javax.swing.JLabel();
-        txtUPC = new javax.swing.JTextField();
-        lbSellingPrice = new javax.swing.JLabel();
-        txtSellingPrice = new javax.swing.JTextField();
-        lbTotalCost = new javax.swing.JLabel();
-        txtTotalCost = new javax.swing.JTextField();
-        lbCostPrice1 = new javax.swing.JLabel();
-        txtCostPrice1 = new javax.swing.JTextField();
-        lbTotalOnHand = new javax.swing.JLabel();
-        lbQuantitySold = new javax.swing.JLabel();
-        txtTotalSales1 = new javax.swing.JTextField();
-        lbTotalSales2 = new javax.swing.JLabel();
-        txtQuantitySold = new javax.swing.JTextField();
-        lbTotalProfitPercent = new javax.swing.JLabel();
-        txtTotalOnHand = new javax.swing.JTextField();
-        lbTotalProfit1 = new javax.swing.JLabel();
-        txtTotalProfit1 = new javax.swing.JTextField();
-        txtTotalProfitPercent1 = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
-        btnDoneViewSales1 = new javax.swing.JButton();
-        lbPoductName1 = new javax.swing.JLabel();
-        combProductList = new javax.swing.JComboBox<>();
+        btnReturn = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        table = new javax.swing.JTable();
 
         btnDoneViewSales.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnDoneViewSales.setText("Done");
@@ -74,219 +56,66 @@ public class ViewProduct extends javax.swing.JFrame {
         lbaddProduct.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         lbaddProduct.setText("View Product");
 
-        lbPoductName.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        lbPoductName.setText("Product Name");
-
-        txtProductName.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-
-        lbUPC.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        lbUPC.setText("UPC Code");
-
-        txtUPC.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-
-        lbSellingPrice.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        lbSellingPrice.setText("Selling Price");
-
-        txtSellingPrice.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-
-        lbTotalCost.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        lbTotalCost.setText("Total Cost");
-
-        txtTotalCost.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-
-        lbCostPrice1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        lbCostPrice1.setText("Cost Price");
-
-        txtCostPrice1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-
-        lbTotalOnHand.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        lbTotalOnHand.setText("Total Quantity on Hand");
-
-        lbQuantitySold.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        lbQuantitySold.setText("Quantity Sold");
-
-        txtTotalSales1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-
-        lbTotalSales2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        lbTotalSales2.setText("Total Sales");
-
-        txtQuantitySold.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-
-        lbTotalProfitPercent.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        lbTotalProfitPercent.setText("Total Profit Percent");
-
-        txtTotalOnHand.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-
-        lbTotalProfit1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        lbTotalProfit1.setText("Total Profit");
-
-        txtTotalProfit1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-
-        txtTotalProfitPercent1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-
-        btnDoneViewSales1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnDoneViewSales1.setText("Done");
-        btnDoneViewSales1.addActionListener(new java.awt.event.ActionListener() {
+        btnReturn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnReturn.setText("Done");
+        btnReturn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDoneViewSales1ActionPerformed(evt);
+                btnReturnActionPerformed(evt);
             }
         });
 
-        lbPoductName1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        lbPoductName1.setText("Product List");
-
-        combProductList.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        /*
-        combProductList.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        */
-        combProductList.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                combProductListActionPerformed(evt);
-            }
-        });
+        table.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {},
+            new String [] {
+                "Name", "Selling Price", "Cost Price", "Total Quantity",
+                "Quantity Sold", "Total Sales", "Total Cost", "Total Profit", "Total Profit %"}
+        ));
+        jScrollPane1.setViewportView(table);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(497, 497, 497)
-                .addComponent(jSeparator1))
-            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 862, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(280, 280, 280)
-                        .addComponent(lbaddProduct))
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 868, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(310, 310, 310)
-                        .addComponent(btnDoneViewSales1, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGap(392, 392, 392)
+                        .addComponent(btnReturn, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(375, 375, 375)
-                                .addComponent(lbTotalProfitPercent, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtTotalProfitPercent1, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(lbTotalProfit1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtTotalProfit1, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lbQuantitySold)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(131, 131, 131)
-                                        .addComponent(txtQuantitySold, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(18, 18, 18)
-                                .addComponent(lbTotalOnHand, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtTotalOnHand, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(lbPoductName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtProductName, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(lbUPC, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                        .addComponent(lbSellingPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(txtSellingPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(lbCostPrice1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(16, 16, 16)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtUPC, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
-                                    .addComponent(txtCostPrice1)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addGap(0, 11, Short.MAX_VALUE)
-                                .addComponent(lbTotalSales2, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtTotalSales1, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                        .addGap(120, 120, 120)
-                                        .addComponent(txtTotalCost, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(lbTotalCost, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
-                .addGap(38, 38, 38))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(139, 139, 139)
-                .addComponent(lbPoductName1)
-                .addGap(27, 27, 27)
-                .addComponent(combProductList, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(353, 353, 353)
+                        .addComponent(lbaddProduct)))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(12, 12, 12)
                 .addComponent(lbaddProduct)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(17, 17, 17)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbPoductName1)
-                    .addComponent(combProductList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbPoductName)
-                    .addComponent(txtProductName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbUPC)
-                    .addComponent(txtUPC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lbSellingPrice)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtSellingPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lbCostPrice1)
-                        .addComponent(txtCostPrice1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(26, 26, 26)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtTotalCost, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(lbTotalCost)
-                        .addComponent(txtTotalSales1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lbTotalSales2)))
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 3, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbTotalProfit1)
-                    .addComponent(txtTotalProfit1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtTotalProfitPercent1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbTotalProfitPercent))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbQuantitySold)
-                    .addComponent(txtQuantitySold, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbTotalOnHand)
-                    .addComponent(txtTotalOnHand, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
-                .addComponent(btnDoneViewSales1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(btnReturn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(22, 22, 22))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -297,28 +126,44 @@ public class ViewProduct extends javax.swing.JFrame {
         new Product().setVisible(true);
     }//GEN-LAST:event_btnDoneViewSalesActionPerformed
 
-    private void btnDoneViewSales1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDoneViewSales1ActionPerformed
+    private void btnReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturnActionPerformed
         dispose();
         new Product().setVisible(true);
-    }//GEN-LAST:event_btnDoneViewSales1ActionPerformed
-
-    private void combProductListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combProductListActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_combProductListActionPerformed
+    }//GEN-LAST:event_btnReturnActionPerformed
     private static void displayProduct(){
         Connection conn;
         ResultSet rs;
         PreparedStatement pst;
         MyConnection listAction = new MyConnection();
         conn = listAction.getConnection();
-        String sql = "Select UPC from product ORDER BY UPC";
+        String sql = "SELECT p.ProductName, p.SellingPrice, p.CostPrice, p.quantity, ip.quantity"
+                + " FROM product p LEFT OUTER JOIN invoice_products ip ON p.UPC = ip.UPC "
+                + "ORDER BY((ip.quantity-(ip.quantity*p.CostPrice)/p.SellingPrice)*100)";
         try {
             pst= conn.prepareStatement(sql);
             rs = pst.executeQuery();
             while(rs.next())
             {
-                int UPC = Integer.parseInt(rs.getString("UPC"));
-                combProductList.addItem(String.valueOf(UPC));
+                String name = rs.getString("ProductName");
+                float sellprice = rs.getFloat("SellingPrice");
+                float costprice = rs.getFloat("CostPrice");
+                int quantity = rs.getInt("p.quantity");
+                int quantitySold = rs.getInt("ip.quantity");
+                float sales = quantitySold*sellprice;
+                float cost = quantitySold*costprice;
+                float profit = sales - cost;
+                float profitPercent;
+                if (quantitySold == 0){
+                    profitPercent = 0;
+                } else {
+                    profitPercent = (profit/sales)*100;
+                }
+             
+                Object[] products = {name,sellprice,costprice,quantity,
+                    quantitySold,sales,cost,profit,profitPercent};
+                
+                DefaultTableModel model = (DefaultTableModel) table.getModel();
+                model.addRow(products);
             }
         }
         catch (Exception ex)
@@ -363,31 +208,11 @@ public class ViewProduct extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDoneViewSales;
-    private javax.swing.JButton btnDoneViewSales1;
-    private static javax.swing.JComboBox<String> combProductList;
+    private javax.swing.JButton btnReturn;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JLabel lbCostPrice1;
-    private javax.swing.JLabel lbPoductName;
-    private javax.swing.JLabel lbPoductName1;
-    private javax.swing.JLabel lbQuantitySold;
-    private javax.swing.JLabel lbSellingPrice;
-    private javax.swing.JLabel lbTotalCost;
-    private javax.swing.JLabel lbTotalOnHand;
-    private javax.swing.JLabel lbTotalProfit1;
-    private javax.swing.JLabel lbTotalProfitPercent;
-    private javax.swing.JLabel lbTotalSales2;
-    private javax.swing.JLabel lbUPC;
     private javax.swing.JLabel lbaddProduct;
-    private javax.swing.JTextField txtCostPrice1;
-    private javax.swing.JTextField txtProductName;
-    private javax.swing.JTextField txtQuantitySold;
-    private javax.swing.JTextField txtSellingPrice;
-    private javax.swing.JTextField txtTotalCost;
-    private javax.swing.JTextField txtTotalOnHand;
-    private javax.swing.JTextField txtTotalProfit1;
-    private javax.swing.JTextField txtTotalProfitPercent1;
-    private javax.swing.JTextField txtTotalSales1;
-    private javax.swing.JTextField txtUPC;
+    private static javax.swing.JTable table;
     // End of variables declaration//GEN-END:variables
 }
