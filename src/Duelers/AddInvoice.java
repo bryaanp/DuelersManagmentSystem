@@ -10,6 +10,7 @@ package Duelers;
  * @author taghr
  */
 import javax.swing.*;
+import java.awt.event.ActionEvent;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -23,6 +24,7 @@ public class AddInvoice extends javax.swing.JFrame {
         initComponents();
         displayCustomers();
         displaySalesPerson();
+        displayWarehouse();
     }
 
     /**
@@ -43,8 +45,6 @@ public class AddInvoice extends javax.swing.JFrame {
         combCustomerList = new javax.swing.JComboBox<>();
         lbInvoiceNo = new javax.swing.JLabel();
         lbTotalAmount1 = new javax.swing.JLabel();
-        checkBoxLess10 = new javax.swing.JCheckBox();
-        checkBoxGreater30 = new javax.swing.JCheckBox();
         txtDate = new javax.swing.JTextField();
         txtShippingAmount = new javax.swing.JTextField();
         txtInvoice = new javax.swing.JTextField();
@@ -54,7 +54,9 @@ public class AddInvoice extends javax.swing.JFrame {
         lbSalespersonList = new javax.swing.JLabel();
         combSalespersonList = new javax.swing.JComboBox<>();
         lbProduct = new javax.swing.JLabel();
-        txtProduct = new javax.swing.JTextField();
+        combProductList = new javax.swing.JComboBox<>();
+        lbWarehouse = new javax.swing.JLabel();
+        combWarehouseList = new javax.swing.JComboBox<>();
 
         btnReturn.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnReturn.setText("Return");
@@ -91,25 +93,14 @@ public class AddInvoice extends javax.swing.JFrame {
         lbTotalAmount1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lbTotalAmount1.setText("Total Amount");
 
-        checkBoxLess10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        checkBoxLess10.setText("Less than 10 days");
-        checkBoxLess10.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                checkBoxLess10ActionPerformed(evt);
-            }
-        });
-
-        checkBoxGreater30.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        checkBoxGreater30.setText("More than 30 days");
-        checkBoxGreater30.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                checkBoxGreater30ActionPerformed(evt);
-            }
-        });
-
         txtDate.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
 
         txtShippingAmount.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        txtShippingAmount.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtShippingAmountActionPerformed(evt);
+            }
+        });
 
         txtInvoice.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
 
@@ -137,10 +128,24 @@ public class AddInvoice extends javax.swing.JFrame {
         combSalespersonList.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
 
         lbProduct.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        lbProduct.setText("Product(s)");
+        lbProduct.setText("Product");
 
-        txtProduct.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        txtProduct.setToolTipText("");
+        combProductList.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+//        combProductList.addActionListener(new java.awt.event.ActionListener() {
+//            public void actionPerformed(java.awt.event.ActionEvent evt) {
+//                combProductListActionPerformed(evt);
+//            }
+//        });
+
+        lbWarehouse.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lbWarehouse.setText("Warehouse");
+
+        combWarehouseList.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        combWarehouseList.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                combWarehouseListActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -148,6 +153,30 @@ public class AddInvoice extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(lbInvoiceNo, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(59, 59, 59)
+                                .addComponent(txtInvoice, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(1, 1, 1)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lbShippingAmount)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(btnReturnInvoiceMenu)
+                                        .addComponent(lbTotalAmount1))
+                                    .addComponent(lbProduct))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(txtTotalAmount, javax.swing.GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE)
+                                        .addComponent(txtShippingAmount, javax.swing.GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                        .addComponent(btnSubmit)
+                                        .addGap(50, 50, 50)))))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -158,49 +187,19 @@ public class AddInvoice extends javax.swing.JFrame {
                                 .addGap(26, 26, 26))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addContainerGap()
-                                .addComponent(lbSalespersonList)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lbWarehouse, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lbSalespersonList))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtDate)
                             .addComponent(combCustomerList, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(combSalespersonList, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                .addGap(29, 29, 29)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(lbInvoiceNo, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(59, 59, 59)
-                                        .addComponent(txtInvoice, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(1, 1, 1)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(lbShippingAmount)
-                                            .addComponent(lbTotalAmount1)
-                                            .addComponent(lbProduct))
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addGap(18, 18, 18)
-                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                    .addComponent(txtTotalAmount, javax.swing.GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE)
-                                                    .addComponent(txtShippingAmount, javax.swing.GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE)))
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addGap(18, 18, 18)
-                                                .addComponent(txtProduct))))))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                .addGap(35, 35, 35)
-                                .addComponent(checkBoxLess10, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(69, 69, 69)
-                                .addComponent(checkBoxGreater30, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                            .addComponent(combSalespersonList, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(combWarehouseList, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(combProductList, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addGap(44, 44, 44))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(76, 76, 76)
-                .addComponent(btnReturnInvoiceMenu)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnSubmit)
-                .addGap(82, 82, 82))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lbaddInvoice)
@@ -222,35 +221,32 @@ public class AddInvoice extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbCustomerList)
-                    .addComponent(combCustomerList, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE))
+                    .addComponent(combCustomerList, javax.swing.GroupLayout.PREFERRED_SIZE, 29, Short.MAX_VALUE))
                 .addGap(14, 14, 14)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(combSalespersonList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lbSalespersonList))
-                .addGap(17, 17, 17)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtProduct, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(14, 14, 14)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbWarehouse, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(combWarehouseList))
+                .addGap(12, 12, 12)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(combProductList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lbProduct))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lbShippingAmount))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtShippingAmount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbShippingAmount)
+                    .addComponent(txtShippingAmount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbTotalAmount1)
                     .addComponent(txtTotalAmount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(56, 56, 56)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(checkBoxLess10)
-                    .addComponent(checkBoxGreater30))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnReturnInvoiceMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(14, 14, 14))
+                    .addComponent(btnReturnInvoiceMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(24, 24, 24))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -269,14 +265,6 @@ public class AddInvoice extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void checkBoxGreater30ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkBoxGreater30ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_checkBoxGreater30ActionPerformed
-
-    private void checkBoxLess10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkBoxLess10ActionPerformed
-
-    }//GEN-LAST:event_checkBoxLess10ActionPerformed
-
     private void combCustomerListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combCustomerListActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_combCustomerListActionPerformed
@@ -289,13 +277,18 @@ public class AddInvoice extends javax.swing.JFrame {
         String selectedCust = combCustomerList.getSelectedItem().toString();
         String selectedSales = combSalespersonList.getSelectedItem().toString();
         String selectedInvoice = txtInvoice.getText();
-        String sql = "insert into Invoice (InvoiceID, invoiceDate, custID, salesID, productName, ShippingAmount, TotalAmount) "
-        + "values ( '" + txtInvoice.getText() + "' , '" + txtDate.getText() + "' , '" + selectedCust + "' , '" + selectedSales +
-                "' , '" + txtProduct.getText() + "' , '" + txtShippingAmount.getText() + "' , '" + txtTotalAmount.getText()
-                 +"')";
+        String selectedProduct = combProductList.getSelectedItem().toString();
+        String selectedWarehouse = combWarehouseList.getSelectedItem().toString();
+        String sql = "insert into Invoice (InvoiceID, invoiceDate, custID, salesID, UPC, warehouseID, " +
+                "ShippingAmount, TotalAmount) "
+        + "values ( '" + selectedInvoice + "' , '" + txtDate.getText() + "' , '" + selectedCust + "' , '" + selectedSales +
+                "' , '" + selectedProduct + "' , '" + selectedWarehouse + "' , '" + txtShippingAmount.getText() +
+                "' , '" + txtTotalAmount.getText() +"')";
         try {
             PreparedStatement pst= conn.prepareStatement(sql);
             pst.executeUpdate(sql);
+            dispose();
+            new Invoice().setVisible(true);
 
         }
         catch (SQLException ex)
@@ -303,36 +296,36 @@ public class AddInvoice extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, ex);
         }
 
-        boolean checked10 = checkBoxLess10.isSelected();
-        boolean checked30 = checkBoxGreater30.isSelected();
-        if(checked10) {
-             sql = "UPDATE invoice SET totalAmount = totalAmount - (totalAmount * .10) WHERE invoiceID = " + selectedInvoice;
-            try{
-                PreparedStatement pst= conn.prepareStatement(sql);
-                pst.executeUpdate(sql);
-                dispose();
-                new Invoice().setVisible(true);
-            }
-            catch(Exception ex){
-                JOptionPane.showMessageDialog(null, ex);
-            }
-        }
-        else if (checked30) {
-            sql = "UPDATE invoice SET totalAmount = totalAmount + (totalAmount * .02) WHERE invoiceID = " + selectedInvoice;
-            try{
-                PreparedStatement pst= conn.prepareStatement(sql);
-                pst.executeUpdate(sql);
-                dispose();
-                new Invoice().setVisible(true);
-            }
-            catch(Exception ex){
-                JOptionPane.showMessageDialog(null, ex);
-            }
-        }
-        else {
-            dispose();
-            new Invoice().setVisible(true);
-        }
+//        boolean checked10 = checkBoxLess10.isSelected();
+//        boolean checked30 = checkBoxGreater30.isSelected();
+//        if(checked10) {
+//             sql = "UPDATE invoice SET totalAmount = totalAmount - (totalAmount * .10) WHERE invoiceID = " + selectedInvoice;
+//            try{
+//                PreparedStatement pst= conn.prepareStatement(sql);
+//                pst.executeUpdate(sql);
+//                dispose();
+//                new Invoice().setVisible(true);
+//            }
+//            catch(Exception ex){
+//                JOptionPane.showMessageDialog(null, ex);
+//            }
+//        }
+//        else if (checked30) {
+//            sql = "UPDATE invoice SET totalAmount = totalAmount + (totalAmount * .02) WHERE invoiceID = " + selectedInvoice;
+//            try{
+//                PreparedStatement pst= conn.prepareStatement(sql);
+//                pst.executeUpdate(sql);
+//                dispose();
+//                new Invoice().setVisible(true);
+//            }
+//            catch(Exception ex){
+//                JOptionPane.showMessageDialog(null, ex);
+//            }
+//        }
+//        else {
+//            dispose();
+//            new Invoice().setVisible(true);
+//        }
 
     }
 //GEN-LAST:event_btnSubmitActionPerformed
@@ -346,6 +339,40 @@ public class AddInvoice extends javax.swing.JFrame {
         dispose();
         new Invoice().setVisible(true);
     }//GEN-LAST:event_btnReturnInvoiceMenuActionPerformed
+
+    private void combWarehouseListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combWarehouseListActionPerformed
+        combProductList.removeAllItems();
+        displayProduct();
+    }//GEN-LAST:event_combWarehouseListActionPerformed
+//
+//    private void combProductListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combProductListActionPerformed
+//    }//GEN-LAST:event_combProductListActionPerformed
+
+    private void txtShippingAmountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtShippingAmountActionPerformed
+        Connection conn;
+        ResultSet rs;
+        PreparedStatement pst;
+        MyConnection productCost = new MyConnection();
+        conn = productCost.getConnection();
+        String selectedProduct = combProductList.getSelectedItem().toString();
+        String selectedCust = combCustomerList.getSelectedItem().toString();
+        String sql = "Select SellingPrice from product WHERE UPC = " + selectedProduct;
+        String taxSql = "Select salesTax from customer WHERE customerID = " + selectedCust;
+        try{
+            pst = conn.prepareStatement(sql);
+            rs = pst.executeQuery();
+            PreparedStatement pst2 = conn.prepareStatement(taxSql);
+            ResultSet rs2 = pst2.executeQuery();
+            while(rs.next() && rs2.next()){
+                double totalAmt = Double.parseDouble(txtShippingAmount.getText()) + rs.getDouble("SellingPrice");
+                totalAmt += (totalAmt * (rs2.getDouble("salesTax")/100));
+                txtTotalAmount.setText(String.valueOf(totalAmt));
+            }
+        }
+        catch (Exception ex){
+            JOptionPane.showMessageDialog(null, ex);
+        }
+    }//GEN-LAST:event_txtShippingAmountActionPerformed
 
 
     private static void displayCustomers(){
@@ -367,6 +394,51 @@ public class AddInvoice extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, ex);
         }
 
+    }
+
+    private static void displayProduct(){
+        Connection conn;
+        ResultSet rs;
+        PreparedStatement pst;
+        MyConnection listAction = new MyConnection();
+        conn = listAction.getConnection();
+        String sql = "Select UPC from product WHERE warehouseNum =" + combWarehouseList.getSelectedItem().toString();
+        try {
+            pst= conn.prepareStatement(sql);
+            rs = pst.executeQuery();
+            while(rs.next())
+            {
+                int UPC = Integer.parseInt(rs.getString("UPC"));
+                combProductList.addItem(String.valueOf(UPC));
+            }
+        }
+        catch (Exception ex)
+        {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+    }
+
+    private void displayWarehouse() {
+        Connection conn;
+        ResultSet rs;
+        PreparedStatement pst;
+        MyConnection listAction = new MyConnection();
+        conn = listAction.getConnection();
+        String sql = "Select warehouseNumber from warehouse ORDER BY warehouseNumber";
+
+        try {
+            pst= conn.prepareStatement(sql);
+            rs = pst.executeQuery();
+            while(rs.next())
+            {
+                int warehouseNumber = Integer.parseInt(rs.getString("warehouseNumber"));
+                combWarehouseList.addItem(String.valueOf(warehouseNumber));
+            }
+        }
+        catch (Exception ex)
+        {
+            JOptionPane.showMessageDialog(null, ex);
+        }
     }
 
     private static void displaySalesPerson() {
@@ -430,10 +502,10 @@ public class AddInvoice extends javax.swing.JFrame {
     private javax.swing.JButton btnReturn;
     private javax.swing.JButton btnReturnInvoiceMenu;
     private javax.swing.JButton btnSubmit;
-    private javax.swing.JCheckBox checkBoxGreater30;
-    private javax.swing.JCheckBox checkBoxLess10;
     private static javax.swing.JComboBox<String> combCustomerList;
+    private static javax.swing.JComboBox<String> combProductList;
     private static javax.swing.JComboBox<String> combSalespersonList;
+    private static javax.swing.JComboBox<String> combWarehouseList;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lbCustomerList;
     private javax.swing.JLabel lbInvoiceDate;
@@ -442,10 +514,10 @@ public class AddInvoice extends javax.swing.JFrame {
     private javax.swing.JLabel lbSalespersonList;
     private javax.swing.JLabel lbShippingAmount;
     private javax.swing.JLabel lbTotalAmount1;
+    private javax.swing.JLabel lbWarehouse;
     private javax.swing.JLabel lbaddInvoice;
     private javax.swing.JTextField txtDate;
     private javax.swing.JTextField txtInvoice;
-    private javax.swing.JTextField txtProduct;
     private javax.swing.JTextField txtShippingAmount;
     private javax.swing.JTextField txtTotalAmount;
     // End of variables declaration//GEN-END:variables
