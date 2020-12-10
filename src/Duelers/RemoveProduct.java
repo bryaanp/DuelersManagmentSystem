@@ -19,6 +19,7 @@ public class RemoveProduct extends javax.swing.JFrame {
      */
     public RemoveProduct() {
         initComponents();
+        displayWarehouse();
     }
 
     /**
@@ -33,10 +34,12 @@ public class RemoveProduct extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         lbaddsalesperson = new javax.swing.JLabel();
         lbsProductList = new javax.swing.JLabel();
-        CombProductList = new javax.swing.JComboBox<>();
+        combProductList = new javax.swing.JComboBox<>();
         jSeparator1 = new javax.swing.JSeparator();
         btnReturn = new javax.swing.JButton();
         btnConfirmRemoveProd = new javax.swing.JButton();
+        lbSelectWarehouse = new javax.swing.JLabel();
+        combWarehouseList = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -46,7 +49,7 @@ public class RemoveProduct extends javax.swing.JFrame {
         lbsProductList.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lbsProductList.setText("Products List");
 
-        CombProductList.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        combProductList.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
 
         btnReturn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnReturn.setText("Return");
@@ -64,28 +67,44 @@ public class RemoveProduct extends javax.swing.JFrame {
             }
         });
 
+        lbSelectWarehouse.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lbSelectWarehouse.setText("Select Warehouse");
+
+        combWarehouseList.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
+        combWarehouseList.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                combWarehouseListActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jSeparator1)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addComponent(lbsProductList, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(CombProductList, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(106, 106, 106)
-                        .addComponent(lbaddsalesperson, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(41, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(57, 57, 57)
                 .addComponent(btnReturn, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnConfirmRemoveProd, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(74, 74, 74))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(106, 106, 106)
+                        .addComponent(lbaddsalesperson, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(36, 36, 36)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(lbSelectWarehouse)
+                                .addGap(18, 18, 18)
+                                .addComponent(combWarehouseList, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(lbsProductList, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(28, 28, 28)
+                                .addComponent(combProductList, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -94,11 +113,15 @@ public class RemoveProduct extends javax.swing.JFrame {
                 .addComponent(lbaddsalesperson)
                 .addGap(5, 5, 5)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(27, 27, 27)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbSelectWarehouse)
+                    .addComponent(combWarehouseList, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbsProductList)
-                    .addComponent(CombProductList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 94, Short.MAX_VALUE)
+                    .addComponent(combProductList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(38, 38, 38)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnReturn, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnConfirmRemoveProd, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -129,8 +152,9 @@ public class RemoveProduct extends javax.swing.JFrame {
         PreparedStatement pst;
         MyConnection salesList = new MyConnection();
         conn = salesList.getConnection();
-        String selectedProduct = CombProductList.getSelectedItem().toString();
-        String sql = "DELETE from product WHERE UPC = " + selectedProduct;
+        String selectedProduct = combProductList.getSelectedItem().toString();
+        String sql = "DELETE FROM product WHERE UPC = " + selectedProduct 
+                    + " AND warehouseNum = " + combWarehouseList.getSelectedItem().toString();          
         try {
             pst= conn.prepareStatement(sql);
             pst.executeUpdate(sql);
@@ -144,6 +168,72 @@ public class RemoveProduct extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnConfirmRemoveProdActionPerformed
 
+    private void combWarehouseListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combWarehouseListActionPerformed
+        // TODO add your handling code here:
+        Connection conn;
+        MyConnection ViewWarehouse = new MyConnection();
+        conn = ViewWarehouse.getConnection();
+        try{
+            String sql = "select * from warehouse where warehouseNumber = ?";
+            PreparedStatement pst = conn.prepareStatement(sql);
+            pst.setString(1, (String)combWarehouseList.getSelectedItem());
+            ResultSet rs = pst.executeQuery();
+            combProductList.removeAllItems();
+            displayProduct();
+                
+            }
+        
+        catch(Exception ex){
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_combWarehouseListActionPerformed
+
+    
+    private void displayWarehouse() {                                                  
+        Connection conn;
+        ResultSet rs;
+        PreparedStatement pst;
+        MyConnection listAction = new MyConnection();
+        conn = listAction.getConnection();
+        String sql = "Select warehouseNumber from warehouse ORDER BY warehouseNumber";
+
+        try {
+            pst= conn.prepareStatement(sql);
+            rs = pst.executeQuery();
+            while(rs.next())
+            {
+                int warehouseNumber = Integer.parseInt(rs.getString("warehouseNumber"));
+                combWarehouseList.addItem(String.valueOf(warehouseNumber));
+            }
+        }
+        catch (Exception ex)
+        {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+    }
+
+
+    private void displayProduct(){
+        Connection conn;
+        ResultSet rs;
+        PreparedStatement pst;
+        MyConnection listAction = new MyConnection();
+        conn = listAction.getConnection();
+        String sql = "Select UPC from product WHERE warehouseNum =" + combWarehouseList.getSelectedItem().toString();
+        try {
+            pst= conn.prepareStatement(sql);
+            rs = pst.executeQuery();
+            while(rs.next())
+            {
+                int UPC = Integer.parseInt(rs.getString("UPC"));
+                combProductList.addItem(String.valueOf(UPC));
+            }
+        }
+        catch (Exception ex)
+        {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+    }
     /**
      * @param args the command line arguments
      */
@@ -180,11 +270,13 @@ public class RemoveProduct extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> CombProductList;
     private javax.swing.JButton btnConfirmRemoveProd;
     private javax.swing.JButton btnReturn;
+    private javax.swing.JComboBox<String> combProductList;
+    private javax.swing.JComboBox<String> combWarehouseList;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JLabel lbSelectWarehouse;
     private javax.swing.JLabel lbaddsalesperson;
     private javax.swing.JLabel lbsProductList;
     // End of variables declaration//GEN-END:variables
