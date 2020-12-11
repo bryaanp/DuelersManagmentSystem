@@ -172,7 +172,7 @@ public class SalesPerson extends javax.swing.JFrame {
 
     private void btnCommisionRateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCommisionRateActionPerformed
         dispose();
-        new ModifyCommision().setVisible(true);
+        new ModifyCommission().setVisible(true);
     }//GEN-LAST:event_btnCommisionRateActionPerformed
 
     private void btnRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveActionPerformed
