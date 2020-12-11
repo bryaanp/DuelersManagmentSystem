@@ -62,7 +62,7 @@ public class ViewClosedInvoice extends javax.swing.JFrame {
             new Object [][] {},
             new String [] {
                 "Invoice ID", "Date", "Customer Name", "Salesperson ID",
-                "Product UPC", "Shipping Cost", "Total Amount",
+                "Shipping Cost", "Total Amount",
                 "Customer Payment"}
         )
         {public boolean isCellEditable(int row, int column){return false;}}
@@ -109,7 +109,7 @@ public class ViewClosedInvoice extends javax.swing.JFrame {
 
     private void btnDoneViewSalesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDoneViewSalesActionPerformed
         dispose();
-        new Product().setVisible(true);
+        new Invoice().setVisible(true);
     }//GEN-LAST:event_btnDoneViewSalesActionPerformed
     private void displayClosedInvoices(){
         /*
@@ -120,7 +120,7 @@ public class ViewClosedInvoice extends javax.swing.JFrame {
         MyConnection listAction = new MyConnection();
         conn = listAction.getConnection();
         String sql = "SELECT i.invoiceID, i.invoiceDate, c.firstName, c.lastName, "
-                + "i.salesID, i.upc, i.shippingAmount, i.totalAmount, "
+                + "i.salesID, i.shippingAmount, i.totalAmount, "
                 + "i.paymentAmount FROM invoice i INNER JOIN customer c "
                 + "ON i.custID = c.customerID WHERE openStatus = 0 ORDER BY totalAmount DESC;";
         try {
@@ -133,13 +133,12 @@ public class ViewClosedInvoice extends javax.swing.JFrame {
                 String custFirstName = rs.getString("c.firstName");
                 String custLastName = rs.getString("c.lastName");
                 String salesID = rs.getString("i.salesID");
-                String product = rs.getString("i.upc");  
                 float shipCost = rs.getFloat("shippingAmount");
                 float totalAmount = rs.getFloat("totalAmount");
                 float custPayment = rs.getFloat("paymentAmount");
              
                 Object[] invoices = {id, date, custFirstName+" "+custLastName, salesID, 
-                    product, shipCost, totalAmount, custPayment};
+                     shipCost, totalAmount, custPayment};
                 
                 DefaultTableModel model = (DefaultTableModel) invoiceTable.getModel();
                 model.addRow(invoices);
