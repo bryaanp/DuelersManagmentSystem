@@ -11,3 +11,9 @@ src/Duelers/MyConnection.java
 src/Duelers/MyConnection.java
 *.xml
 src/Duelers/MyConnection.java
+nbproject/project.properties
+nbproject/private/private.properties
+nbproject/private/private.properties
+*.properties
+build/classes/Duelers/MyConnection.class
+*.class
