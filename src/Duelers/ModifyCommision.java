@@ -178,7 +178,7 @@ public class ModifyCommision extends javax.swing.JFrame {
             rs = pst.executeQuery();
             while(rs.next())
             {
-                double oldRate = (rs.getInt("commission_percent"));
+                float oldRate = (rs.getFloat("commission_percent"));
                 txtOldCommission.setText(String.valueOf(oldRate));
             }
         }
