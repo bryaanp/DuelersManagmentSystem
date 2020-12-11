@@ -17,3 +17,5 @@ nbproject/private/private.properties
 *.properties
 build/classes/Duelers/MyConnection.class
 *.class
+.idea/misc.xml
+.idea/libraries/lib.xml
