@@ -338,7 +338,6 @@ public class AddInvoice extends javax.swing.JFrame {
             PreparedStatement pst2 = conn.prepareStatement(sqlProduct);
             pst.executeUpdate(sql);
             pst2.executeUpdate(sqlProduct);
-\
         }
         catch (SQLException ex)
         {
@@ -441,7 +440,7 @@ public class AddInvoice extends javax.swing.JFrame {
         PreparedStatement pst;
         MyConnection customerList = new MyConnection();
         conn = customerList.getConnection();
-        String sql = "Select customerID from customer ORDER BY customerID";
+        String sql = "Select customerID from customer WHERE status = 'Active' OR status = 'active';
         try{
             pst = conn.prepareStatement(sql);
             rs = pst.executeQuery();
