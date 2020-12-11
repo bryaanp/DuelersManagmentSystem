@@ -9,8 +9,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Date;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import java.time.format.DateTimeFormatter;  
+import java.time.LocalDateTime;   
 
 /**
  *
@@ -25,10 +28,11 @@ public class ViewModifyOpenInvoice extends javax.swing.JFrame {
     ResultSet rs;
     PreparedStatement pst;
     DefaultListModel invoiceModel;
+    static float discount;
     public ViewModifyOpenInvoice() {
-        
         initComponents();
         invoiceModel = new DefaultListModel();
+        checkOpenInvoices();
         displayOpenInvoices();
         viewInvoice();
         modifyInvoice();
@@ -91,7 +95,7 @@ public class ViewModifyOpenInvoice extends javax.swing.JFrame {
             //productName, shipCost, totalAmount, custPayment
             new String [] {
                 "Invoice ID", "Date", "Customer Name", "Salesperson ID",
-                "Product Name", "Shipping Cost", "Total Amount",
+                "Shipping Cost", "Total Amount",
                 "Customer Payment"
             }
         )
@@ -218,61 +222,63 @@ public class ViewModifyOpenInvoice extends javax.swing.JFrame {
 
     pack();
     }// </editor-fold>//GEN-END:initComponents
+    private static void checkOpenInvoices(){
+        Connection conn;
+        ResultSet rs;
+        PreparedStatement pst;      
+        MyConnection listAction = new MyConnection();
+        conn = listAction.getConnection();
+        DefaultTableModel model = (DefaultTableModel) invoiceTable.getModel();
+        deleteAllRows(model);
+        float totalAmount;
+        float shipCost;
+        float custPayment;
+        String sql = " SELECT invoiceID, shippingAmount, totalAmount, paymentAmount FROM invoice WHERE openStatus = 1 ";
+        try {
+            pst= conn.prepareStatement(sql);
+            rs = pst.executeQuery();
+            while(rs.next())
+            {
+                String invoice = rs.getString("invoiceID");
+                shipCost = rs.getFloat("shippingAmount");
+                totalAmount = rs.getFloat("totalAmount");
+                custPayment = rs.getFloat("paymentAmount");
+                if (custPayment == totalAmount){
+                    updateStatus(invoice);
+                }
+                        
+            }
+        }catch (SQLException ex)
+        {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+    }
+    private static void updateStatus(String invoice){
+        Connection conn;
+        ResultSet rs;
+        PreparedStatement pst; 
+        MyConnection update = new MyConnection();
+        conn = update.getConnection();
+        //String selectedInvoice = combInvoiceList.getSelectedItem().toString();
+        String sql = "UPDATE invoice SET openStatus = 0 WHERE invoiceID = " + invoice;
 
+        try{
+            pst= conn.prepareStatement(sql);
+            pst.executeUpdate(sql);
+            //dispose();
+            //new Invoice().setVisible(true);           
+        } catch (SQLException ex){
+            JOptionPane.showMessageDialog(null, ex);
+        }
+    }
     private void btnDoneViewSalesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDoneViewSalesActionPerformed
         dispose();
         new Invoice().setVisible(true);
     }//GEN-LAST:event_btnDoneViewSalesActionPerformed
 
     private void combInvoiceListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combInvoiceListActionPerformed
-        // TODO add your handling code here:
-        MyConnection listAction = new MyConnection();
-        conn = listAction.getConnection();
-        //DefaultTableModel model = (DefaultTableModel) invoiceSelectedTable.getModel();
-        //deleteAllRows(model);
-        try{
-            String sql = "SELECT totalAmount, paymentAmount FROM invoice WHERE "
-                    + "openStatus = 1 AND invoiceID = "
-                    + combInvoiceList.getSelectedItem().toString() + ";"; 
-            /*
-            String sqlTable = "SELECT i.invoiceID, i.invoiceDate, c.firstName, c.lastName, " 
-                    + "i.salesID, i.productName, i.shippingAmount, i.totalAmount, "
-                    + "i.paymentAmount FROM invoice i INNER JOIN customer c "
-                    + "ON i.custID = c.customerID WHERE openStatus = 1 AND i.invoiceID = "
-                    + combInvoiceList.getSelectedItem().toString() + ";";    
-            */
-            pst= conn.prepareStatement(sql);
-            rs = pst.executeQuery();
-            while(rs.next())
-            {
-                float total = rs.getFloat("totalAmount");
-                
-                txtTotalAmount.setText(String.valueOf(total));
-                float paidAmount = rs.getFloat("paymentAmount");
-                float paymentRemaining = total - paidAmount;
-                txtRemaining.setText(String.valueOf(paymentRemaining));
-                
-                /*
-                String id = rs.getString("i.invoiceID");
-                String date = rs.getString("i.invoiceDate");
-                String custFirstName = rs.getString("c.firstName");
-                String custLastName = rs.getString("c.lastName");
-                String salesID = rs.getString("i.salesID");
-                String product = rs.getString("productName");  
-                float shipCost = rs.getFloat("shippingAmount");
-                float totalAmount = rs.getFloat("totalAmount");
-                float custPayment = rs.getFloat("paymentAmount");
-             
-                Object[] invoices = {id, date, custFirstName+" "+custLastName, salesID, 
-                    product, shipCost, totalAmount, custPayment};
-                
-                model = (DefaultTableModel) invoiceSelectedTable.getModel();
-                model.addRow(invoices);
-                */
-            }            
-        } catch (SQLException ex){
-            JOptionPane.showMessageDialog(null, ex);
-        }
+        viewInvoice();
+        modifyInvoice();
     }//GEN-LAST:event_combInvoiceListActionPerformed
 
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
@@ -288,11 +294,14 @@ public class ViewModifyOpenInvoice extends javax.swing.JFrame {
             pst.executeUpdate(sql);
             JOptionPane.showMessageDialog(null, "Invoice " + selectedInvoice + 
                     ": Payment has been updated.");
-            dispose();
-            new Invoice().setVisible(true);           
+            //dispose();
+            //new Invoice().setVisible(true);           
         } catch (SQLException ex){
             JOptionPane.showMessageDialog(null, ex);
         }
+        checkOpenInvoices();
+        displayOpenInvoices();
+        viewInvoice();
     }//GEN-LAST:event_btnSubmitActionPerformed
     private static void deleteAllRows(DefaultTableModel model){
         for( int i = model.getRowCount() - 1; i >= 0; i-- ) {
@@ -306,9 +315,11 @@ public class ViewModifyOpenInvoice extends javax.swing.JFrame {
         MyConnection listAction = new MyConnection();
         conn = listAction.getConnection();
         DefaultTableModel model = (DefaultTableModel) invoiceTable.getModel();
-        deleteAllRows(model); 
+        //refresh table
+        deleteAllRows(model);
+     
         String sql = "SELECT i.invoiceID, i.invoiceDate, c.firstName, c.lastName, "
-                + "i.salesID, i.upc, i.shippingAmount, i.totalAmount, "
+                + "i.salesID, i.shippingAmount, i.totalAmount, "
                 + "i.paymentAmount FROM invoice i INNER JOIN customer c "
                 + "ON i.custID = c.customerID WHERE openStatus = 1 ORDER BY invoiceDate ASC;";
         try {
@@ -317,21 +328,42 @@ public class ViewModifyOpenInvoice extends javax.swing.JFrame {
             while(rs.next())
             {
                 String id = rs.getString("i.invoiceID");
-                String date = rs.getString("i.invoiceDate");
+                Date date = rs.getDate("i.invoiceDate");
                 String custFirstName = rs.getString("c.firstName");
                 String custLastName = rs.getString("c.lastName");
                 String salesID = rs.getString("i.salesID");
-                String product = rs.getString("i.upc");  
+                //String product = rs.getString("i.upc");  
                 float shipCost = rs.getFloat("shippingAmount");
                 float totalAmount = rs.getFloat("totalAmount");
                 float custPayment = rs.getFloat("paymentAmount");
-             
+                
+                //DateFor
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
                 Object[] invoices = {id, date, custFirstName+" "+custLastName, salesID, 
-                    product, shipCost, totalAmount, custPayment};
+                     shipCost, totalAmount, custPayment};
                 
                 model = (DefaultTableModel) invoiceTable.getModel();
                 model.addRow(invoices);
             }
+            
+            
+            
+            
+            
         }
         catch (SQLException ex)
         {
@@ -339,6 +371,8 @@ public class ViewModifyOpenInvoice extends javax.swing.JFrame {
         }
     }
     private static void viewInvoice(){     
+        //refresh list
+        combInvoiceList.removeAllItems();
         Connection conn;
         ResultSet rs;
         PreparedStatement pst;
@@ -373,10 +407,10 @@ public class ViewModifyOpenInvoice extends javax.swing.JFrame {
             {
                 float total = rs.getFloat("totalAmount");
                 
-                txtTotalAmount.setText(String.valueOf(total));
+                txtTotalAmount.setText(String.format("%.2f",total));
                 float paidAmount = rs.getFloat("paymentAmount");
                 float paymentRemaining = total - paidAmount;
-                txtRemaining.setText(String.valueOf(paymentRemaining));
+                txtRemaining.setText(String.format("%.2f",paymentRemaining));
             }
             
             //pst.close();
