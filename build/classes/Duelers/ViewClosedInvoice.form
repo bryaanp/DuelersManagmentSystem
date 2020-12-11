@@ -95,7 +95,7 @@
         <Component class="javax.swing.JTable" name="invoiceTable">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="new javax.swing.table.DefaultTableModel(&#xa;    new Object [][] {},&#xa;    new String [] {&#xa;        &quot;Invoice ID&quot;, &quot;Date&quot;, &quot;Customer Name&quot;, &quot;Salesperson ID&quot;,&#xa;        &quot;Product UPC&quot;, &quot;Shipping Cost&quot;, &quot;Total Amount&quot;,&#xa;        &quot;Customer Payment&quot;}&#xa;)&#xa;{public boolean isCellEditable(int row, int column){return false;}}&#xa;" type="code"/>
+              <Connection code="new javax.swing.table.DefaultTableModel(&#xa;    new Object [][] {},&#xa;    new String [] {&#xa;        &quot;Invoice ID&quot;, &quot;Date&quot;, &quot;Customer Name&quot;, &quot;Salesperson ID&quot;,&#xa;        &quot;Shipping Cost&quot;, &quot;Total Amount&quot;,&#xa;        &quot;Customer Payment&quot;}&#xa;)&#xa;{public boolean isCellEditable(int row, int column){return false;}}&#xa;" type="code"/>
             </Property>
             <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
               <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
