@@ -333,16 +333,12 @@ public class AddInvoice extends javax.swing.JFrame {
         String sqlProduct = "UPDATE product SET quantityAvailable = quantityAvailable - 1, "
                 + "quantitySold = quantitySold + 1  WHERE upc = " 
                 + Integer.parseInt(selectedProduct)+";";
-        String sqlWarehouse = "UPDATE warehouse SET warehouseStock = warehouseStock - 1 "
-                + "WHERE warehouseNumber = " + Integer.parseInt(selectedWarehouse) + ";";
         try {
             PreparedStatement pst= conn.prepareStatement(sql);
             PreparedStatement pst2 = conn.prepareStatement(sqlProduct);
-            PreparedStatement pst3 = conn.prepareStatement(sqlWarehouse);
             pst.executeUpdate(sql);
             pst2.executeUpdate(sqlProduct);
-            pst3.executeUpdate(sqlWarehouse);
-
+\
         }
         catch (SQLException ex)
         {
