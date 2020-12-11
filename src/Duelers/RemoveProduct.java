@@ -159,7 +159,8 @@ public class RemoveProduct extends javax.swing.JFrame {
             pst= conn.prepareStatement(sql);
             pst.executeUpdate(sql);
             JOptionPane.showMessageDialog(null, "product " + selectedProduct + " has been removed.");
-
+            dispose();
+            new Product().setVisible(true);
         }
         catch (Exception ex)
         {
