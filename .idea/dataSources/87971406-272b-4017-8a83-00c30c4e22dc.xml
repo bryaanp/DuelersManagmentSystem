@@ -944,7 +944,6 @@ SELECT|sys.sys_config:null
     <column id="296" parent="283" name="salesTax">
       <Position>8</Position>
       <DataType>double|0s</DataType>
-      <NotNull>1</NotNull>
     </column>
     <key id="297" parent="283" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
