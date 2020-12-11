@@ -440,7 +440,7 @@ public class AddInvoice extends javax.swing.JFrame {
         PreparedStatement pst;
         MyConnection customerList = new MyConnection();
         conn = customerList.getConnection();
-        String sql = "Select customerID from customer WHERE status = 'Active' OR status = 'active';
+        String sql = "Select customerID from customer WHERE status = 'Active' OR status = 'active'";
         try{
             pst = conn.prepareStatement(sql);
             rs = pst.executeQuery();
