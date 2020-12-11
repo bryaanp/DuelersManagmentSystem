@@ -255,7 +255,7 @@ public class ViewWarehouse extends javax.swing.JFrame {
         MyConnection viewWarehouse = new MyConnection();
         conn = viewWarehouse.getConnection();
         try{
-            String sql = "select SUM(Quantity) AS total_Stock FROM product WHERE warehouseNum =" + 
+            String sql = "select SUM(QuantityAvailable) AS total_Stock FROM product WHERE warehouseNum =" + 
                     combWarehouseList.getSelectedItem().toString();
             PreparedStatement pst = conn.prepareStatement(sql);
             ResultSet rs = pst.executeQuery();
@@ -275,7 +275,7 @@ public class ViewWarehouse extends javax.swing.JFrame {
         MyConnection viewWarehouse = new MyConnection();
         conn = viewWarehouse.getConnection();
         try{
-            String sql = "select Quantity AS product_Stock FROM product WHERE UPC = " + combProductList.getSelectedItem().toString() 
+            String sql = "select QuantityAvailable AS product_Stock FROM product WHERE UPC = " + combProductList.getSelectedItem().toString() 
                     + " AND warehouseNum = " + combWarehouseList.getSelectedItem().toString();  
                     
             PreparedStatement pst = conn.prepareStatement(sql);

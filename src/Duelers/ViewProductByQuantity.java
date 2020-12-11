@@ -136,9 +136,9 @@ public class ViewProductByQuantity extends javax.swing.JFrame {
         PreparedStatement pst;
         MyConnection listAction = new MyConnection();
         conn = listAction.getConnection();
-        String sql = "SELECT ProductName, UPC, quantity, warehouseNum"
-                + " FROM product WHERE quantity <= 5"
-                + " ORDER BY(quantity) ASC;";
+        String sql = "SELECT ProductName, UPC, quantityAvailable, warehouseNum"
+                + " FROM product WHERE quantityAvailable <= 5"
+                + " ORDER BY(quantityAvailable) ASC;";
         try {
             pst= conn.prepareStatement(sql);
             rs = pst.executeQuery();
@@ -146,7 +146,7 @@ public class ViewProductByQuantity extends javax.swing.JFrame {
             {
                 String name = rs.getString("ProductName");
                 int UPC = rs.getInt("UPC");
-                int quantity = rs.getInt("quantity");
+                int quantity = rs.getInt("quantityAvailable");
                 int warehouse = rs.getInt("warehouseNum");
              
                 Object[] products = {name,UPC,quantity,warehouse};

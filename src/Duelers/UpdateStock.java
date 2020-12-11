@@ -189,7 +189,7 @@ public class UpdateStock extends javax.swing.JFrame {
         conn = submitStockUpdate.getConnection();
         String selectWare = combWarehouseList.getSelectedItem().toString();
         String selectProd = combProductList.getSelectedItem().toString();
-        String sql = "UPDATE product SET Quantity = " + txtQuantity.getText() + " WHERE UPC = " + selectProd
+        String sql = "UPDATE product SET QuantityAvailable = " + txtQuantity.getText() + " WHERE UPC = " + selectProd
                 + " AND warehouseNum = " + selectWare;
         
         try {

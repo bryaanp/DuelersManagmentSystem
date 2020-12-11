@@ -136,7 +136,7 @@ public class ViewProductByWarehouse extends javax.swing.JFrame {
         PreparedStatement pst;
         MyConnection listAction = new MyConnection();
         conn = listAction.getConnection();
-        String sql = "SELECT ProductName, UPC, quantity, warehouseNum"
+        String sql = "SELECT ProductName, UPC, quantityAvailable, warehouseNum"
                 + " FROM product ORDER BY(warehouseNum) ASC;";
         try {
             pst= conn.prepareStatement(sql);
@@ -145,7 +145,7 @@ public class ViewProductByWarehouse extends javax.swing.JFrame {
             {
                 String name = rs.getString("ProductName");
                 int UPC = rs.getInt("UPC");
-                int quantity = rs.getInt("quantity");
+                int quantity = rs.getInt("quantityAvailable");
                 int warehouse = rs.getInt("warehouseNum");
              
                 Object[] products = {name,UPC,quantity,warehouse};

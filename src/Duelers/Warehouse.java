@@ -199,7 +199,7 @@ public class Warehouse extends javax.swing.JFrame {
         MyConnection viewWarehouse = new MyConnection();
         conn = viewWarehouse.getConnection();
         try{
-            String sql = "select SUM(Quantity) AS max_Stock FROM product";
+            String sql = "select SUM(QuantityAvailable) AS max_Stock FROM product";
             PreparedStatement pst = conn.prepareStatement(sql);
             ResultSet rs = pst.executeQuery();
             
