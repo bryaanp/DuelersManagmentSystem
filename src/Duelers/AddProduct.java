@@ -280,11 +280,12 @@ public class AddProduct extends javax.swing.JFrame {
         MyConnection addProduct = new MyConnection();
         conn = addProduct.getConnection();
         String selectedWarehouse = combWarehouseList.getSelectedItem().toString();
-        String sql = "insert into product (ProductName, UPC, SellingPrice, CostPrice, ProductDetails, Quantity, warehouseNum) "
+        String sql = "insert into product (ProductName, UPC, SellingPrice, CostPrice, ProductDetails, QuantityAvailable, QuantitySold, WarehouseNum) "
                 + "values ( '" + txtProductName.getText() + "' , '" + txtUPC.getText() + "' , '"
                 + txtSellingPrice.getText() + "' , '" + txtCostPrice.getText() + "' , '" + txtProductDetails.getText() +
-                "' , '" + txtQuantity.getText() + "' , '" + combWarehouseList.getSelectedItem().toString() + "')";
-        String sqlWarehouse = "UPDATE warehouse SET warehouseStock = warehouseStock + " + Integer.parseInt(txtQuantity.getText()) + " WHERE warehouseNumber = " + selectedWarehouse;
+                "' , '" + txtQuantity.getText() + "' , 0, '" + selectedWarehouse + "');";
+        String sqlWarehouse = "UPDATE warehouse SET warehouseStock = warehouseStock + " 
+                + Integer.parseInt(txtQuantity.getText()) + " WHERE warehouseNumber = " + selectedWarehouse;
         try {
             
             PreparedStatement pst = conn.prepareStatement(sql);
@@ -296,10 +297,12 @@ public class AddProduct extends javax.swing.JFrame {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex);
         } catch (Exception e){
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, e);
+
         }
         dispose();
         new Product().setVisible(true);
+        
     }//GEN-LAST:event_btnSubmitActionPerformed
 
     private void btnReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturnActionPerformed
